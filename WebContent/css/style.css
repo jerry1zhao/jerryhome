@@ -1,0 +1,62 @@
+html {
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header {
+    flex:0 0 auto;
+}
+
+.main {
+    flex:1 0 auto;
+    background-color:#F0F0F0;
+}
+
+footer {
+    flex:0 0 auto;
+    border-top:1px solid #CCCCCC;
+}
+
+/*navbar*/
+.navbar{
+    border-radius: 0px;
+    background-color:#FFFFFF;
+    margin-bottom:0px;
+}
+
+.navbar .logo {
+    background:url(../image/microsoft-gray.png) center no-repeat;
+    display: block;
+    width: 130px;
+    height: 45px;
+    background-size: 100%;
+}
+
+.navbar .navbar-search {
+    width:250px;
+    margin-top:6px;
+    margin-right:15px;
+    border:1px solid #CCCCCC;
+}
+
+.navbar .navbar-search .navbar-search-text{
+    border-radius: 0px;
+    border:0px solid #CCCCCC;
+    box-shadow: none;
+}
+
+.navbar .navbar-search .navbar-search-img{
+    border-radius: 0px;
+    border:0px solid #CCCCCC;
+    background-color:#FFFFFF;
+}
+
+.icp{
+    text-align: center;
+    color: #CCCCCC;
+}
