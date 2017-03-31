@@ -30,7 +30,7 @@ footer {
 }
 
 .navbar .logo {
-    background:url(../image/microsoft-gray.png) center no-repeat;
+    background:url(../image/logo/microsoft-gray.png) center no-repeat;
     display: block;
     width: 130px;
     height: 45px;
@@ -38,7 +38,7 @@ footer {
 }
 
 .navbar .navbar-search {
-    width:250px;
+    width:220px;
     margin-top:6px;
     margin-right:15px;
     border:1px solid #CCCCCC;
@@ -55,6 +55,48 @@ footer {
     border:0px solid #CCCCCC;
     background-color:#FFFFFF;
 }
+/*navbar*/
+
+/*main*/
+.main .post{
+    border:1px solid #CCCCCC;
+    background-color:#FFFFFF;
+    padding:20px;
+}
+
+.main .container {
+  margin-top:15px;
+}
+/*post*/
+
+.post .post-media {
+    padding:0px;
+    padding-bottom:15px;
+}
+
+.post .post-media .post-image{
+    width:100%;
+    height:100%;
+
+}
+
+.post .post-head h3{
+    margin-top:0px;
+}
+
+.post .post-context{
+    color:#777;
+    font-size:16px;
+}
+
+.post .post-footer img{
+    width: 20px;
+}
+
+.post .post-footer .interacts > span{
+    margin-right:10px;
+}
+/*end post*/
 
 .icp{
     text-align: center;
