@@ -59,13 +59,17 @@ footer {
 
 /*main*/
 .main .post{
-    border:1px solid #CCCCCC;
     background-color:#FFFFFF;
     padding:20px;
+    margin-top:15px;
+    border-radius: 1px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 }
 
 .main .container {
-  margin-top:15px;
+  margin-top:0px;
 }
 /*post*/
 
@@ -90,11 +94,33 @@ footer {
 }
 
 .post .post-footer img{
-    width: 20px;
+    width: 18px;
+}
+
+.post .post-footer {
+    border-top:0px;
+    padding-bottom:35px;
+}
+
+.post .post-footer .interacts {
+    float:left;
+    padding-top:10px;
+}
+
+.post .post-footer .sign {
+    float:right;
+    text-align:right;
+    color:#777;
+}
+
+.post .post-footer .sign .author{
+    font-size:17px;
+    color:#777;
 }
 
 .post .post-footer .interacts > span{
     margin-right:10px;
+    color:#777;
 }
 /*end post*/
 

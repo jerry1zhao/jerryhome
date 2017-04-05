@@ -2,6 +2,7 @@
     <wb-module deploy-name="Quick">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/conf"/>
         <property name="context-root" value="Quick"/>
         <property name="java-output-path" value="/Quick/build/classes"/>
     </wb-module>
