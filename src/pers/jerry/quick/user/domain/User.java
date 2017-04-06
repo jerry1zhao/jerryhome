@@ -1,16 +1,13 @@
-// Copyright (c) 1998-2017 Core Solutions Limited. All rights reserved.
-// ============================================================================
-// CURRENT VERSION CNT.5.0.1
+// Copyright (c) 2017 Quick
 // ============================================================================
 // CHANGE LOG
-// CNT.5.0.1 : 2017-XX-XX, jerry.zhao, creation
+// V.1.0 : 2017-XX-XX, jerry.zhao, creation
 // ============================================================================
-
 /**
  * @author jerry.zhao
  *
  */
-package pers.jerry.quick.data.constant;
+package pers.jerry.quick.user.domain;
 
 public class User{
     public User(){
@@ -78,9 +75,24 @@ public class User{
         this.email = email;
     }
 
+    /**
+     * @return the state
+     */
+    public int getState() {
+        return state;
+    }
+
+    /**
+     * @param state the state to set
+     */
+    public void setState(int state) {
+        this.state = state;
+    }
+
     private int userId;
     private String name;
     private String password;
     private String phone;
     private String email;
+    private int state;
 }

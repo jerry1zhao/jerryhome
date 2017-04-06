@@ -15,27 +15,31 @@
 
     <!-- auto-injec -->
     <mvc:annotation-driven />
+    <mvc:default-servlet-handler/>
     <context:component-scan base-package="pers.jerry.quick.*.controller" />
 
-    <mvc:resources mapping="/bootstrap/**" location="/bootstrap/" />
-    <mvc:resources mapping="/image/**" location="/image/" />
-    <mvc:resources mapping="/css/**" location="/css/" />
-    <mvc:resources mapping="/js/**" location="/js/" />
 
-    <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
-    <bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+    <!-- <mvc:resources location="/" mapping="/**/*.html"/>
+    <mvc:resources location="/" mapping="/**/*.js"/>
+    <mvc:resources location="/" mapping="/**/*.css"/>
+    <mvc:resources location="/" mapping="/**/*.png"/>
+    <mvc:resources location="/" mapping="/**/*.gif"/>
+    <mvc:resources location="/" mapping="/**/*.jpg"/> -->
+
+    <!-- annotation-driven
+    <bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> -->
 
 
     <!--通用视图解析器-->
     <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/page/"/>
-        <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=""/>
         <property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView" />
         <property name="order" value="1"/>
     </bean>
 
 
-    <!-- 配置freeMarker视图解析器  -->
+    <!-- freeMarker视图解析器  -->
     <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
         <property name="contentType" value="text/html; charset=utf-8"/>
@@ -44,7 +48,7 @@
         <property name="order" value="0"/>
     </bean>
 
-      <!-- 配置freeMarker的模板路径 -->
+      <!-- freeMarker模板 -->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath">
             <value>/WEB-INF/templates/</value>

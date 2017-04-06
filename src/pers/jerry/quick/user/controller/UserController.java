@@ -19,8 +19,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
+    //index
     @RequestMapping(value="/")
     public ModelAndView index(){
-        return new ModelAndView("test");
+        final ModelAndView modelAndView= new ModelAndView("index");
+        modelAndView.addObject("user", "jerry");
+        return modelAndView;
+    }
+
+    //go login page
+    @RequestMapping(value="/page")
+    public ModelAndView post(){
+        return new ModelAndView("page");
     }
 }
