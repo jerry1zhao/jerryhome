@@ -30,6 +30,6 @@ public class UserController {
     //go login page
     @RequestMapping(value="/page")
     public ModelAndView post(){
-        return new ModelAndView("page");
+        return new ModelAndView("test");
     }
 }
