@@ -10,9 +10,11 @@
  */
 package pers.jerry.quick.user.service;
 
+import java.util.List;
+
 import pers.jerry.quick.user.domain.User;
 
 public interface UserService {
 
-    public boolean userIsExists(User user);
+    public List<User> getUser();
 }

@@ -31,7 +31,7 @@
                                     class="glyphicon glyphicon-search"></span></span>
                             </div>
                         </li>
-                        <li><a href="#">${user}</a></li>
+                        <li><a href="#">${userName}</a></li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle"
                             data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">注册 <span class="caret"></span></a>
@@ -132,7 +132,7 @@
         </div>
     </footer>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>

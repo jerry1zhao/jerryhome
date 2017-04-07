@@ -6,8 +6,9 @@
 
 package pers.jerry.quick.user.dao;
 
-import pers.jerry.quick.user.domain.User;
+import java.util.List;
 
+import pers.jerry.quick.user.domain.User;
 
 /**
  * @author jerry.zhao
@@ -15,6 +16,6 @@ import pers.jerry.quick.user.domain.User;
  */
 public interface UserDao {
 
-    public boolean userIsExists(User user);
+    public List<User> getUser();
 
 }

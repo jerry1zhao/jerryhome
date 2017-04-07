@@ -6,7 +6,10 @@
 
 package pers.jerry.quick.user.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import pers.jerry.quick.user.dao.UserDao;
 import pers.jerry.quick.user.domain.User;
@@ -16,16 +19,18 @@ import pers.jerry.quick.user.service.UserService;
  * @author jerry.zhao
  *
  */
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserDao userdao;
     /* (non-Javadoc)
-     * @see pers.jerry.quick.user.service.UserService#userIsExists(pers.jerry.quick.user.domain.User)
+     * @see pers.jerry.quick.user.service.UserService#getUser(pers.jerry.quick.user.domain.User)
      */
     @Override
-    public boolean userIsExists(User user) {
-        return  userdao.userIsExists(user);
+    public List<User> getUser() {
+        // TODO Auto-generated method stub
+        return userdao.getUser();
     }
 
 }
