@@ -31,7 +31,7 @@
                                     class="glyphicon glyphicon-search"></span></span>
                             </div>
                         </li>
-                        <li><a href="#">${userName}</a></li>
+                        <li><a href="#">Jerry</a></li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle"
                             data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">注册 <span class="caret"></span></a>
@@ -51,23 +51,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 posts">
+                    <#list posts as post>
                     <article class="post">
                         <div class="post-media col-md-12">
-                            <img class="post-image" src="image/post/spacex.jpg" alt="spacex">
+                            <img class="post-image" src="${post.postHeaderImage}" alt="spacex">
                         </div>
                         <div class="post-head">
-                            <h3>聚合实用 Workflow 动作的中文分享站：Workflow Gallery by sspai</h3>
+                            <h3>${post.title}</h3>
                         </div>
                         <div class="post-context">
-                            <h5>Workflow 的价值在于它容易分享和获取，每一个 Workflow
-                                都像一个开源软件，你不光可以使用它，也可以通过一个优秀的
-                                Workflow，学习到制作者的思路和解决同类问题的方法。上周，苹果收...
-                                Workflow 的价值在于它容易分享和获取，每一个 Workflow
-                                都像一个开源软件，你不光可以使用它，也可以通过一个优秀的
-                                Workflow，学习到制作者的思路和解决同类问题的方法。上周，苹果收...
-                                Workflow 的价值在于它容易分享和获取，每一个 Workflow
-                                都像一个开源软件，你不光可以使用它，也可以通过一个优秀的
-                                Workflow，学习到制作者的思路和解决同类问题的方法。上周，苹果收...</h5>
+                            <h5>${post.content}</h5>
                         </div>
                         <footer class="post-footer">
                             <div class="interacts">
@@ -84,40 +77,7 @@
 
                         </footer>
                     </article>
-
-                    <article class="post">
-                        <div class="post-media col-md-12">
-                            <img class="post-image" src="image/post/spacex.jpg" alt="spacex">
-                        </div>
-                        <div class="post-head">
-                            <h3>聚合实用 Workflow 动作的中文分享站：Workflow Gallery by sspai</h3>
-                        </div>
-                        <div class="post-context">
-                            <h5>Workflow 的价值在于它容易分享和获取，每一个 Workflow
-                                都像一个开源软件，你不光可以使用它，也可以通过一个优秀的
-                                Workflow，学习到制作者的思路和解决同类问题的方法。上周，苹果收...
-                                Workflow 的价值在于它容易分享和获取，每一个 Workflow
-                                都像一个开源软件，你不光可以使用它，也可以通过一个优秀的
-                                Workflow，学习到制作者的思路和解决同类问题的方法。上周，苹果收...
-                                Workflow 的价值在于它容易分享和获取，每一个 Workflow
-                                都像一个开源软件，你不光可以使用它，也可以通过一个优秀的
-                                Workflow，学习到制作者的思路和解决同类问题的方法。上周，苹果收...</h5>
-                        </div>
-                        <footer class="post-footer">
-                            <div class="interacts">
-                                <span> <img src="image/post/like-icon.png" alt="like">
-                                    <span>5</span>
-                                </span> <span> <img src="image/post/comment-icon.png"
-                                    alt="comment"> <span>20</span>
-                                </span>
-                            </div>
-                            <div class="sign">
-                                <time datetime="2015-11-12">11月12日</time>
-                                <p class="author">Tom</p>
-                            </div>
-
-                        </footer>
-                    </article>
+                    </#list>
                 </div>
                 <aside class="aside col-md-4">
                     <p>123</p>

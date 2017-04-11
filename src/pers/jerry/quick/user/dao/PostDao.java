@@ -8,14 +8,14 @@ package pers.jerry.quick.user.dao;
 
 import java.util.List;
 
-import pers.jerry.quick.user.domain.User;
+import pers.jerry.quick.user.domain.Post;
 
 /**
  * @author jerry.zhao
  *
  */
-public interface UserDao {
+public interface PostDao {
 
-    public List<User> getUser(int userId);
+    public List<Post> getPosts();
 
 }

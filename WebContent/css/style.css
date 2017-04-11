@@ -58,20 +58,21 @@ footer {
 /*navbar*/
 
 /*main*/
+.main .container {
+  margin-top:0px;
+}
+
+/*post*/
 .main .post{
     background-color:#FFFFFF;
     padding:20px;
-    margin-top:15px;
+    margin-top:10px;
+    margin-bottom:10px;
     border-radius: 1px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 }
-
-.main .container {
-  margin-top:0px;
-}
-/*post*/
 
 .post .post-media {
     padding:0px;

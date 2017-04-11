@@ -11,26 +11,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pers.jerry.quick.user.dao.UserDao;
-import pers.jerry.quick.user.domain.User;
-import pers.jerry.quick.user.service.UserService;
+import pers.jerry.quick.user.dao.PostDao;
+import pers.jerry.quick.user.domain.Post;
+import pers.jerry.quick.user.service.PostService;
 
 /**
  * @author jerry.zhao
  *
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class PostServiceImpl implements PostService{
 
     @Autowired
-    private UserDao userdao;
+    private PostDao postDao;
+
     /* (non-Javadoc)
-     * @see pers.jerry.quick.user.service.UserService#getUser(pers.jerry.quick.user.domain.User)
+     * @see pers.jerry.quick.user.service.PostService#getPosts()
      */
     @Override
-    public List<User> getUser(int userId) {
-        // TODO Auto-generated method stub
-        return userdao.getUser(userId);
+    public List<Post> getPosts() {
+        return postDao.getPosts();
+
     }
+
 
 }

@@ -57,7 +57,7 @@
         <property name="typeAliasesPackage" value="pers.jerry.quick.user.domain" />
         <property name="mapperLocations">
             <list>
-                <value>classpath:UserMapper.xml</value>
+                <value>classpath:*Mapper.xml</value>
             </list>
         </property>
     </bean>
