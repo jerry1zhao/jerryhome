@@ -10,7 +10,7 @@
  * @author jerry.zhao
  *
  */
-package pers.jerry.quick.user.controller;
+package pers.jerry.quick.post.controller;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pers.jerry.quick.user.domain.Post;
-import pers.jerry.quick.user.service.PostService;
+import pers.jerry.quick.post.domain.Post;
+import pers.jerry.quick.post.service.PostService;
 
 @Controller
 public class PostController {
@@ -29,7 +29,7 @@ public class PostController {
     private PostService postService;
 
     //go login page
-    @RequestMapping(value="/post")
+    @RequestMapping(value="/")
     public String userLogin(ModelMap modelMap){
         final List<Post> posts = postService.getPosts();
         modelMap.put("posts", posts);

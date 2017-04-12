@@ -12,7 +12,7 @@
                         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
     ">
 
-    <context:component-scan base-package="pers.jerry.quick.user.service"/>
+    <context:component-scan base-package="pers.jerry.quick.*.service"/>
 
     <context:property-placeholder location="classpath:DBSetting.properties" ignore-unresolvable="true"/>
 
@@ -54,7 +54,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:mybatis-config.xml" />
-        <property name="typeAliasesPackage" value="pers.jerry.quick.user.domain" />
+        <property name="typeAliasesPackage" value="pers.jerry.quick.user.domain,pers.jerry.quick.post.domain"/>
         <property name="mapperLocations">
             <list>
                 <value>classpath:*Mapper.xml</value>
@@ -64,7 +64,7 @@
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="pers.jerry.quick.user.dao" />
+        <property name="basePackage" value="pers.jerry.quick.*.dao" />
     </bean>
 
     <bean id="transactionManager"

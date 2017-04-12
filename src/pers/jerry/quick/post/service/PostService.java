@@ -4,18 +4,18 @@
 // V.1.0 : 2017-XX-XX, jerry.zhao, creation
 // ============================================================================
 
-package pers.jerry.quick.user.dao;
-
-import java.util.List;
-
-import pers.jerry.quick.user.domain.Post;
-
 /**
  * @author jerry.zhao
  *
  */
-public interface PostDao {
+package pers.jerry.quick.post.service;
+
+import java.util.List;
+
+import pers.jerry.quick.post.domain.Post;
+
+
+public interface PostService {
 
     public List<Post> getPosts();
-
 }

@@ -72,7 +72,7 @@
                             </div>
                             <div class="sign">
                                 <time datetime="2015-11-12">11月12日</time>
-                                <p class="author">Tom</p>
+                                <p class="author">${post.createUser.name}</p>
                             </div>
 
                         </footer>
@@ -80,7 +80,11 @@
                     </#list>
                 </div>
                 <aside class="aside col-md-4">
-                    <p>123</p>
+                    <h5>精选</h5>
+                </aside>
+
+                <aside class="aside col-md-4">
+                    <h5>推荐专题</h5>
                 </aside>
             </div>
         </div>

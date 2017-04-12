@@ -4,16 +4,17 @@
 // V.1.0 : 2017-XX-XX, jerry.zhao, creation
 // ============================================================================
 
-package pers.jerry.quick.user.service.impl;
+package pers.jerry.quick.post.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pers.jerry.quick.user.dao.PostDao;
-import pers.jerry.quick.user.domain.Post;
-import pers.jerry.quick.user.service.PostService;
+import pers.jerry.quick.post.dao.PostDao;
+import pers.jerry.quick.post.domain.Post;
+import pers.jerry.quick.post.service.PostService;
+
 
 /**
  * @author jerry.zhao

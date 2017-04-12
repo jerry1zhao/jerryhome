@@ -58,8 +58,8 @@ footer {
 /*navbar*/
 
 /*main*/
-.main .container {
-  margin-top:0px;
+.main {
+    padding-top:40px;
 }
 
 /*post*/
@@ -87,11 +87,13 @@ footer {
 
 .post .post-head h3{
     margin-top:0px;
+    font-weight:bold;
 }
 
-.post .post-context{
+.post .post-context h5{
     color:#777;
-    font-size:16px;
+    font-size:15px;
+    line-height:1.5;
 }
 
 .post .post-footer img{
@@ -124,6 +126,15 @@ footer {
     color:#777;
 }
 /*end post*/
+
+/*aside*/
+.main .aside{
+
+}
+
+.main .aside h5{
+    font-weight:bold;
+}
 
 .icp{
     text-align: center;

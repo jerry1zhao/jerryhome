@@ -4,9 +4,11 @@
 // V.1.0 : 2017-XX-XX, jerry.zhao, creation
 // ============================================================================
 
-package pers.jerry.quick.user.domain;
+package pers.jerry.quick.post.domain;
 
 import java.time.LocalDateTime;
+
+import pers.jerry.quick.user.domain.User;
 
 /**
  * @author jerry.zhao
