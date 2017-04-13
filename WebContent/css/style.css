@@ -14,7 +14,7 @@ header {
 
 .main {
     flex:1 0 auto;
-    background-color:#F0F0F0;
+    background-color:#FAFAFA;
 }
 
 footer {
@@ -66,9 +66,10 @@ footer {
 .main .post{
     background-color:#FFFFFF;
     padding:20px;
-    margin-top:10px;
-    margin-bottom:10px;
+    margin-top:20px;
+    margin-bottom:20px;
     border-radius: 1px;
+    border: 1px solid #dbe2e8;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
@@ -129,11 +130,21 @@ footer {
 
 /*aside*/
 .main .aside{
+    margin-top:10px;
+}
 
+.main .aside > div{
+    margin-bottom:10px;
 }
 
 .main .aside h5{
     font-weight:bold;
+}
+
+.main .aside > div > h5{
+    font-weight:bold;
+    padding-bottom:5px;
+    border-bottom:1px solid #CCCCCC;
 }
 
 .icp{
