@@ -12,15 +12,11 @@
  */
 package pers.jerry.quick.user.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import pers.jerry.quick.user.domain.User;
 import pers.jerry.quick.user.service.UserService;
 
 @Controller
@@ -32,9 +28,7 @@ public class UserController {
 
     //go login page
     @RequestMapping(value="/login")
-    public String userLogin(@RequestParam("userId")int userId,Model model){
-       final List<User> user = userService.getUser(userId);
-       model.addAttribute("userName", user.get(0).getName());
-       return "index";
+    public String userLogin(ModelMap modelMap){
+       return "user/userLogin";
     }
 }
