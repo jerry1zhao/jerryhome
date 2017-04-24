@@ -13,13 +13,35 @@
 <body>
     <div class="main">
         <div class="container">
-            <div class="row">
-                <div class="col-md-8 posts">
-                    <p>123</p>
+                <div id="loginModal" class="modal show">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="text-center text-primary">登录</h1>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" class="form col-md-12 center-block">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-lg"
+                                            placeholder="电子邮件">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control input-lg"
+                                            placeholder="登录密码">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-success btn-lg btn-block">立刻登录</button>
+                                        <span><a href="#">找回密码</a></span> <span><a href="#"
+                                            class="pull-right">注册</a></span>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

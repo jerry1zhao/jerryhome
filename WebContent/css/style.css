@@ -6,6 +6,8 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
+     margin:0;
+    padding:0;
 }
 
 header {
@@ -63,7 +65,8 @@ footer {
 }
 
 /*post*/
-.main .post{
+.main .post,
+.main .login-window {
     background-color:#FFFFFF;
     padding:20px;
     margin-top:20px;
@@ -150,4 +153,9 @@ footer {
 .icp{
     text-align: center;
     color: #CCCCCC;
+}
+
+/*login*/
+.login-window{
+
 }
