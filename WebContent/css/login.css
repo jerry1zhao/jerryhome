@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+/*login*/
+html,body,.main {
+    height: 100%;
+}
+
+.main {
+    padding-top:140px;
+    background-color:#FAFAFA;
+}
+
+.main .login-window {
+    float: none;
+    background-color:#FFFFFF;
+    padding:20px;
+    margin-top:20px;
+    margin-bottom:20px;
+    border-radius: 2px;
+    border: 1px solid #dbe2e8;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+.login-window .login-window-container{
+    float:none;
+}
+
+.login-window .title{
+    color: #EA6F5A;
+    margin-bottom:25px;
+}
+
+
+.login-contarner .input-group {
+    border:1px solid #CCCCCC;
+    border-radius: 2px;
+    margin-bottom:10px;
+}
+
+.login-contarner .input-group .glyphicon {
+    top:0px;
+}
+.login-contarner .input-group input {
+    border:0px;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.login-contarner .input-group .input-group-addon {
+    background-color: transparent;
+    border:0px;
+}
+
+.login-contarner .btn-login-commit{
+    width: 100%;
+    max-width: 308px;
+    float:none;
+    border-radius: 2px;
+    margin-top:40px;
+}
+.login-contarner .forget-btn {
+
+}
