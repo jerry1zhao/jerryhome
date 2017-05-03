@@ -15,6 +15,14 @@ import pers.jerry.quick.user.domain.User;
  *
  */
 public class Post {
+
+    private String postHeaderImage;
+    private String title;
+    private String content;
+    private LocalDateTime createDate;
+    private User createUser;
+    private LocalDateTime updateDate;
+    private User updateUser;
     private int id;
     /**
      * @return the id
@@ -28,13 +36,6 @@ public class Post {
     public void setId(int id) {
         this.id = id;
     }
-    private String postHeaderImage;
-    private String title;
-    private String content;
-    private LocalDateTime createDate;
-    private User createUser;
-    private LocalDateTime updateDate;
-    private User updateUser;
     /**
      * @return the updateUser
      */

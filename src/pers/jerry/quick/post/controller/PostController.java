@@ -28,9 +28,9 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    //go login page
-    @RequestMapping(value="/")
-    public String userLogin(ModelMap modelMap){
+    // go login page
+    @RequestMapping(value = "/")
+    public String userLogin(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
         modelMap.put("posts", posts);
         return "index";

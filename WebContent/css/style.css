@@ -33,7 +33,8 @@ footer {
 }
 
 .navbar .logo {
-    background:url(../image/logo/Jerry-white.png) center no-repeat;
+    background:url(../images/logo/Jerry-white.png) center no-repeat;
+    margin-top:3px;
     display: block;
     width: 130px;
     height: 45px;

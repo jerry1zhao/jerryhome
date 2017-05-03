@@ -13,7 +13,7 @@ html,body,.main {
     float: none;
     background-color:#FFFFFF;
     padding:20px;
-    margin-top:50px;
+    margin-top:40px;
     margin-bottom:20px;
     border-radius: 4px;
     border: 1px solid #dbe2e8;
@@ -21,11 +21,17 @@ html,body,.main {
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 }
+
+.head-logo {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
 .head-logo .logo {
-    width: 160px;
-    height: 110px;
-    background-image:url(../image/Jerry-500-375.jpg);
-    background-size:158px 108px;
+    width: 200px;
+    height: 140px;
+    background-image:url(../images/Jerry-500-375.jpg);
+    background-size:198px 138px;
 }
 .login-window .login-window-container{
     float:none;
@@ -33,7 +39,8 @@ html,body,.main {
 
 .login-window .title{
     color: #EA6F5A;
-    margin-bottom:25px;
+    margin-bottom:20px;
+    margin-top:20px;
 }
 
 
@@ -58,15 +65,16 @@ html,body,.main {
 }
 
 .login-contarner .btn-login-commit{
-    background-color:#3194D0;
+    background-color:#F0AD4E;
     border:0px;
     width: 100%;
     max-width: 308px;
     float:none;
     border-radius: 2px;
-    margin-top: 60px;
+    margin-top: 40px;
+    margin-bottom:20px;
 }
 .login-contarner .aux-fun {
     display: block;
-    margin-top: 20px;
+    padding-top: 10px;
 }
