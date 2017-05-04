@@ -27,8 +27,14 @@ public class UserController {
 
 
     //go login page
-    @RequestMapping(value="/login")
-    public String userLogin(ModelMap modelMap){
-       return "user/userLogin";
+    @RequestMapping(value = "/login")
+    public String userLogin(ModelMap modelMap) {
+        return "user/userLogin";
+    }
+
+    //go signin page
+    @RequestMapping(value = "/signin")
+    public String userSignin(ModelMap modelMap) {
+        return "user/userSignin";
     }
 }

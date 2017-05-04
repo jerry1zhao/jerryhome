@@ -56,7 +56,7 @@
                                             id="session_email_or_mobile_number" class="form-control">
                                     </div>
                                     </div>
-                                    <input type="submit" name="commit" value="登录"
+                                    <input type="submit" name="commit" value="注册"
                                         class="btn btn-primary center-block btn-login-commit" />
                                 </form>
                             </div>

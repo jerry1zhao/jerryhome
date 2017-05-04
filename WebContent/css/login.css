@@ -53,6 +53,7 @@ html,body,.main {
 .login-contarner .input-group .glyphicon {
     top:0px;
 }
+
 .login-contarner .input-group input {
     border:0px;
     border-radius: 4px;
@@ -78,3 +79,31 @@ html,body,.main {
     display: block;
     padding-top: 10px;
 }
+
+.signin-contarner .input-groups{
+    border:1px solid #CCCCCC;
+    border-radius: 4px;
+}
+
+.signin-contarner .input-group{
+    border: 0px;
+    border-radius: 0px;
+    border-bottom:1px solid #CCCCCC;
+    margin-bottom:0px;
+}
+
+.signin-contarner .input-group-authcode{
+   border-bottom:0px solid #CCCCCC;
+}
+
+.signin-contarner .input-group-email .input-group-btn .btn{
+   border-radius: 0px;
+   border-color: transparent;;
+   background-color:#bbbbbb;
+   color: #ffffff;
+}
+
+.signin-contarner .btn-login-commit{
+    margin-top:30px;
+}
+
