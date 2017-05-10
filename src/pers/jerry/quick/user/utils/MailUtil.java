@@ -50,15 +50,23 @@ public final class MailUtil {
     }
 
     public static void main(String[] args) {
-        try {
-            sendMail("jerry.zhao@coresolutions.com");
-        } catch (final UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (final MessagingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        final String a = "a24.324.bsdf.fadf";
+//        System.out.println(a.substring(a.lastIndexOf(".") + 1));
+//        System.out.println(a.substring(a.lastIndexOf(".") + 1));
+        final String b = a.substring(a.lastIndexOf('.') + 1);
+        System.out.println(b);
+        final String c=a.substring(0, a.lastIndexOf('.'));
+        System.out.println(a.substring(0, a.lastIndexOf('.')));
+        System.out.println(c.substring(c.lastIndexOf(".")+1));
+//        try {
+//            sendMail("jerry.zhao@coresolutions.com");
+//        } catch (final UnsupportedEncodingException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (final MessagingException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
     }
 
     public static void sendMail(String receiveMailAccount) throws MessagingException, UnsupportedEncodingException {

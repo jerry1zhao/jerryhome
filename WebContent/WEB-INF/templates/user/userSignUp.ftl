@@ -24,17 +24,17 @@
                             <div class="title">
                                 <h4>Jerry Home</h4>
                             </div>
-                            <div class="login-contarner signin-contarner">
-                                <form id="" action="/signin" accept-charset="UTF-8" method="post">
+                            <div class="login-contarner signup-contarner">
+                                <form id="" action="/signup" accept-charset="UTF-8" method="post">
                                     <div class="input-groups">
-                                    <div class="input-group input-group-name">
-                                        <span class="glyphicon glyphicon-user input-group-addon"></span>
-                                        <input placeholder="昵称" type="text"
-                                            name="session[email_or_mobile_number]"
-                                            id="session_email_or_mobile_number" class="form-control">
-                                    </div>
+                                        <div class="input-group input-group-name">
+                                            <span class="glyphicon glyphicon-user input-group-addon"></span>
+                                            <input placeholder="昵称" type="text" name="username" id="" onblur="checkUser()"
+                                                class="form-control">
+                                        </div>
+                                        <div id="nameAlert"></div>
 
-                                    <div class="input-group input-group-password">
+                                        <div class="input-group input-group-password">
                                         <span class="glyphicon glyphicon-lock input-group-addon"></span>
                                         <input placeholder="密码" type="password"
                                             name="session[password]" id="session_password" class="form-control">
@@ -68,6 +68,7 @@
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/login.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -80,30 +80,45 @@ html,body,.main {
     padding-top: 10px;
 }
 
-.signin-contarner .input-groups{
+.login-contarner .alert-message {
+    color: #a94442;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 35px;
+    background: url(../images/error.png) no-repeat #f2dede;
+    background-position-x: 10px;
+    background-position-y: 8px;
+
+}
+
+.login-contarner .alert-box{
+    display:none;
+}
+.signup-contarner .input-groups{
     border:1px solid #CCCCCC;
     border-radius: 4px;
 }
 
-.signin-contarner .input-group{
+.signup-contarner .input-group{
     border: 0px;
     border-radius: 0px;
     border-bottom:1px solid #CCCCCC;
     margin-bottom:0px;
 }
 
-.signin-contarner .input-group-authcode{
+.signup-contarner .input-group-authcode{
    border-bottom:0px solid #CCCCCC;
 }
 
-.signin-contarner .input-group-email .input-group-btn .btn{
+.signup-contarner .input-group-email .input-group-btn .btn{
    border-radius: 0px;
    border-color: transparent;;
    background-color:#bbbbbb;
    color: #ffffff;
+   height: 34px;
 }
 
-.signin-contarner .btn-login-commit{
+.signup-contarner .btn-login-commit{
     margin-top:30px;
 }
 

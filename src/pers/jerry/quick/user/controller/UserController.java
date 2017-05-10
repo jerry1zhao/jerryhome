@@ -35,6 +35,6 @@ public class UserController {
     //go signin page
     @RequestMapping(value = "/signin")
     public String userSignin(ModelMap modelMap) {
-        return "user/userSignin";
+        return "user/userSignUp";
     }
 }
