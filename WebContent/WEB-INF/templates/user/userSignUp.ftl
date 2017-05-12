@@ -25,39 +25,49 @@
                                 <h4>Jerry Home</h4>
                             </div>
                             <div class="login-contarner signup-contarner">
-                                <form id="" action="/signup" accept-charset="UTF-8" method="post">
+                                <form id="signupFrom" accept-charset="UTF-8">
                                     <div class="input-groups">
                                         <div class="input-group input-group-name">
                                             <span class="glyphicon glyphicon-user input-group-addon"></span>
-                                            <input placeholder="昵称" type="text" name="username" id="" onblur="checkUser()"
-                                                class="form-control">
+                                            <input placeholder="昵称" type="text" id="username"
+                                               name="name" class="form-control">
                                         </div>
-                                        <div id="nameAlert"></div>
+                                        <div id="nameAlert" class="alert-box">
+                                            <div class="alert-message">用户名为4-12位，可为中文、字母、数字、下划线。</div>
+                                        </div>
 
                                         <div class="input-group input-group-password">
-                                        <span class="glyphicon glyphicon-lock input-group-addon"></span>
-                                        <input placeholder="密码" type="password"
-                                            name="session[password]" id="session_password" class="form-control">
-                                    </div>
-                                    <div class="input-group input-group-email">
-                                        <span class="glyphicon glyphicon-envelope input-group-addon"></span>
-                                        <input placeholder="手机号或邮箱" type="text"
-                                            name="session[email_or_mobile_number]"
-                                            id="session_email_or_mobile_number" class="form-control">
-                                         <span class="input-group-btn">
-                                           <button class="btn btn-default" type="button">Send</button>
-                                         </span>
-                                    </div>
+                                            <span class="glyphicon glyphicon-lock input-group-addon"></span>
+                                            <input placeholder="密码" type="password" id="password"
+                                               name="password"  class="form-control">
+                                        </div>
+                                        <div id="passwordAlert" class="alert-box">
+                                            <div class="alert-message">密码为6-18位，可为字母、数字、~、!、@、#、$、%、*、=、+、-。</div>
+                                        </div>
 
-                                    <div class="input-group input-group-authcode">
-                                        <span class="glyphicon glyphicon-send input-group-addon"></span>
-                                        <input placeholder="邮箱验证码" type="text"
-                                            name="session[email_or_mobile_number]"
-                                            id="session_email_or_mobile_number" class="form-control">
+                                        <div class="input-group input-group-email">
+                                            <span class="glyphicon glyphicon-envelope input-group-addon"></span>
+                                            <input placeholder="你的邮箱" type="text"
+                                               name="email" id="email"  class="form-control">
+                                            <span class="input-group-btn">
+                                                <input type="button" class="btn btn-default" id="sendCaptcha" value="Send" type="button"/>
+                                            </span>
+                                        </div>
+                                        <div id="emaildAlert" class="alert-box">
+                                            <div class="alert-message">邮箱格式不正确</div>
+                                        </div>
+
+                                        <div class="input-group input-group-authcode">
+                                            <span class="glyphicon glyphicon-send input-group-addon"></span>
+                                            <input placeholder="邮箱验证码" type="text"
+                                               name="captcha" id="captcha" class="form-control">
+                                        </div>
+                                        <div id="captchaAlert" class="alert-box">
+                                            <div class="alert-message">验证码为6位，字母与数字混合组成</div>
+                                        </div>
                                     </div>
-                                    </div>
-                                    <input type="submit" name="commit" value="注册"
-                                        class="btn btn-primary center-block btn-login-commit" />
+                                    <input type="button" id="register" name="commit" value="注册"
+                                        class="btn btn-primary center-block btn-login-commit"/>
                                 </form>
                             </div>
                         </div>

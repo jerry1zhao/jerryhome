@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import pers.jerry.quick.post.domain.Post;
 import pers.jerry.quick.post.service.PostService;
@@ -29,8 +30,16 @@ public class PostController {
     private PostService postService;
 
     // go login page
-    @RequestMapping(value = "/")
-    public String userLogin(ModelMap modelMap) {
+    @RequestMapping(value = "index", method = RequestMethod.GET)
+    public String goIndex(ModelMap modelMap) {
+        final List<Post> posts = postService.getPosts();
+        modelMap.put("posts", posts);
+        return "index";
+    }
+
+    // go login page
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String getPosts(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
         modelMap.put("posts", posts);
         return "index";

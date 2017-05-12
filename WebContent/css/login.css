@@ -85,10 +85,15 @@ html,body,.main {
     padding-top: 7px;
     padding-bottom: 7px;
     padding-left: 35px;
-    background: url(../images/error.png) no-repeat #f2dede;
+    margin-top:-10px;
+    background: url(../images/error.png) no-repeat transparent;
     background-position-x: 10px;
     background-position-y: 8px;
 
+}
+.signup-contarner .alert-message {
+    background-color:#f2dede;
+    margin-top: 0px;
 }
 
 .login-contarner .alert-box{

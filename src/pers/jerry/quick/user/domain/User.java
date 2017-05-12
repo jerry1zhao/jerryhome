@@ -1,4 +1,5 @@
-// Copyright (c) 2017 Quick
+package pers.jerry.quick.user.domain;
+// Copyright (c) 2017 Quick Jerry
 // ============================================================================
 // CHANGE LOG
 // V.1.0 : 2017-XX-XX, jerry.zhao, creation
@@ -7,10 +8,18 @@
  * @author jerry.zhao
  *
  */
-package pers.jerry.quick.user.domain;
 
-public class User{
-    public User(){
+
+public class User {
+
+    private int userId;
+    private String name;
+    private String password;
+    private String phone;
+    private String email;
+    private int state;
+
+    public User() {
 
     }
 
@@ -20,56 +29,70 @@ public class User{
     public int getUserId() {
         return userId;
     }
+
     /**
-     * @param userId the userId to set
+     * @param userId
+     *            the userId to set
      */
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
     /**
      * @return the name
      */
     public String getName() {
         return name;
     }
+
     /**
-     * @param name the name to set
+     * @param name
+     *            the name to set
      */
     public void setName(String name) {
         this.name = name;
     }
+
     /**
      * @return the password
      */
     public String getPassword() {
         return password;
     }
+
     /**
-     * @param password the password to set
+     * @param password
+     *            the password to set
      */
     public void setPassword(String password) {
         this.password = password;
     }
+
     /**
      * @return the phone
      */
     public String getPhone() {
         return phone;
     }
+
     /**
-     * @param phone the phone to set
+     * @param phone
+     *            the phone to set
      */
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
     /**
      * @return the email
      */
     public String getEmail() {
         return email;
     }
+
     /**
-     * @param email the email to set
+     * @param email
+     *            the email to set
      */
     public void setEmail(String email) {
         this.email = email;
@@ -83,16 +106,10 @@ public class User{
     }
 
     /**
-     * @param state the state to set
+     * @param state
+     *            the state to set
      */
     public void setState(int state) {
         this.state = state;
     }
-
-    private int userId;
-    private String name;
-    private String password;
-    private String phone;
-    private String email;
-    private int state;
 }

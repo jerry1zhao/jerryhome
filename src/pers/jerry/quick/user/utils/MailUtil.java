@@ -10,9 +10,14 @@
  */
 package pers.jerry.quick.user.utils;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javax.mail.MessagingException;
@@ -33,6 +38,8 @@ public final class MailUtil {
     private static String mailPassword;
     private static String mailSMTPHost;
     private static String mailFromName;
+    private static String htmlContent;
+    private static String captcha;
 
     static {
         init();
@@ -47,29 +54,20 @@ public final class MailUtil {
         mailPassword =  resource.getString(CONSTANT_MAIL_PASSWORD);
         mailSMTPHost =  resource.getString(CONSTANT_MAIL_SMTP_HOST);
         mailFromName =  resource.getString(CONSTANT_MAIL_FROM_NAME);
+        htmlContent = getHTMLContent();
     }
 
     public static void main(String[] args) {
-        final String a = "a24.324.bsdf.fadf";
-//        System.out.println(a.substring(a.lastIndexOf(".") + 1));
-//        System.out.println(a.substring(a.lastIndexOf(".") + 1));
-        final String b = a.substring(a.lastIndexOf('.') + 1);
-        System.out.println(b);
-        final String c=a.substring(0, a.lastIndexOf('.'));
-        System.out.println(a.substring(0, a.lastIndexOf('.')));
-        System.out.println(c.substring(c.lastIndexOf(".")+1));
-//        try {
-//            sendMail("jerry.zhao@coresolutions.com");
-//        } catch (final UnsupportedEncodingException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (final MessagingException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
+        try {
+            System.out.println(sendMail("jerry.zhao@coresolutions.com"));
+        } catch (final UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (final MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void sendMail(String receiveMailAccount) throws MessagingException, UnsupportedEncodingException {
+    public static String sendMail(String receiveMailAccount) throws MessagingException, UnsupportedEncodingException {
         final Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
         props.setProperty("mail.smtp.host", mailSMTPHost);
@@ -84,6 +82,7 @@ public final class MailUtil {
         transport.connect(mailAccount, mailPassword);
         transport.sendMessage(message, message.getAllRecipients());
         transport.close();
+        return captcha;
     }
 
     private static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail)
@@ -91,53 +90,42 @@ public final class MailUtil {
         final MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(sendMail, mailFromName, UTF8));
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, receiveMail, UTF8));
-        message.setSubject("JAVA MAIL TEST");
-        message.setContent("JAVA MAIL TESTJAVA MAIL TESTJAVA MAIL TESTJAVA MAIL TEST", "text/html;charset=UTF-8");
+        message.setSubject("×¢²áJERRY HOME", UTF8);
+        message.setContent(emailContent(), "text/html;charset=UTF-8");
         message.setSentDate(new Date());
         message.saveChanges();
         return message;
     }
 
-    /**
-     * @return the mailAccount
-     */
-    public String getMailAccount() {
-        return mailAccount;
+    private static String getHTMLContent() {
+        final StringBuffer content = new StringBuffer();
+        final String filePath = System.getProperty("user.dir") + "/conf/emailTemplate.html";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        } catch (final FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+        return content.toString();
     }
 
-    /**
-     * @param mailAccount the mailAccount to set
-     */
-    public void setMailAccount(String mailAccount) {
-        MailUtil.mailAccount = mailAccount;
+    private static String emailContent() {
+        return htmlContent.replace("{captcha}", generateCaptcha());
     }
 
-    /**
-     * @return the mailPassword
-     */
-    public String getMailPassword() {
-        return mailPassword;
-    }
 
-    /**
-     * @param mailPassword the mailPassword to set
-     */
-    public void setMailPassword(String mailPassword) {
-        MailUtil.mailPassword = mailPassword;
-    }
-
-    /**
-     * @return the mailSMTPHost
-     */
-    public String getMailSMTPHost() {
-        return mailSMTPHost;
-    }
-
-    /**
-     * @param mailSMTPHost the mailSMTPHost to set
-     */
-    public void setMailSMTPHost(String mailSMTPHost) {
-        MailUtil.mailSMTPHost = mailSMTPHost;
+    private static String generateCaptcha() {
+        final StringBuffer sb = new StringBuffer();
+        final Random random = new Random();
+        for (int i = 0; i < 8; i++) {
+            sb.append(random.nextInt(10));
+        }
+        captcha = sb.toString();
+        return captcha;
     }
 
 }

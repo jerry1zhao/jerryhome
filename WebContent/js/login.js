@@ -1,57 +1,90 @@
-function $(elementId){
-    return document.getElementById(elementId);
+$(function() {
+    $("#username").blur(function() {
+        checkUser();
+    });
+    $("#password").blur(function() {
+        checkPassword();
+    });
+    $("#email").blur(function() {
+        checkEmail();
+    });
+    $("#captcha").blur(function() {
+        checkCpatcha();
+    });
+    $("#register").click(function() {
+        register();
+    });
+    $("#sendCaptcha").click(function() {
+        waitSend();
+    })
+});
+
+function register() {
+    if (checkSignUpForm()) {
+        var captcha = document.getElementById('captcha').value;
+        $.post("handleUserSignin", {captcha:captcha}+'&'+$("#signupFrom").serialize(), function(
+                result) {
+            if (result != "success") {
+                checkSignUpForm();
+            } else {
+                window.location.href = "index";
+            }
+        })
+    } else {
+        checkSignUpForm();
+    }
 }
 
 function checkUser() {
     var reg = /^[\u0391-\uFFE5_0-9a-zA-z]{4,12}$/;
-    var username = $('username').value;
+    var username = document.getElementById('username').value;
     if (reg.test(username)) {
-        $('nameAlert').style.display="none";
+        document.getElementById('nameAlert').style.display = "none";
 
         return true;
     } else {
-        $('nameAlert').style.display="inline";
+        document.getElementById('nameAlert').style.display = "inline";
         return false;
     }
 }
 
 function checkPassword() {
-    var reg = /^([A-Z]|[a-z]|[0-9]|[~!@#$%*=+-]){6,18}$/;
-    var password = $('password').value;
+    var reg = /^([A-Z]|[a-z]|[0-9]|[~!@#getElement%*=+-]){6,18}$/;
+    var password = document.getElementById('password').value;
     if (reg.test(password)) {
-        $('passwordAlert').style.display="none";
+        document.getElementById('passwordAlert').style.display = "none";
         return true;
     } else {
-        $('passwordAlert').style.display="inline";
+        document.getElementById('passwordAlert').style.display = "inline";
         return false;
     }
 }
 
 function checkEmail() {
     var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
-    var email = $('email').value;
+    var email = document.getElementById('email').value;
     if (reg.test(email)) {
-        $('emaildAlert').style.display="none";
+        document.getElementById('emaildAlert').style.display = "none";
         return true;
     } else {
-        $('emaildAlert').style.display="inline";
+        document.getElementById('emaildAlert').style.display = "inline";
         return false;
     }
 }
 
 function checkCpatcha() {
     var reg = /^([A-Z]|[a-z]|[0-9]){6}$/;
-    var captcha = $('captcha').value;
+    var captcha = document.getElementById('captcha').value;
     if (reg.test(captcha)) {
-        $('captchaAlert').style.display="none";
+        document.getElementById('captchaAlert').style.display = "none";
         return true;
     } else {
-        $('captchaAlert').style.display="inline";
+        document.getElementById('captchaAlert').style.display = "inline";
         return false;
     }
 }
 
-function checkForm() {
+function checkSignUpForm() {
     if (checkUser() == true && checkPassword() == true && checkEmail() == true
             && checkCpatcha() == true) {
         return true;
@@ -59,24 +92,43 @@ function checkForm() {
         return false;
     }
 }
+function checkLoginForm() {
+    if (checkEmail() == true && checkPassword() == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-var waitTime=60;
-function waitSend(obj){
-    if(!checkEmail() == true){
+function waitSend() {
+    if (!checkEmail() == true) {
         return;
     }
-    if(waitTime == 0){
-        obj.removeAttribute("disabled");
-        obj.value="Send";
+    sendCaptcha();
+    disabled();
+}
+
+var waitTime = 60;
+function disabled() {
+    var sendBtn = document.getElementById('sendCaptcha');
+    if (waitTime == 0) {
+        sendBtn.removeAttribute("disabled");
+        sendBtn.value = "Send";
         waitTime = 60;
         return;
     } else {
-        obj.setAttribute("disabled", true);
-        obj.value="Send(" + waitTime + ")";
+        sendBtn.setAttribute("disabled", true);
+        sendBtn.value = "Send(" + waitTime + ")";
         waitTime--;
     }
     setTimeout(function() {
-        waitSend(obj) }
-        ,1000)
+        disabled()
+    }, 1000)
 }
 
+function sendCaptcha() {
+    var email = document.getElementById('email').value;
+    $.get("sendCaptcha", {
+        email : email
+    });
+}
