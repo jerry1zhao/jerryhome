@@ -1,4 +1,7 @@
 package pers.jerry.quick.user.domain;
+
+import java.sql.Timestamp;
+
 // Copyright (c) 2017 Quick Jerry
 // ============================================================================
 // CHANGE LOG
@@ -6,36 +9,122 @@ package pers.jerry.quick.user.domain;
 // ============================================================================
 /**
  * @author jerry.zhao
- *
  */
 
-
 public class User {
-
-    private int userId;
+    private int id;
+    private int status;
+    private Timestamp createdate;
+    private Timestamp lastvisit;
+    private String lastip;
     private String name;
     private String password;
     private String phone;
     private String email;
-    private int state;
+    private String photo;
+    private String userGroup;
+    private String passwordMD5;
 
     public User() {
 
     }
 
     /**
-     * @return the userId
+     * @return the passwordMD5
      */
-    public int getUserId() {
-        return userId;
+    public String getPasswordMD5() {
+        return passwordMD5;
     }
 
     /**
-     * @param userId
-     *            the userId to set
+     * @param passwordMD5
+     *            the passwordMD5 to set
      */
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setPasswordMD5(String passwordMD5) {
+        this.passwordMD5 = passwordMD5;
+    }
+
+    /**
+     * @param userGroup
+     *            the userGroup to set
+     */
+    public void setUserGroup(String userGroup) {
+        this.userGroup = userGroup;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the status
+     */
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status
+     *            the status to set
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the createdate
+     */
+    public Timestamp getCreatedate() {
+        return createdate;
+    }
+
+    /**
+     * @param createdate
+     *            the createdate to set
+     */
+    public void setCreatedate(Timestamp createdate) {
+        this.createdate = createdate;
+    }
+
+    /**
+     * @return the lastvisit
+     */
+    public Timestamp getLastvisit() {
+        return lastvisit;
+    }
+
+    /**
+     * @param lastvisit
+     *            the lastvisit to set
+     */
+    public void setLastvisit(Timestamp lastvisit) {
+        this.lastvisit = lastvisit;
+    }
+
+    /**
+     * @return the lastip
+     */
+    public String getLastip() {
+        return lastip;
+    }
+
+    /**
+     * @param lastip
+     *            the lastip to set
+     */
+    public void setLastip(String lastip) {
+        this.lastip = lastip;
     }
 
     /**
@@ -99,17 +188,25 @@ public class User {
     }
 
     /**
-     * @return the state
+     * @return the photo
      */
-    public int getState() {
-        return state;
+    public String getPhoto() {
+        return photo;
     }
 
     /**
-     * @param state
-     *            the state to set
+     * @param photo
+     *            the photo to set
      */
-    public void setState(int state) {
-        this.state = state;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
+
+    /**
+     * @return the user_group
+     */
+    public String getUserGroup() {
+        return userGroup;
+    }
+
 }

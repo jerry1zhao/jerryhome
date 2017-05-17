@@ -20,17 +20,25 @@ import pers.jerry.quick.user.service.UserService;
  *
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userdao;
+    private UserDao userDao;
     /* (non-Javadoc)
      * @see pers.jerry.quick.user.service.UserService#getUser(pers.jerry.quick.user.domain.User)
      */
     @Override
     public List<User> getUser(int userId) {
         // TODO Auto-generated method stub
-        return userdao.getUser(userId);
+        return userDao.getUser(userId);
+    }
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.user.service.UserService#insertUser(pers.jerry.quick.user.domain.User)
+     */
+    @Override
+    public void insertUser(User user) {
+        // TODO Auto-generated method stub
+        userDao.insertUser(user);
     }
 
 }

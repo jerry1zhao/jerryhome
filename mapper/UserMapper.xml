@@ -2,12 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.jerry.quick.user.dao.UserDao">
     <resultMap type="User" id="userResult">
-        <id column="user_id" property="userId"/>
-        <result column="user_name" property="name"/>
+        <id column="id" property="id"/>
+        <result column="createdate" property="createdate"/>
+        <result column="lastvisit" property="lastvisit"/>
+        <result column="lastip" property="lastip"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="photo" property="photo"/>
+        <result column="user_group" property="userGroup"/>
+        <result column="password_md5" property="passwordMD5"/>
     </resultMap>
 
     <select id="getUser" parameterType="int" resultMap="userResult">
-        SELECT * FROM usertest where user_id=#{userId}
+        SELECT * FROM jerry_user WHERE id=#{userId}
     </select>
+
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO jerry_user
+        (createdate, lastvisit, lastip, name, password, phone, email, photo, user_group, password_md5)
+        VALUES (#{createdate}, #{lastvisit}, #{lastip}, #{name}, #{password}, #{phone}, #{email}, #{photo}, #{userGroup}, #{passwordMD5})
+    </insert>
 
 </mapper>

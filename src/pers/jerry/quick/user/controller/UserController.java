@@ -13,8 +13,12 @@
 package pers.jerry.quick.user.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +29,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import pers.jerry.quick.user.domain.User;
 import pers.jerry.quick.user.service.UserService;
-import pers.jerry.quick.user.utils.MailUtil;
-import pers.jerry.quick.user.utils.ValidationUtil;
+import pers.jerry.quick.util.CookieUtils;
+import pers.jerry.quick.util.MailUtils;
+import pers.jerry.quick.util.UserUtils;
+import pers.jerry.quick.util.ValidationUtils;
 
 @Controller
 public class UserController {
 
+    private static final String USER = "user";
     @Autowired
     private UserService userService;
 
@@ -50,9 +57,25 @@ public class UserController {
     //handle signin page
     @RequestMapping(value = "/handleUserSignin", method = RequestMethod.POST)
     @ResponseBody
-    public String handleUserSignin(String captcha, User user) {
-        if (ValidationUtil.checkSignUpForm(user, captcha)) {
-            return "success";
+    public String handleUserSignin(String captcha, User user, HttpSession session, HttpServletRequest request,
+            HttpServletResponse response) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        if (ValidationUtils.checkSignUpForm(user, captcha)) {
+            if (ValidationUtils.checkCpatchaValidity(captcha, (String) session.getAttribute(user.getEmail()))) {
+                session.removeAttribute(user.getEmail());
+                user.setCreatedate(new Timestamp(System.currentTimeMillis()));
+                user.setLastvisit(new Timestamp(System.currentTimeMillis()));
+                user.setLastip(UserUtils.getIpAddr(request));
+                user.setUserGroup(USER);
+                final String passwordMD5 = UserUtils.toMD5Code(user.getPassword());
+                user.setPasswordMD5(passwordMD5);
+                userService.insertUser(user);
+                final String userCookie = user.getId() + "_" + user.getName() + "_" + passwordMD5;
+                final String cookieValue = UserUtils.base64Encoder(userCookie);
+                CookieUtils.addCookie(response, "JERRY_HOME_USER", cookieValue, null);
+                return "success";
+            } else {
+                return "captchaError";
+            }
         }
         return "fail";
     }
@@ -61,7 +84,7 @@ public class UserController {
     @ResponseBody
     public String sendCaptcha(String email, HttpSession session) {
         try {
-           final String captcha = MailUtil.sendMail(email);
+           final String captcha = MailUtils.sendMail(email);
            session.setAttribute(email, captcha);
            return "success";
         } catch (final UnsupportedEncodingException e) {

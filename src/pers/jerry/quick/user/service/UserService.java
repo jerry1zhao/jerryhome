@@ -16,5 +16,6 @@ import pers.jerry.quick.user.domain.User;
 
 public interface UserService {
 
-    public List<User> getUser(int i);
+    List<User> getUser(int userId);
+    void insertUser(User user);
 }

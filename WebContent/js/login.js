@@ -24,15 +24,23 @@ function register() {
         var captcha = document.getElementById('captcha').value;
         $.post("handleUserSignin", {captcha:captcha}+'&'+$("#signupFrom").serialize(), function(
                 result) {
-            if (result != "success") {
-                checkSignUpForm();
-            } else {
+            if (result == "success") {
                 window.location.href = "index";
+            } else if (result == "captchaError") {
+                checkcaptchaValidity();
+            } else if (result == "fail"){
+                 checkSignUpForm();
             }
         })
     } else {
         checkSignUpForm();
     }
+}
+
+
+function checkcaptchaValidity() {
+    document.getElementById('captchaValidityAlert').style.display = "inline";
+    return false;
 }
 
 function checkUser() {

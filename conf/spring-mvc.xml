@@ -30,7 +30,7 @@
     <bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> -->
 
 
-    <!--通用视图解析器-->
+    <!--通用视图解析-->
     <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
         <property name="suffix" value=""/>
@@ -39,7 +39,7 @@
     </bean>
 
 
-    <!-- freeMarker视图解析器  -->
+    <!-- freeMarker -->
     <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
         <property name="contentType" value="text/html; charset=utf-8"/>

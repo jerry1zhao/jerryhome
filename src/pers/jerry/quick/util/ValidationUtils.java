@@ -4,7 +4,7 @@
 // V.1.0 : 2017-XX-XX, jerry.zhao, creation
 // ============================================================================
 
-package pers.jerry.quick.user.utils;
+package pers.jerry.quick.util;
 
 import java.util.regex.Pattern;
 
@@ -15,9 +15,9 @@ import pers.jerry.quick.user.domain.User;
 /**
  * @author jerry.zhao
  */
-public final class ValidationUtil {
+public final class ValidationUtils {
 
-    private ValidationUtil() {
+    private ValidationUtils() {
     }
 
     public static boolean checkUserName(String userName) {
@@ -53,6 +53,10 @@ public final class ValidationUtil {
         }
         return false;
 
+    }
+
+    public static boolean checkCpatchaValidity(String captcha, String sessionCaptcha) {
+        return StringUtils.equals(captcha, sessionCaptcha);
     }
 
     public static boolean checkSignUpForm(User user, String captcha) {

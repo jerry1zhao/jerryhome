@@ -8,7 +8,7 @@
  * @author jerry.zhao
  *
  */
-package pers.jerry.quick.user.utils;
+package pers.jerry.quick.util;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -26,7 +26,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public final class MailUtil {
+public final class MailUtils {
 
     private static final String CONSTANT_MAIL_ACCOUNT = "mail.account";
     private static final String CONSTANT_MAIL_PASSWORD = "mail.password";
@@ -45,7 +45,7 @@ public final class MailUtil {
         init();
     }
 
-    private MailUtil() {
+    private MailUtils() {
     }
 
     private static void init() {
@@ -58,13 +58,14 @@ public final class MailUtil {
     }
 
     public static void main(String[] args) {
-        try {
-            System.out.println(sendMail("jerry.zhao@coresolutions.com"));
-        } catch (final UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (final MessagingException e) {
-            e.printStackTrace();
-        }
+
+//        try {
+//            System.out.println(sendMail("jerry.zhao@coresolutions.com"));
+//        } catch (final UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        } catch (final MessagingException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static String sendMail(String receiveMailAccount) throws MessagingException, UnsupportedEncodingException {
@@ -99,7 +100,7 @@ public final class MailUtil {
 
     private static String getHTMLContent() {
         final StringBuffer content = new StringBuffer();
-        final String filePath = System.getProperty("user.dir") + "/conf/emailTemplate.html";
+        final String filePath = MailUtils.class.getResource("/emailTemplate.html").getFile().substring(1);
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line = br.readLine();
             while ((line = br.readLine()) != null) {
@@ -121,7 +122,7 @@ public final class MailUtil {
     private static String generateCaptcha() {
         final StringBuffer sb = new StringBuffer();
         final Random random = new Random();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 6; i++) {
             sb.append(random.nextInt(10));
         }
         captcha = sb.toString();

@@ -65,6 +65,9 @@
                                         <div id="captchaAlert" class="alert-box">
                                             <div class="alert-message">验证码为6位，字母与数字混合组成</div>
                                         </div>
+                                        <div id="captchaValidityAlert" class="alert-box">
+                                            <div class="alert-message">验证码或者邮箱填写错误，请查看邮箱重新输入</div>
+                                        </div>
                                     </div>
                                     <input type="button" id="register" name="commit" value="注册"
                                         class="btn btn-primary center-block btn-login-commit"/>

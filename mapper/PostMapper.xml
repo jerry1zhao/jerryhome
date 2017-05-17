@@ -3,7 +3,7 @@
 <mapper namespace="pers.jerry.quick.post.dao.PostDao">
 
      <resultMap type="User" id="userResult">
-        <id column="user_id" property="userId"/>
+        <id column="user_id" property="id"/>
         <result column="user_name" property="name"/>
     </resultMap>
 
