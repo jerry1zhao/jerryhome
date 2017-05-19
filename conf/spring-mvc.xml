@@ -29,6 +29,12 @@
     <!-- annotation-driven
     <bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> -->
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="pers.jerry.quick.interceptors.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!--通用视图解析-->
     <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

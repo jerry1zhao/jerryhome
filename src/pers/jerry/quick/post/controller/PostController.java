@@ -1,4 +1,4 @@
-// Copyright (c) 1998-2017 Core Solutions Limited. All rights reserved.
+// Copyright (c) 2017 Jerry Home. All rights reserved.
 // ============================================================================
 // CURRENT VERSION CNT.5.0.1
 // ============================================================================

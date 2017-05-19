@@ -14,10 +14,26 @@ $(function() {
     $("#register").click(function() {
         register();
     });
+    $("#login").click(function(){
+        login();
+    });
     $("#sendCaptcha").click(function() {
         waitSend();
     })
 });
+
+function login(){
+    if(checkLoginForm()){
+        $.post("handleUserLogin", $("#loginFrom").serialize(), function(result){
+            if(result == "success"){
+                window.location.href = "index";
+            } else {
+                checkAccount();
+            }
+        })
+    }
+}
+
 
 function register() {
     if (checkSignUpForm()) {
@@ -37,6 +53,10 @@ function register() {
     }
 }
 
+function checkAccount() {
+    document.getElementById('accountErrorAlert').style.display = "inline";
+    return false;
+}
 
 function checkcaptchaValidity() {
     document.getElementById('captchaValidityAlert').style.display = "inline";

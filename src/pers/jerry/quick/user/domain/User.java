@@ -12,6 +12,10 @@ import java.sql.Timestamp;
  */
 
 public class User {
+
+    public static final String USER = "user";
+    public static final String JERRY_HOME_USER_COOKIE = "JERRY_HOME_USER";
+
     private int id;
     private int status;
     private Timestamp createdate;

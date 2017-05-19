@@ -10,12 +10,11 @@
  */
 package pers.jerry.quick.user.service;
 
-import java.util.List;
-
 import pers.jerry.quick.user.domain.User;
 
 public interface UserService {
 
-    List<User> getUser(int userId);
+    User getCookieUser(User user);
+    User getLoginUser(User user);
     void insertUser(User user);
 }

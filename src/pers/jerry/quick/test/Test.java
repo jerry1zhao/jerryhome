@@ -19,9 +19,10 @@ public class Test {
     public static void main(String[] args) throws Exception {
 
         System.out.println(UserUtils.base64Decoder("MTAwOF8xMjMyMTMyMV9kMTVjOGEyMTkxZDM2ZWVkMmVhMjc2Nzc2ZDUzMTFhZQ=="));
-        System.out.println(UserUtils.toMD5Code("qwerqwzdfadfassdafas"));
-        String addd = "fadfa";
-        System.out.println(addd+= "JERRY");
+        final String[] cookie = "1008_12321321_d15c8a2191d36eed2ea276776d5311ae".split("_");
+        for(final String s : cookie){
+            System.out.println(cookie.length+ cookie[1]);
+        }
     }
 
     public static String a() {

@@ -24,12 +24,15 @@
                                 <h4>登录到 Jerry Home</h4>
                             </div>
                             <div class="login-contarner">
-                                <form id="" action="login" accept-charset="UTF-8" method="post" onsubmit="return checkLoginForm()">
+                                <form id="loginFrom" accept-charset="UTF-8">
 
+                                    <div id="accountErrorAlert" class="alert-box">
+                                            <div class="alert-message">邮箱或者密码不正确</div>
+                                    </div>
                                     <div class="input-group">
                                         <span class="glyphicon glyphicon-user input-group-addon"></span>
                                         <input placeholder="你的邮箱" type="text"
-                                            id="email" onblur="checkEmail()" class="form-control">
+                                            id="email" name="email" onblur="checkEmail()" class="form-control">
                                     </div>
                                     <div id="emaildAlert" class="alert-box">
                                             <div class="alert-message">邮箱格式不正确</div>
@@ -37,7 +40,7 @@
                                     <div class="input-group">
                                         <span class="glyphicon glyphicon-lock input-group-addon"></span>
                                         <input placeholder="密码" type="password"
-                                             id="password" onblur="checkPassword()" class="form-control">
+                                             id="password" name="password" onblur="checkPassword()" class="form-control">
                                     </div>
                                     <div id="passwordAlert" class="alert-box">
                                             <div class="alert-message">密码为6-18位，由字母、数字、~、!、@、#、$、%、*、=、+、-组成。</div>
@@ -50,7 +53,7 @@
                                             <a class="pull-right" href="">忘记密码?</a>
                                         </div>
                                     </div>
-                                    <input type="submit" name="commit" value="登录"
+                                    <input type="button" id="login" name="commit" value="登录"
                                         class="btn btn-primary center-block btn-login-commit" />
                                 </form>
                             </div>

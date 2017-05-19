@@ -6,8 +6,6 @@
 
 package pers.jerry.quick.user.dao;
 
-import java.util.List;
-
 import pers.jerry.quick.user.domain.User;
 
 /**
@@ -16,7 +14,8 @@ import pers.jerry.quick.user.domain.User;
  */
 public interface UserDao {
 
-    List<User> getUser(int userId);
+    User getCookieUser(User user);
+    User getLoginUser(User user);
     void insertUser(User user);
 
 }

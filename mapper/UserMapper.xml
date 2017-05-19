@@ -15,8 +15,14 @@
         <result column="password_md5" property="passwordMD5"/>
     </resultMap>
 
-    <select id="getUser" parameterType="int" resultMap="userResult">
-        SELECT * FROM jerry_user WHERE id=#{userId}
+    <select id="getLoginUser" parameterType="User" resultMap="userResult">
+        SELECT * FROM jerry_user
+        WHERE email = #{email} and password = #{password} and password_md5 = #{passwordMD5}
+    </select>
+
+    <select id="getCookieUser" parameterType="User" resultMap="userResult">
+        SELECT * FROM jerry_user
+        WHERE id = #{id} and name = #{name} and password_md5 = #{passwordMD5}
     </select>
 
     <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">

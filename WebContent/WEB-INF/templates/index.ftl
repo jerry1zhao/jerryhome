@@ -31,7 +31,9 @@
                                     class="glyphicon glyphicon-search"></span></span>
                             </div>
                         </li>
-                        <li><a href="#">Jerry</a></li>
+                        <#if user?exists>
+                        <li><a href="#">${user.name}</a></li>
+                        </#if>
                         <li><a href="#">登录</a></li>
                     </ul>
                 </div>
