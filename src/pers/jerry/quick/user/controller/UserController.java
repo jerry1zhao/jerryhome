@@ -14,15 +14,12 @@ package pers.jerry.quick.user.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
 
-import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,8 +38,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Resource
-    private SqlSessionFactory sqlSessionFactory;
 
     // go login page
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -58,12 +53,14 @@ public class UserController {
 
     @RequestMapping(value = "/handleUserLogin", method = RequestMethod.POST)
     @ResponseBody
-    public String handleUserLogin(User user, HttpServletRequest request) throws NoSuchAlgorithmException {
+    public String handleUserLogin(User user, HttpServletRequest request, HttpServletResponse response)
+            throws UnsupportedEncodingException {
         if (ValidationUtils.checkLoginForm(user)) {
-            final String passwordMD5 = UserUtils.toMD5Code(user.getPassword());
-            user.setPasswordMD5(passwordMD5);
-            final User loginUser = userService.getLoginUser(user);
+            final User loginUser = userService.getUser(user);
             if (loginUser != null) {
+                CookieUtils.addCookie(response, User.JERRY_HOME_USER_COOKIE, UserUtils.base64EncoderForUser(loginUser),
+                        null);
+                request.getSession().removeAttribute(User.USER);
                 return "success";
             }
         }
@@ -80,16 +77,11 @@ public class UserController {
             if (ValidationUtils.checkCpatchaValidity(captcha,
                     (String) request.getSession().getAttribute(user.getEmail()))) {
                 request.getSession().removeAttribute(user.getEmail());
-                user.setCreatedate(new Timestamp(System.currentTimeMillis()));
-                user.setLastvisit(new Timestamp(System.currentTimeMillis()));
+
                 user.setLastip(UserUtils.getIpAddr(request));
-                user.setUserGroup(User.USER);
-                final String passwordMD5 = UserUtils.toMD5Code(user.getPassword());
-                user.setPasswordMD5(passwordMD5);
-                userService.insertUser(user);
-                final String userCookie = user.getId() + "_" + user.getName() + "_" + passwordMD5;
-                final String cookieValue = UserUtils.base64Encoder(userCookie);
-                CookieUtils.addCookie(response, User.JERRY_HOME_USER_COOKIE, cookieValue, null);
+                user = userService.insertUser(user);
+                CookieUtils
+                        .addCookie(response, User.JERRY_HOME_USER_COOKIE, UserUtils.base64EncoderForUser(user), null);
                 request.getSession().removeAttribute(User.USER);
                 return "success";
             } else {

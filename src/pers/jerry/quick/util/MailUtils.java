@@ -57,17 +57,6 @@ public final class MailUtils {
         htmlContent = getHTMLContent();
     }
 
-    public static void main(String[] args) {
-
-//        try {
-//            System.out.println(sendMail("jerry.zhao@coresolutions.com"));
-//        } catch (final UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        } catch (final MessagingException e) {
-//            e.printStackTrace();
-//        }
-    }
-
     public static String sendMail(String receiveMailAccount) throws MessagingException, UnsupportedEncodingException {
         final Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");

@@ -14,7 +14,7 @@ import pers.jerry.quick.user.domain.User;
 
 public interface UserService {
 
-    User getCookieUser(User user);
-    User getLoginUser(User user);
-    void insertUser(User user);
+    User insertUser(User user);
+    User getUser(User user);
+    User getCookieUser(String[] cookie);
 }

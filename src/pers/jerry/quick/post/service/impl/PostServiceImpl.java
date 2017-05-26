@@ -21,7 +21,7 @@ import pers.jerry.quick.post.service.PostService;
  *
  */
 @Service
-public class PostServiceImpl implements PostService{
+public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostDao postDao;

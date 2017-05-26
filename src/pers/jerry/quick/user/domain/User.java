@@ -1,12 +1,12 @@
-package pers.jerry.quick.user.domain;
-
-import java.sql.Timestamp;
-
 // Copyright (c) 2017 Quick Jerry
 // ============================================================================
 // CHANGE LOG
 // V.1.0 : 2017-XX-XX, jerry.zhao, creation
 // ============================================================================
+
+package pers.jerry.quick.user.domain;
+
+import java.sql.Timestamp;
 /**
  * @author jerry.zhao
  */

@@ -14,8 +14,7 @@ import pers.jerry.quick.user.domain.User;
  */
 public interface UserDao {
 
-    User getCookieUser(User user);
-    User getLoginUser(User user);
     void insertUser(User user);
+    User getUser(User user);
 
 }

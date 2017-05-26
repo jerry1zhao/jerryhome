@@ -25,7 +25,7 @@ import pers.jerry.quick.util.UserUtils;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-    private static String[] exceptionPaths = {"singin", "login", "sendCaptcha"};
+    private static String[] exceptionPaths = {"singin", "login", "sendcaptcha"};
 
     @Autowired
     private UserService userService;
@@ -33,8 +33,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        System.out.println("interceptor");
-        final String requestURI = request.getRequestURI();
+        final String requestURI = request.getRequestURI().toLowerCase();
         for (final String exceptionPath : exceptionPaths) {
             if (requestURI.contains(exceptionPath)) {
                 return true;
@@ -49,11 +48,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             if (user == null) {
                 final String[] cookie = cookieValue.split("_");
                 if (cookie.length == 3) {
-                    user = new User();
-                    user.setId(Integer.parseInt(cookie[0]));
-                    user.setName(cookie[1]);
-                    user.setPasswordMD5(cookie[2]);
-                    user = userService.getCookieUser(user);
+                    user = userService.getCookieUser(cookie);
                     session.setAttribute(User.USER, user);
                 }
             }

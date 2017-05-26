@@ -27,7 +27,7 @@
                                 <form id="loginFrom" accept-charset="UTF-8">
 
                                     <div id="accountErrorAlert" class="alert-box">
-                                            <div class="alert-message">邮箱或者密码不正确</div>
+                                            <div class="alert-message">邮箱或密码不正确</div>
                                     </div>
                                     <div class="input-group">
                                         <span class="glyphicon glyphicon-user input-group-addon"></span>
@@ -47,7 +47,7 @@
                                         </div>
                                     <div class="aux-fun">
                                         <div class="other-btn">
-                                            <a class="pull-left" href="">Create an account</a>
+                                            <a class="pull-left" href="signin">没有账号？注册</a>
                                         </div>
                                         <div class="forget-btn">
                                             <a class="pull-right" href="">忘记密码?</a>

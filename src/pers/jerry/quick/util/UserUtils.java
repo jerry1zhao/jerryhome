@@ -13,6 +13,8 @@ import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 
+import pers.jerry.quick.user.domain.User;
+
 /**
  * @author jerry.zhao
  *
@@ -37,6 +39,12 @@ public final class UserUtils {
             }
         }
         return ip;
+    }
+
+    public static String base64EncoderForUser(Object obj) throws UnsupportedEncodingException {
+        final User user = (User) obj;
+        final String userCookie = user.getId() + "_" + user.getName() + "_" + user.getPasswordMD5();
+        return base64Encoder(userCookie);
     }
 
     public static String base64Encoder(String str) throws UnsupportedEncodingException {
