@@ -20,21 +20,22 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pers.jerry.jerryhome.common.controller.BaseController;
 import pers.jerry.quick.post.domain.Post;
 import pers.jerry.quick.post.service.PostService;
 
 @Controller
-public class PostController {
+public class PostController extends BaseController {
 
     @Autowired
     private PostService postService;
 
     // go login page
-    @RequestMapping(value = "index", method = RequestMethod.GET)
+    @RequestMapping(value = INDEX, method = RequestMethod.GET)
     public String goIndex(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
         modelMap.put("posts", posts);
-        return "index";
+        return INDEX;
     }
 
     // go login page
@@ -42,6 +43,6 @@ public class PostController {
     public String getPosts(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
         modelMap.put("posts", posts);
-        return "index";
+        return INDEX;
     }
 }

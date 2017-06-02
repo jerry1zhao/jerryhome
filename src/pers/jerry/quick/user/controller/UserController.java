@@ -20,12 +20,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import pers.jerry.jerryhome.common.controller.BaseController;
 import pers.jerry.quick.user.domain.User;
 import pers.jerry.quick.user.service.UserService;
 import pers.jerry.quick.util.CookieUtils;
@@ -34,7 +36,9 @@ import pers.jerry.quick.util.UserUtils;
 import pers.jerry.quick.util.ValidationUtils;
 
 @Controller
-public class UserController {
+public class UserController extends BaseController {
+
+    private static final Logger logger = Logger.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -61,10 +65,10 @@ public class UserController {
                 CookieUtils.addCookie(response, User.JERRY_HOME_USER_COOKIE, UserUtils.base64EncoderForUser(loginUser),
                         null);
                 request.getSession().removeAttribute(User.USER);
-                return "success";
+                return SUCCESS;
             }
         }
-        return "fail";
+        return FAIL;
 
     }
 
@@ -74,36 +78,58 @@ public class UserController {
     public String handleUserSignin(String captcha, User user, HttpServletRequest request, HttpServletResponse response)
             throws UnsupportedEncodingException, NoSuchAlgorithmException {
         if (ValidationUtils.checkSignUpForm(user, captcha)) {
-            if (ValidationUtils.checkCpatchaValidity(captcha,
-                    (String) request.getSession().getAttribute(user.getEmail()))) {
-                request.getSession().removeAttribute(user.getEmail());
-
-                user.setLastip(UserUtils.getIpAddr(request));
-                user = userService.insertUser(user);
-                CookieUtils
-                        .addCookie(response, User.JERRY_HOME_USER_COOKIE, UserUtils.base64EncoderForUser(user), null);
-                request.getSession().removeAttribute(User.USER);
-                return "success";
-            } else {
-                return "captchaError";
+            if (userService.getUserByUserName(user.getName()) == null
+                    && userService.getUserByEmail(user.getEmail()) == null) {
+                if (ValidationUtils.checkCpatchaValidity(captcha,
+                        (String) request.getSession().getAttribute(user.getEmail()))) {
+                    request.getSession().removeAttribute(user.getEmail());
+                    user.setLastip(UserUtils.getIpAddr(request));
+                    user = userService.insertUser(user);
+                    CookieUtils.addCookie(response, User.JERRY_HOME_USER_COOKIE, UserUtils.base64EncoderForUser(user),
+                            null);
+                    request.getSession().removeAttribute(User.USER);
+                    return SUCCESS;
+                } else {
+                    return "captchaError";
+                }
             }
         }
-        return "fail";
+        return FAIL;
     }
 
     @RequestMapping(value = "/sendCaptcha", method = RequestMethod.GET)
     @ResponseBody
-    public String sendCaptcha(String email, HttpSession session) {
+    public String sendCaptcha(String email, String userName, HttpSession session) {
         try {
-            final String captcha = MailUtils.sendMail(email);
+            final String captcha = MailUtils.sendMail(email, userName);
             session.setAttribute(email, captcha);
-            return "success";
+            return SUCCESS;
         } catch (final UnsupportedEncodingException e) {
-            e.printStackTrace();
+            logger.error("UnsupportedEncodingException", e);
         } catch (final MessagingException e) {
-            e.printStackTrace();
+            logger.error("MessagingException", e);
         }
-        return "fail";
+        return FAIL;
+    }
+
+    @RequestMapping(value = "/userNameCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public String userNameCheck(String name) {
+        final User signinUser = userService.getUserByUserName(name);
+        if (signinUser == null) {
+            return "none";
+        }
+        return "existed";
+    }
+
+    @RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public String emailCheck(String email) {
+        final User signinUser = userService.getUserByEmail(email);
+        if (signinUser == null) {
+            return "none";
+        }
+        return "existed";
     }
 
 }

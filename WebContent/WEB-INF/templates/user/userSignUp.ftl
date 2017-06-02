@@ -35,7 +35,7 @@
                                         <div id="nameAlert" class="alert-box">
                                             <div class="alert-message">用户名为4-12位，可为中文、字母、数字、下划线。</div>
                                         </div>
-                                        <div id="nameExistAlert" class="alert-box">
+                                        <div id="nameExistedAlert" class="alert-box">
                                             <div class="alert-message">昵称已被注册</div>
                                         </div>
 
@@ -59,7 +59,7 @@
                                         <div id="emaildAlert" class="alert-box">
                                             <div class="alert-message">邮箱格式不正确</div>
                                         </div>
-                                        <div id="emailExistdAlert" class="alert-box">
+                                        <div id="emailExistedAlert" class="alert-box">
                                             <div class="alert-message">邮箱已经注册，点击<a href="login">这里</a>登录</div>
                                         </div>
 
@@ -86,7 +86,7 @@
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/login.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>

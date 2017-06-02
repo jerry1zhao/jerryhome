@@ -17,4 +17,6 @@ public interface UserService {
     User insertUser(User user);
     User getUser(User user);
     User getCookieUser(String[] cookie);
+    User getUserByEmail(String email);
+    User getUserByUserName(String userName);
 }

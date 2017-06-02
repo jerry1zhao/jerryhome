@@ -74,4 +74,24 @@ public class UserServiceImpl implements UserService {
         return userDao.getUser(user);
     }
 
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.user.service.UserService#getUserByEmail(java.lang.String)
+     */
+    @Override
+    public User getUserByEmail(String email) {
+        final User user = new User();
+        user.setEmail(email);
+        return userDao.getUser(user);
+    }
+
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.user.service.UserService#getUserByUserName(java.lang.String)
+     */
+    @Override
+    public User getUserByUserName(String userName) {
+        final User user = new User();
+        user.setName(userName);
+        return userDao.getUser(user);
+    }
+
 }

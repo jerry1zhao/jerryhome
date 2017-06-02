@@ -8,4 +8,11 @@
  * @author jerry.zhao
  *
  */
-package pers.jerry.quick.common.constants;
+package pers.jerry.jerryhome.common.controller;
+
+public class BaseController {
+    protected static final String INDEX = "index";
+    protected static final String SUCCESS = "success";
+    protected static final String FAIL = "fail";
+
+}

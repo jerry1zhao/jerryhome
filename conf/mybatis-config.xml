@@ -16,5 +16,9 @@
     </settings>
     <!-- <mappers>
         <mapper class="pers.jerry.quick.user.dao.UserDao"/>
-    </mappers> -->
+    </mappers>
+    <typeAliases>
+        <package name="pers.jerry.quick.user.domain"/>
+        <package name="pers.jerry.quick.post.domain"/>
+    </typeAliases>-->
 </configuration>

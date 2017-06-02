@@ -18,8 +18,8 @@ $(function() {
         login();
     });
     $("#sendCaptcha").click(function() {
-        waitSend();
-    })
+        checkEmailIsExisted();
+    });
 });
 
 function login(){
@@ -36,21 +36,16 @@ function login(){
 
 
 function register() {
-    if (checkSignUpForm()) {
-        var captcha = document.getElementById('captcha').value;
-        $.post("handleUserSignin", {captcha:captcha}+'&'+$("#signupFrom").serialize(), function(
-                result) {
-            if (result == "success") {
-                window.location.href = "index";
-            } else if (result == "captchaError") {
-                checkcaptchaValidity();
-            } else if (result == "fail"){
-                 checkSignUpForm();
-            }
-        })
-    } else {
-        checkSignUpForm();
-    }
+    var captcha = document.getElementById('captcha').value;
+    $.post("handleUserSignin", { captcha : captcha } + '&' + $("#signupFrom").serialize(), function(result) {
+        if (result == "success") {
+            window.location.href = "index";
+        } else if (result == "captchaError") {
+            checkcaptchaValidity();
+        } else if (result == "fail") {
+            checkSignUpForm();
+        }
+    })
 }
 
 function checkAccount() {
@@ -68,16 +63,24 @@ function checkUser() {
     var username = document.getElementById('username').value;
     if (reg.test(username)) {
         document.getElementById('nameAlert').style.display = "none";
-
-        return true;
+        $.get("userNameCheck",{name : username},function(result){
+            if(result == "existed"){
+                document.getElementById('nameExistedAlert').style.display = "inline";
+                return false;
+            } else {
+                document.getElementById('nameExistedAlert').style.display = "none";
+                return true;
+            }
+        })
     } else {
         document.getElementById('nameAlert').style.display = "inline";
+        document.getElementById('nameExistedAlert').style.display = "none";
         return false;
     }
 }
 
 function checkPassword() {
-    var reg = /^([A-Z]|[a-z]|[0-9]|[~!@#getElement%*=+-]){6,18}$/;
+    var reg = /^([A-Z]|[a-z]|[0-9]|[~!@#$%*=+-]){6,18}$/;
     var password = document.getElementById('password').value;
     if (reg.test(password)) {
         document.getElementById('passwordAlert').style.display = "none";
@@ -96,8 +99,23 @@ function checkEmail() {
         return true;
     } else {
         document.getElementById('emaildAlert').style.display = "inline";
+        document.getElementById('emailExistedAlert').style.display = "none";
         return false;
     }
+}
+
+function checkEmailIsExisted() {
+    var email = document.getElementById('email').value;
+    $.get("emailCheck",{email : email},function(result){
+         if (result == "existed") {
+             document.getElementById('emailExistedAlert').style.display = "inline";
+             return false;
+         } else {
+             document.getElementById('emailExistedAlert').style.display = "none";
+             waitSend();
+             return true;
+         }
+     });
 }
 
 function checkCpatcha() {
@@ -114,7 +132,7 @@ function checkCpatcha() {
 
 function checkSignUpForm() {
     if (checkUser() == true && checkPassword() == true && checkEmail() == true
-            && checkCpatcha() == true) {
+            && checkCpatcha() == true && checkEmailIsExisted() == true) {
         return true;
     } else {
         return false;
@@ -129,11 +147,12 @@ function checkLoginForm() {
 }
 
 function waitSend() {
-    if (!checkEmail() == true) {
+    if (checkEmail()== false) {
         return;
+    } else {
+        sendCaptcha();
+        disabled();
     }
-    sendCaptcha();
-    disabled();
 }
 
 var waitTime = 60;
@@ -155,8 +174,7 @@ function disabled() {
 }
 
 function sendCaptcha() {
+    var userName = document.getElementById('username').value;
     var email = document.getElementById('email').value;
-    $.get("sendCaptcha", {
-        email : email
-    });
+    $.get("sendCaptcha", { email : email, userName : userName});
 }

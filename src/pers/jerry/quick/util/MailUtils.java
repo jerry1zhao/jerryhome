@@ -26,8 +26,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public final class MailUtils {
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
+public final class MailUtils {
+    private static final Logger logger = Logger.getLogger(MailUtils.class);
     private static final String CONSTANT_MAIL_ACCOUNT = "mail.account";
     private static final String CONSTANT_MAIL_PASSWORD = "mail.password";
     private static final String CONSTANT_MAIL_SMTP_HOST = "mail.SMTP.host";
@@ -40,6 +43,7 @@ public final class MailUtils {
     private static String mailFromName;
     private static String htmlContent;
     private static String captcha;
+    private static String emailUserName = "";
 
     static {
         init();
@@ -57,7 +61,11 @@ public final class MailUtils {
         htmlContent = getHTMLContent();
     }
 
-    public static String sendMail(String receiveMailAccount) throws MessagingException, UnsupportedEncodingException {
+    public static String sendMail(String receiveMailAccount, String userName)
+            throws MessagingException, UnsupportedEncodingException {
+        if (StringUtils.isNotBlank(userName)) {
+            emailUserName = userName;
+        }
         final Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
         props.setProperty("mail.smtp.host", mailSMTPHost);
@@ -96,15 +104,15 @@ public final class MailUtils {
                 content.append(line).append("\n");
             }
         } catch (final FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error("FileNotFoundException", e);
         } catch (final IOException e) {
-            e.printStackTrace();
+            logger.error("IOException", e);
         }
         return content.toString();
     }
 
     private static String emailContent() {
-        return htmlContent.replace("{captcha}", generateCaptcha());
+        return htmlContent.replace("{username}", emailUserName).replace("{captcha}", generateCaptcha());
     }
 
 
