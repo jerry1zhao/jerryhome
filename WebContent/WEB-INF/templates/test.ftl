@@ -1,13 +1,8 @@
 <html>
-  <head>
-        <title>freemarker哈哈哈</title>
-    </head>
-    <body>
-    <div><p>123</p>
-    <div class="post-media col-md-12">
-                            <img class="post-image" src="image/post/spacex.jpg" alt="spacex">
-                        </div>
+<head>
+<title>freemarker哈哈哈</title>
+</head>
+<body>
 
-    </div>
-    </body>
+</body>
 </html>

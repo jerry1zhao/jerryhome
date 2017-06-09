@@ -62,6 +62,9 @@
                                         <div id="emailExistedAlert" class="alert-box">
                                             <div class="alert-message">邮箱已经注册，点击<a href="login">这里</a>登录</div>
                                         </div>
+                                        <div id="wait1minAlert" class="alert-box">
+                                            <div class="alert-message">你刷新了页面或者进行了其他奇怪的操作，请等待1分钟再试</div>
+                                        </div>
 
                                         <div class="input-group input-group-authcode">
                                             <span class="glyphicon glyphicon-send input-group-addon"></span>

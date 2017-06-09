@@ -5,41 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Quick</title>
+<title>Jerry Home</title>
 <!-- Bootstrap -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link href="css/navbar.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-collapse">
-                        <span class="sr-only"></span> <span class="icon-bar"></span> <span
-                            class="icon-bar"></span> <span class="icon-bar"></span>
-                    </button>
-                    <a href="https://www.baidu.com" class="logo"></a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right pull-right">
-                        <li>
-                            <div class="input-group navbar-search">
-                                <input type="text" class="form-control navbar-search-text" /> <span
-                                    class="input-group-addon navbar-search-img"> <span
-                                    class="glyphicon glyphicon-search"></span></span>
-                            </div>
-                        </li>
-                        <#if user?exists>
-                        <li><a href="#">${user.name}</a></li>
-                        </#if>
-                        <li><a href="#">登录</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <#include "common/header.ftl">
     <div class="main">
         <div class="container">
             <div class="row">
@@ -106,12 +79,7 @@
             </div>
         </div>
     </div>
-    <footer>
-        <div class="container">
-            <p>1</p>
-            <div class="icp">© Quick Software 2017</div>
-        </div>
-    </footer>
+    <#include "common/footer.ftl">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

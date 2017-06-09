@@ -11,29 +11,28 @@ package pers.jerry.quick.test;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
-
-import pers.jerry.quick.util.UserUtils;
 
 public class Test {
     static Logger log = Logger.getLogger(Test.class);
 
     public static void main(String[] args) throws Exception {
 
-        log.debug("Hello this is an debug message");
-        log.info("Hello this is an info message");
+        final SimpleDateFormat dfs = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        final Date begin=dfs.parse("2004-01-02 00:00:00");
+        final Date end = dfs.parse("2004-01-02 00:00:59");
+        final long between=(end.getTime()-begin.getTime())/1000;//除以1000是为了转换成秒
+        final Date a = new Date("Thu Jun 08 11:50:05 CST 2017");
+        final Date b = new Date("Thu Jun 08 11:46:12 CST 2017");
+        final long c=(end.getTime()-begin.getTime())/1000;
+        System.out.println(c/60);
+        System.out.println(dfs.format(new Date()));
+        System.out.println(dfs.parse(dfs.format(new Date())));
+        System.out.println(dfs.parse("2004-01-02 00:00:00"));
 
-        final String ab = "handleUserSignin".toLowerCase();
-        if (ab.contains("signin")) {
-            System.out.println(true);
-        }
-
-        System.out.println(UserUtils.base64Decoder("MTAwOF8xMjMyMTMyMV9kMTVjOGEyMTkxZDM2ZWVkMmVhMjc2Nzc2ZDUzMTFhZQ=="));
-        final String[] cookie = "1008_12321321_d15c8a2191d36eed2ea276776d5311ae".split("_");
-        for (final String s : cookie) {
-            System.out.println(cookie.length + cookie[1]);
-        }
     }
 
     public static String a() {

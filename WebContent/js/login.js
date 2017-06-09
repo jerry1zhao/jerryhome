@@ -20,6 +20,12 @@ $(function() {
     $("#sendCaptcha").click(function() {
         checkEmailIsExisted();
     });
+    $("body").keydown(function(){
+        if(document.location.pathname == '/Quick/login')
+            if(event.keyCode == '13'){
+                login();
+            }
+    });
 });
 
 function login(){
@@ -151,7 +157,6 @@ function waitSend() {
         return;
     } else {
         sendCaptcha();
-        disabled();
     }
 }
 
@@ -176,5 +181,12 @@ function disabled() {
 function sendCaptcha() {
     var userName = document.getElementById('username').value;
     var email = document.getElementById('email').value;
-    $.get("sendCaptcha", { email : email, userName : userName});
+    $.get("sendCaptcha", { email : email, userName : userName}, function(result){
+        if(result == "wait"){
+             document.getElementById('wait1minAlert').style.display = "inline";
+        } else {
+            document.getElementById('wait1minAlert').style.display = "none";
+            disabled();
+        }
+    });
 }

@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/templates/common/footer.ftl=UTF-8
+encoding//WebContent/WEB-INF/templates/common/header.ftl=UTF-8
 encoding//WebContent/WEB-INF/templates/index.ftl=UTF-8
+encoding//WebContent/WEB-INF/templates/post/postEditor.ftl=UTF-8
 encoding//WebContent/WEB-INF/templates/test.ftl=UTF-8

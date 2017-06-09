@@ -14,12 +14,14 @@ package pers.jerry.quick.user.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.util.Date;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,7 @@ import pers.jerry.quick.util.ValidationUtils;
 public class UserController extends BaseController {
 
     private static final Logger logger = Logger.getLogger(UserController.class);
+    private static final String LAST_REGISTRATION_TIME_COOKIE = "LAST_REGISTRATION_TIME";
 
     @Autowired
     private UserService userService;
@@ -99,10 +102,31 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/sendCaptcha", method = RequestMethod.GET)
     @ResponseBody
-    public String sendCaptcha(String email, String userName, HttpSession session) {
+    public String sendCaptcha(String email, String userName, HttpServletRequest request, HttpServletResponse response) {
         try {
-            final String captcha = MailUtils.sendMail(email, userName);
-            session.setAttribute(email, captcha);
+            final String lastRegistrationTime = CookieUtils.getCookieValue(request, LAST_REGISTRATION_TIME_COOKIE);
+            if (StringUtils.isBlank(lastRegistrationTime)) {
+                CookieUtils.addCookie(response, LAST_REGISTRATION_TIME_COOKIE, simpleDateFormat.format(new Date()),
+                        null);
+                final String captcha = MailUtils.sendMail(email, userName);
+                request.getSession().setAttribute(email, captcha);
+            } else {
+                try {
+                    final Date nowDate = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
+                    final Date lastRegistrationDate = simpleDateFormat.parse(lastRegistrationTime);
+                    final long between = ((nowDate.getTime() - lastRegistrationDate.getTime()) / 1000) / 60;
+                    if (between <= 0) {
+                        logger.warn("Please wait 1 minute and then register");
+                        return "wait";
+                    }
+                    CookieUtils.addCookie(response, LAST_REGISTRATION_TIME_COOKIE, simpleDateFormat.format(new Date()),
+                            null);
+                    final String captcha = MailUtils.sendMail(email, userName);
+                    request.getSession().setAttribute(email, captcha);
+                } catch (final ParseException e) {
+                    logger.error("ParseException", e);
+                }
+            }
             return SUCCESS;
         } catch (final UnsupportedEncodingException e) {
             logger.error("UnsupportedEncodingException", e);

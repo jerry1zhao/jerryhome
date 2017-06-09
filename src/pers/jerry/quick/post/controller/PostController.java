@@ -45,4 +45,8 @@ public class PostController extends BaseController {
         modelMap.put("posts", posts);
         return INDEX;
     }
+    @RequestMapping(value = "post/editor", method = RequestMethod.GET)
+    public String goPostEditor() {
+        return "post/postEditor";
+    }
 }

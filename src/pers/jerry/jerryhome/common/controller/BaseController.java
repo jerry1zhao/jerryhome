@@ -10,9 +10,12 @@
  */
 package pers.jerry.jerryhome.common.controller;
 
+import java.text.SimpleDateFormat;
+
 public class BaseController {
     protected static final String INDEX = "index";
     protected static final String SUCCESS = "success";
     protected static final String FAIL = "fail";
+    protected static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 }
