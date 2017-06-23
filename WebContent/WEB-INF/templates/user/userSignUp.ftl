@@ -25,7 +25,7 @@
                                 <h4>Jerry Home</h4>
                             </div>
                             <div class="login-contarner signup-contarner">
-                                <form id="signupFrom" accept-charset="UTF-8">
+                                <form id="signupForm" accept-charset="UTF-8">
                                     <div class="input-groups">
                                         <div class="input-group input-group-name">
                                             <span class="glyphicon glyphicon-user input-group-addon"></span>

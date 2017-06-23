@@ -12,7 +12,7 @@
                         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
     ">
 
-    <context:component-scan base-package="pers.jerry.quick.*.service"/>
+    <context:component-scan base-package="pers.jerry.quick"/>
 
     <context:property-placeholder location="classpath:DBSetting.properties" ignore-unresolvable="true"/>
 

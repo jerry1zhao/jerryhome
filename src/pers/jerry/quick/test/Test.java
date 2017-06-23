@@ -11,8 +11,6 @@ package pers.jerry.quick.test;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -21,17 +19,9 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
 
-        final SimpleDateFormat dfs = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        final Date begin=dfs.parse("2004-01-02 00:00:00");
-        final Date end = dfs.parse("2004-01-02 00:00:59");
-        final long between=(end.getTime()-begin.getTime())/1000;//除以1000是为了转换成秒
-        final Date a = new Date("Thu Jun 08 11:50:05 CST 2017");
-        final Date b = new Date("Thu Jun 08 11:46:12 CST 2017");
-        final long c=(end.getTime()-begin.getTime())/1000;
-        System.out.println(c/60);
-        System.out.println(dfs.format(new Date()));
-        System.out.println(dfs.parse(dfs.format(new Date())));
-        System.out.println(dfs.parse("2004-01-02 00:00:00"));
+        String str="c://abc";
+        str=str.replaceAll("//","\\\\");
+        System.out.println(str);
 
     }
 

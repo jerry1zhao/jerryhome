@@ -30,7 +30,7 @@ $(function() {
 
 function login(){
     if(checkLoginForm()){
-        $.post("handleUserLogin", $("#loginFrom").serialize(), function(result){
+        $.post("handleUserLogin", $("#loginForm").serialize(), function(result){
             if(result == "success"){
                 window.location.href = "index";
             } else {
@@ -43,7 +43,7 @@ function login(){
 
 function register() {
     var captcha = document.getElementById('captcha').value;
-    $.post("handleUserSignin", { captcha : captcha } + '&' + $("#signupFrom").serialize(), function(result) {
+    $.post("handleUserSignin", { captcha : captcha } + '&' + $("#signupForm").serialize(), function(result) {
         if (result == "success") {
             window.location.href = "index";
         } else if (result == "captchaError") {

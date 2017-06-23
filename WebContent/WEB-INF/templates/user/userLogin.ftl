@@ -24,7 +24,7 @@
                                 <h4>登录到 Jerry Home</h4>
                             </div>
                             <div class="login-contarner">
-                                <form id="loginFrom" accept-charset="UTF-8">
+                                <form id="loginForm" accept-charset="UTF-8">
 
                                     <div id="accountErrorAlert" class="alert-box">
                                             <div class="alert-message">邮箱或密码不正确</div>

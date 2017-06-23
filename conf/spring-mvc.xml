@@ -15,47 +15,50 @@
 
     <!-- auto-injec -->
     <mvc:annotation-driven />
-    <mvc:default-servlet-handler/>
+    <mvc:default-servlet-handler />
     <context:component-scan base-package="pers.jerry.quick.*.controller" />
 
 
-    <!-- <mvc:resources location="/" mapping="/**/*.html"/>
-    <mvc:resources location="/" mapping="/**/*.js"/>
-    <mvc:resources location="/" mapping="/**/*.css"/>
-    <mvc:resources location="/" mapping="/**/*.png"/>
-    <mvc:resources location="/" mapping="/**/*.gif"/>
-    <mvc:resources location="/" mapping="/**/*.jpg"/> -->
+    <!-- <mvc:resources location="/" mapping="/**/*.html"/> <mvc:resources location="/"
+        mapping="/**/*.js"/> <mvc:resources location="/" mapping="/**/*.css"/> <mvc:resources
+        location="/" mapping="/**/*.png"/> <mvc:resources location="/" mapping="/**/*.gif"/>
+        <mvc:resources location="/" mapping="/**/*.jpg"/> -->
 
-    <!-- annotation-driven
-    <bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> -->
+    <!-- annotation-driven <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
+        /> -->
 
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="pers.jerry.quick.interceptors.LoginInterceptor"/>
+            <mvc:mapping path="/**" />
+            <bean class="pers.jerry.quick.interceptors.LoginInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <!--通用视图解析-->
-    <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/"/>
-        <property name="suffix" value=""/>
-        <property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView" />
-        <property name="order" value="1"/>
+    <!--通用视图解析 -->
+    <bean id="viewResolverCommon"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/" />
+        <property name="suffix" value="" />
+        <property name="viewClass"
+            value="org.springframework.web.servlet.view.InternalResourceView" />
+        <property name="order" value="1" />
     </bean>
 
 
     <!-- freeMarker -->
-    <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
-        <property name="contentType" value="text/html; charset=utf-8"/>
+    <bean id="viewResolverFtl"
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass"
+            value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+        <property name="contentType" value="text/html; charset=utf-8" />
         <property name="cache" value="true" />
         <property name="suffix" value=".ftl" />
-        <property name="order" value="0"/>
+        <property name="order" value="0" />
     </bean>
 
-      <!-- freeMarker模板 -->
-    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+    <!-- freeMarker模板 -->
+    <bean id="freemarkerConfig"
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath">
             <value>/WEB-INF/templates/</value>
         </property>
@@ -74,6 +77,12 @@
         </property>
     </bean>
 
-    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+    <!-- 定义文件上传解析器 -->
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="maxUploadSize" value="2097152"></property>
+        <property name="maxInMemorySize" value="2097152"></property>
+    </bean>
 </beans>
