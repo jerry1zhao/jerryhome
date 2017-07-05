@@ -8,16 +8,27 @@
     </resultMap>
 
     <resultMap type="Post" id="postsResult">
-        <id column="post_id" property="id"/>
-        <result column="postheaderimage" property="postHeaderImage"/>
+        <id column="id" property="id"/>
+        <result column="createdate" property="createDate"/>
         <result column="title" property="title"/>
-        <result column="content" property="content"/>
+        <result column="subject" property="subject"/>
+        <result column="postimage" property="postImage"/>
+        <result column="description" property="description"/>
+        <result column="tags" property="tags"/>
+        <result column="status" property="status"/>
+        <result column="htmlcontent" property="htmlContent"/>
+        <result column="markdowncontent" property="markdownContent"/>
+
         <association property="createUser" column="createuser" javaType="User" jdbcType="INTEGER" resultMap="userResult" />
     </resultMap>
 
     <select id="getPosts" resultMap="postsResult">
-        SELECT * FROM posttest p
-        left join usertest u on p.createuser = u.user_id
+        SELECT * FROM JERRY_POST P
+        LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
     </select>
 
+    <insert id="savePost" parameterType="Post" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO JERRY_POST (CREATEDATE, CREATEUSER, TITLE, SUBJECT, DESCRIPTION, TAGS, POSTIMAGE, STATUS, HTMLCONTENT, MARKDOWNCONTENT)
+        VALUES (#{createDate}, #{createUser.id}, #{title}, #{subject}, #{description}, #{tags}, #{postImage}, #{status}, #{htmlContent}, #{markdownContent})
+    </insert>
 </mapper>

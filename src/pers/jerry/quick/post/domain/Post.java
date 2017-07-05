@@ -6,7 +6,7 @@
 
 package pers.jerry.quick.post.domain;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import pers.jerry.quick.user.domain.User;
 
@@ -16,14 +16,54 @@ import pers.jerry.quick.user.domain.User;
  */
 public class Post {
 
-    private String postHeaderImage;
-    private String title;
-    private String content;
-    private LocalDateTime createDate;
-    private User createUser;
-    private LocalDateTime updateDate;
-    private User updateUser;
     private int id;
+    private User createUser;
+    private Timestamp createDate;
+    private String title;
+    private String subject;
+    private String description;
+    private String tags;
+    private String postImage;
+    private String status;
+    private String htmlContent;
+    private String markdownContent;
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    /**
+     * @return the htmlContent
+     */
+    public String getHtmlContent() {
+        return htmlContent;
+    }
+    /**
+     * @param htmlContent the htmlContent to set
+     */
+    public void setHtmlContent(String htmlContent) {
+        this.htmlContent = htmlContent;
+    }
+    /**
+     * @return the markdownContent
+     */
+    public String getMarkdownContent() {
+        return markdownContent;
+    }
+    /**
+     * @param markdownContent the markdownContent to set
+     */
+    public void setMarkdownContent(String markdownContent) {
+        this.markdownContent = markdownContent;
+    }
     /**
      * @return the id
      */
@@ -35,30 +75,6 @@ public class Post {
      */
     public void setId(int id) {
         this.id = id;
-    }
-    /**
-     * @return the updateUser
-     */
-    public User getUpdateUser() {
-        return updateUser;
-    }
-    /**
-     * @param updateUser the updateUser to set
-     */
-    public void setUpdateUser(User updateUser) {
-        this.updateUser = updateUser;
-    }
-    /**
-     * @return the postHeaderImage
-     */
-    public String getPostHeaderImage() {
-        return postHeaderImage;
-    }
-    /**
-     * @param postHeaderImage the postHeaderImage to set
-     */
-    public void setPostHeaderImage(String postHeaderImage) {
-        this.postHeaderImage = postHeaderImage;
     }
     /**
      * @return the title
@@ -73,40 +89,16 @@ public class Post {
         this.title = title;
     }
     /**
-     * @return the content
-     */
-    public String getContent() {
-        return content;
-    }
-    /**
-     * @param content the content to set
-     */
-    public void setContent(String content) {
-        this.content = content;
-    }
-    /**
      * @return the createDate
      */
-    public LocalDateTime getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
     /**
      * @param createDate the createDate to set
      */
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
-    }
-    /**
-     * @return the updateDate
-     */
-    public LocalDateTime getUpdateDate() {
-        return updateDate;
-    }
-    /**
-     * @param updateDate the updateDate to set
-     */
-    public void setUpdateDate(LocalDateTime updateDate) {
-        this.updateDate = updateDate;
     }
     /**
      * @return the createUser
@@ -121,4 +113,52 @@ public class Post {
         this.createUser = createUser;
     }
 
+    /**
+     * @return the subject
+     */
+    public String getSubject() {
+        return subject;
+    }
+    /**
+     * @param subject the subject to set
+     */
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    /**
+     * @return the tags
+     */
+    public String getTags() {
+        return tags;
+    }
+    /**
+     * @param tags the tags to set
+     */
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+    /**
+     * @return the postImage
+     */
+    public String getPostImage() {
+        return postImage;
+    }
+    /**
+     * @param postImage the postImage to set
+     */
+    public void setPostImage(String postImage) {
+        this.postImage = postImage;
+    }
 }

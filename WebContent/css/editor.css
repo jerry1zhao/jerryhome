@@ -39,28 +39,28 @@ footer {
 
 .bottom-float-commit {
     left: 0;
-    border:1px solid #cccccc;
+    border: 1px solid #cccccc;
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 50px;
     z-index: 100;
-    background-color:#cccccc;
-    filter:alpha(opacity=50);  /*IE*/
-    -moz-opacity:0.50; /*FireFox*/
-    opacity:0.50;  /*Chrome, Opera, Safari*/
+    background-color: #cccccc;
+    filter: alpha(opacity = 50); /*IE*/
+    -moz-opacity: 0.50; /*FireFox*/
+    opacity: 0.50; /*Chrome, Opera, Safari*/
 }
-.btn-post-commit{
-    color:black;
-    background-color:#cccccc;
-    border:0px;
+
+.btn-post-commit {
+    color: black;
+    background-color: #cccccc;
+    border: 0px;
     width: 100%;
-    height:100%;
+    height: 100%;
     max-width: 150px;
     border-radius: 2px;
     margin-top: 0px;
-    margin-bottom:0px;
-
+    margin-bottom: 0px;
     display: inline-block;
     padding: 12px 12px;
     font-size: 18px;
@@ -79,27 +79,35 @@ footer {
     background-image: none;
 }
 
-.post-info .input-group{
-    width:100%;
+.post-info .input-group {
+    width: 100%;
 }
 
-.post-info .input-group h4,
-.content-label h4{
+.post-info .input-group h4, .content-label h4 {
     text-align: left;
     margin-bottom: 10px;
 }
 
 .post-info .input-group input {
-    width:100%;
+    width: 100%;
     border-radius: 0px;
     box-shadow: none;
     margin-bottom: 10px;
 }
 
 .post-image-group {
-    text-align:left;
+    text-align: left;
     margin-bottom: 10px;
 }
 
 .image-upload-button {
+
+}
+
+.post-alert-danger {
+    text-align: center;
+    padding-bottom: 10px;
+    background-color: #dd514c;
+    border-color: #d83832;
+    color: #fff;
 }

@@ -18,5 +18,6 @@ import pers.jerry.quick.post.domain.Post;
 public interface PostDao {
 
     List<Post> getPosts();
+    void savePost(Post post);
 
 }

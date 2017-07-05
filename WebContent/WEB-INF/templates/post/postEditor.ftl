@@ -14,8 +14,8 @@
 <link href="../css/navbar.css" rel="stylesheet" />
 <link href="../editormd/css/style.css" rel="stylesheet" />
 <link href="../editormd/css/editormd.css" rel="stylesheet" />
-<link href="../bootstrap/fileinput/css/fileinput.min.css"
-    rel="stylesheet" />
+<link href="../bootstrap/fileinput/css/fileinput.min.css" rel="stylesheet" />
+<!-- <link href="../amazeui/css/amazeui.min.css" rel="stylesheet" /> -->
 </head>
 <body>
     <#include "../common/header.ftl">
@@ -33,29 +33,29 @@
                                 <div>
                                     <h4>标题</h4>
                                 </div>
-                                <input type="text" name="title" class="form-control"
-                                    placeholder="文章标题">
+                                <input type="text" name="title" class="form-control form-input"
+                                    placeholder="文章标题" required>
                             </div>
                             <div class="input-group">
                                 <div>
                                     <h4>描述</h4>
                                 </div>
-                                <input type="text" name="description" class="form-control"
-                                    placeholder="文章描述">
+                                <input type="text" name="description" class="form-control form-input"
+                                    placeholder="文章描述" required>
                             </div>
                             <div class="input-group">
                                 <div>
-                                    <h4>主題</h4>
+                                    <h4>主题</h4>
                                 </div>
-                                <input type="text" class="form-control"
-                                    placeholder="文章主題，例如 美食，科技，编程..">
+                                <input type="text" class="form-control form-input" name="subject"
+                                    placeholder="文章主題，例如美食，科技，编程.." required>
                             </div>
                             <div class="input-group">
                                 <div>
                                     <h4>标签</h4>
                                 </div>
-                                <input type="text" name="subject" class="form-control"
-                                    placeholder="文章标签，例如 美食，科技，编程..">
+                                <input type="text" class="form-control  form-input" name="tags"
+                                    placeholder="文章标签，例如美食，科技，编程.." required>
                             </div>
                             <div class="input-group post-image-group">
                                 <div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="editormd" id="postEditor">
                             <textarea class="editormd-markdown-textarea" name="editormd-markdown-doc"></textarea>
-                            <!--   第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准  -->
+                            <!--   第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
                             <textarea class="editormd-html-textarea" name="editormd-html-code"></textarea>
                         </div>
                     </form>
@@ -97,5 +97,6 @@
     <script src="../js/editor.js"></script>
     <script src="../bootstrap/fileinput/js/fileinput.min.js"></script>
     <script src="../bootstrap/fileinput/js/zh.js"></script>
+    <!--<script src="../amazeui/js/amazeui.min.js"></script>-->
 </body>
 </html>

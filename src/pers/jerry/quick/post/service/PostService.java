@@ -18,4 +18,5 @@ import pers.jerry.quick.post.domain.Post;
 public interface PostService {
 
     List<Post> getPosts();
+    void savePost(Post post);
 }

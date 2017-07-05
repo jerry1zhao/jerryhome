@@ -32,8 +32,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> getPosts() {
         return postDao.getPosts();
-
     }
 
-
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.post.service.PostService#savePost()
+     */
+    @Override
+    public void savePost(Post post) {
+        postDao.savePost(post);
+    }
 }
