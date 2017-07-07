@@ -8,6 +8,10 @@ $(function() {
     $("#email").blur(function() {
         checkEmail();
     });
+    $("#email").click(function() {
+        $('#emaildAlert').hide();
+        $('#emailExistedAlert').hide();
+    });
     $("#captcha").blur(function() {
         checkCpatcha();
     });
@@ -18,7 +22,7 @@ $(function() {
         login();
     });
     $("#sendCaptcha").click(function() {
-        checkEmailIsExisted();
+        waitSend();
     });
     $("body").keydown(function(){
         if(document.location.pathname == '/Quick/login')
@@ -26,13 +30,33 @@ $(function() {
                 login();
             }
     });
+
+    $(document).on('opened', '.remodal', function () {
+        console.log('Modal is opened');
+        setTimeout(function(){gotoIndex()}, 2000);
+    });
+
+    $(document).on('closed', '.remodal', function (e) {
+        console.log('Modal is closed');
+        gotoIndex();
+    });
+
+    $(document).on('confirmation', '.remodal', function () {
+        console.log('Confirmation button is clicked');
+        gotoIndex();
+    });
 });
+
+function gotoIndex(){
+    window.location.href = "index";
+}
 
 function login(){
     if(checkLoginForm()){
         $.post("handleUserLogin", $("#loginForm").serialize(), function(result){
             if(result == "success"){
-                window.location.href = "index";
+                var inst = $('[data-remodal-id=modal]').remodal();
+                inst.open();
             } else {
                 checkAccount();
             }
@@ -42,16 +66,23 @@ function login(){
 
 
 function register() {
-    var captcha = document.getElementById('captcha').value;
-    $.post("handleUserSignin", { captcha : captcha } + '&' + $("#signupForm").serialize(), function(result) {
-        if (result == "success") {
-            window.location.href = "index";
-        } else if (result == "captchaError") {
-            checkcaptchaValidity();
-        } else if (result == "fail") {
-            checkSignUpForm();
-        }
-    })
+    if(checkSignUpForm()){
+        var captcha = document.getElementById('captcha').value;
+        $.post("handleUserSignin", { captcha : captcha } + '&' + $("#signupForm").serialize(), function(result) {
+            if (result == "success") {
+                var inst = $('[data-remodal-id=modal]').remodal();
+                inst.open();
+            } else if (result == "captchaError") {
+                checkcaptchaValidity();
+            } else if (result == "userExisted") {
+                document.getElementById('nameExistedAlert').style.display = "inline";
+            } else if (result == "emailExisted") {
+                document.getElementById('emailExistedAlert').style.display = "inline";
+            } else if (result == "fail") {
+                checkSignUpForm();
+            }
+        })
+    }
 }
 
 function checkAccount() {
@@ -85,6 +116,18 @@ function checkUser() {
     }
 }
 
+function checkUserIsNull() {
+    var reg = /^[\u0391-\uFFE5_0-9a-zA-z]{4,12}$/;
+    var username = document.getElementById('username').value;
+    if (reg.test(username)) {
+        document.getElementById('nameAlert').style.display = "none";
+        return true;
+    } else {
+        document.getElementById('nameAlert').style.display = "inline";
+        return false;
+    }
+}
+
 function checkPassword() {
     var reg = /^([A-Z]|[a-z]|[0-9]|[~!@#$%*=+-]){6,18}$/;
     var password = document.getElementById('password').value;
@@ -113,15 +156,14 @@ function checkEmail() {
 function checkEmailIsExisted() {
     var email = document.getElementById('email').value;
     $.get("emailCheck",{email : email},function(result){
-         if (result == "existed") {
-             document.getElementById('emailExistedAlert').style.display = "inline";
-             return false;
-         } else {
-             document.getElementById('emailExistedAlert').style.display = "none";
-             waitSend();
-             return true;
-         }
-     });
+        if (result == "existed") {
+            document.getElementById('emailExistedAlert').style.display = "inline";
+            return false;
+        } else {
+            document.getElementById('emailExistedAlert').style.display = "none";
+            return true;
+        }
+    });
 }
 
 function checkCpatcha() {
@@ -137,8 +179,8 @@ function checkCpatcha() {
 }
 
 function checkSignUpForm() {
-    if (checkUser() == true && checkPassword() == true && checkEmail() == true
-            && checkCpatcha() == true && checkEmailIsExisted() == true) {
+    if (checkUserIsNull() == true && checkPassword() == true && checkEmail() == true
+            && checkCpatcha() == true) {
         return true;
     } else {
         return false;
@@ -153,29 +195,31 @@ function checkLoginForm() {
 }
 
 function waitSend() {
-    if (checkEmail()== false) {
+    if (checkEmail() == false) {
         return;
     } else {
         sendCaptcha();
     }
 }
 
-var waitTime = 60;
+var validCode=true;
 function disabled() {
-    var sendBtn = document.getElementById('sendCaptcha');
-    if (waitTime == 0) {
-        sendBtn.removeAttribute("disabled");
-        sendBtn.value = "Send";
-        waitTime = 60;
-        return;
-    } else {
-        sendBtn.setAttribute("disabled", true);
-        sendBtn.value = "Send(" + waitTime + ")";
-        waitTime--;
+    var time=60;
+    var sendBtn=$('#sendCaptcha');
+    if (validCode) {
+        validCode=false;
+        sendBtn.attr("disabled",true);
+        var t=setInterval(function  () {
+            time--;
+            sendBtn.val(time + "秒");
+            if (time==0) {
+                sendBtn.attr("disabled",false);
+                clearInterval(t);
+                sendBtn.val("重新获取");
+                validCode=true;
+            }
+        },1000)
     }
-    setTimeout(function() {
-        disabled()
-    }, 1000)
 }
 
 function sendCaptcha() {
@@ -183,9 +227,12 @@ function sendCaptcha() {
     var email = document.getElementById('email').value;
     $.get("sendCaptcha", { email : email, userName : userName}, function(result){
         if(result == "wait"){
-             document.getElementById('wait1minAlert').style.display = "inline";
-        } else {
+            document.getElementById('wait1minAlert').style.display = "inline";
+        } else if (result == "emailExisted") {
+            document.getElementById('emailExistedAlert').style.display = "inline";
+        } else if(result == "success"){
             document.getElementById('wait1minAlert').style.display = "none";
+            document.getElementById('emailExistedAlert').style.display = "none";
             disabled();
         }
     });

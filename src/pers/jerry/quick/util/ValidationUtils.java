@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+import pers.jerry.quick.post.domain.Post;
 import pers.jerry.quick.user.domain.User;
 
 /**
@@ -70,6 +71,16 @@ public final class ValidationUtils {
 
     public static boolean checkLoginForm(User user) {
         if (checkEmail(user.getEmail()) && checkPassword(user.getPassword())) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkPostForm(Post post) {
+        if (StringUtils.isNotBlank(post.getTitle()) && StringUtils.isNotBlank(post.getSubject())
+                && StringUtils.isNotBlank(post.getDescription()) && StringUtils.isNotBlank(post.getTags())
+                && StringUtils.isNotBlank(post.getHtmlContent()) && StringUtils.isNotBlank(post.getMarkdownContent())
+                && StringUtils.isNotBlank(post.getPostImage()) && post.getCreateUser() != null) {
             return true;
         }
         return false;

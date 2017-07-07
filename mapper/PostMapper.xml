@@ -3,8 +3,8 @@
 <mapper namespace="pers.jerry.quick.post.dao.PostDao">
 
      <resultMap type="User" id="userResult">
-        <id column="user_id" property="id"/>
-        <result column="user_name" property="name"/>
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
     </resultMap>
 
     <resultMap type="Post" id="postsResult">
@@ -25,6 +25,7 @@
     <select id="getPosts" resultMap="postsResult">
         SELECT * FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
+        ORDER BY P.CREATEDATE DESC
     </select>
 
     <insert id="savePost" parameterType="Post" useGeneratedKeys="true" keyProperty="id">

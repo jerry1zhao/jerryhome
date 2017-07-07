@@ -81,21 +81,23 @@ public class UserController extends BaseController {
     public String handleUserSignin(String captcha, User user, HttpServletRequest request, HttpServletResponse response)
             throws UnsupportedEncodingException, NoSuchAlgorithmException {
         if (ValidationUtils.checkSignUpForm(user, captcha)) {
-            if (userService.getUserByUserName(user.getName()) == null
-                    && userService.getUserByEmail(user.getEmail()) == null) {
-                if (ValidationUtils.checkCpatchaValidity(captcha,
-                        (String) request.getSession().getAttribute(user.getEmail()))) {
-                    request.getSession().removeAttribute(user.getEmail());
-                    user.setLastip(UserUtils.getIpAddr(request));
-                    user = userService.insertUser(user);
-                    CookieUtils.addCookie(response, User.JERRY_HOME_USER_COOKIE, UserUtils.base64EncoderForUser(user),
-                            null);
-                    request.getSession().removeAttribute(User.USER);
-                    return SUCCESS;
-                } else {
+            if (userService.getUserByUserName(user.getName()) == null) {
+                if (userService.getUserByEmail(user.getEmail()) == null) {
+                    if (ValidationUtils.checkCpatchaValidity(captcha,
+                            (String) request.getSession().getAttribute(user.getEmail()))) {
+                        request.getSession().removeAttribute(user.getEmail());
+                        user.setLastip(UserUtils.getIpAddr(request));
+                        user = userService.insertUser(user);
+                        CookieUtils.addCookie(response, User.JERRY_HOME_USER_COOKIE,
+                                UserUtils.base64EncoderForUser(user), null);
+                        request.getSession().removeAttribute(User.USER);
+                        return SUCCESS;
+                    }
                     return "captchaError";
                 }
+                return "emailExisted";
             }
+            return "userExisted";
         }
         return FAIL;
     }
@@ -103,37 +105,40 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/sendCaptcha", method = RequestMethod.GET)
     @ResponseBody
     public String sendCaptcha(String email, String userName, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            final String lastRegistrationTime = CookieUtils.getCookieValue(request, LAST_REGISTRATION_TIME_COOKIE);
-            if (StringUtils.isBlank(lastRegistrationTime)) {
-                CookieUtils.addCookie(response, LAST_REGISTRATION_TIME_COOKIE, simpleDateFormat.format(new Date()),
-                        null);
-                final String captcha = MailUtils.sendMail(email, userName);
-                request.getSession().setAttribute(email, captcha);
-            } else {
-                try {
-                    final Date nowDate = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
-                    final Date lastRegistrationDate = simpleDateFormat.parse(lastRegistrationTime);
-                    final long between = ((nowDate.getTime() - lastRegistrationDate.getTime()) / 1000) / 60;
-                    if (between <= 0) {
-                        logger.warn("Please wait 1 minute and then register");
-                        return "wait";
-                    }
+        if (userService.getUserByEmail(email) == null) {
+            try {
+                final String lastRegistrationTime = CookieUtils.getCookieValue(request, LAST_REGISTRATION_TIME_COOKIE);
+                if (StringUtils.isBlank(lastRegistrationTime)) {
                     CookieUtils.addCookie(response, LAST_REGISTRATION_TIME_COOKIE, simpleDateFormat.format(new Date()),
                             null);
                     final String captcha = MailUtils.sendMail(email, userName);
                     request.getSession().setAttribute(email, captcha);
-                } catch (final ParseException e) {
-                    logger.error("ParseException", e);
+                    return SUCCESS;
+                } else {
+                    try {
+                        final Date nowDate = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
+                        final Date lastRegistrationDate = simpleDateFormat.parse(lastRegistrationTime);
+                        final long between = ((nowDate.getTime() - lastRegistrationDate.getTime()) / 1000) / 60;
+                        if (between <= 0) {
+                            logger.warn("Please wait 1 minute and then register");
+                            return "wait";
+                        }
+                        CookieUtils.addCookie(response, LAST_REGISTRATION_TIME_COOKIE,
+                                simpleDateFormat.format(new Date()), null);
+                        final String captcha = MailUtils.sendMail(email, userName);
+                        request.getSession().setAttribute(email, captcha);
+                        return SUCCESS;
+                    } catch (final ParseException e) {
+                        logger.error("ParseException", e);
+                    }
                 }
+            } catch (final UnsupportedEncodingException e) {
+                logger.error("UnsupportedEncodingException", e);
+            } catch (final MessagingException e) {
+                logger.error("MessagingException", e);
             }
-            return SUCCESS;
-        } catch (final UnsupportedEncodingException e) {
-            logger.error("UnsupportedEncodingException", e);
-        } catch (final MessagingException e) {
-            logger.error("MessagingException", e);
         }
-        return FAIL;
+        return "emailExisted";
     }
 
     @RequestMapping(value = "/userNameCheck", method = RequestMethod.GET)

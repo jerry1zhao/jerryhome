@@ -19,10 +19,18 @@
                         </div>
                     </li>
                     <#if user?exists>
-                    <li><a href="#">${user.name}</a></li>
-                    <#else>
-                    <li><a href="login">登录</a></li>
-                    </#if>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle"
+                        data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">${user.name}</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li><a href="#">账号设置</a></li>
+                            <li><a href="#">消息</a></li>
+                            <li><a href="#">反馈</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出</a></li>
+                        </ul></li> <#else>
+                    <li><a href="login">登录</a></li> </#if>
                 </ul>
             </div>
         </div>

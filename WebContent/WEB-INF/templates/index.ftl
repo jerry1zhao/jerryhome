@@ -16,19 +16,19 @@
     <div class="main">
         <div class="container">
             <div class="row">
-                <div class="col-md-11">
+                <div class="col-md-12">
                     <div class="col-md-8 posts">
                         <#list posts as post>
                         <article class="post">
                             <div class="post-media col-md-12">
-                                <img class="post-image" src="${post.postHeaderImage}"
-                                    alt="spacex">
+                                <a href="post/${post.id}"><img class="post-image" src="${post.postImage}"
+                                    alt="spacex"></a>
                             </div>
                             <div class="post-head">
-                                <h3>${post.title}</h3>
+                                <a  href="post/${post.id?c}"><h3>${post.title}</h3></a>
                             </div>
                             <div class="post-context">
-                                <h5>${post.content}</h5>
+                                <h5>${post.description}</h5>
                             </div>
                             <footer class="post-footer">
                                 <div class="interacts">

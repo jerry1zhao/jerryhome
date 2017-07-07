@@ -39,6 +39,7 @@ import pers.jerry.quick.post.domain.Post;
 import pers.jerry.quick.post.domain.PostConstants;
 import pers.jerry.quick.post.service.PostService;
 import pers.jerry.quick.user.domain.User;
+import pers.jerry.quick.util.ValidationUtils;
 
 @Controller
 public class PostController extends BaseController {
@@ -86,10 +87,14 @@ public class PostController extends BaseController {
         final MultipartFile postImage = request.getFile("postImage");
         final String postImagePath = uploadImage(postImage, newPostImagePath).get("url").toString();
         post.setPostImage(postImagePath);
-
-        postService.savePost(post);
-        map.put("state", "success");
-        map.put("postId", post.getId());
+        if (ValidationUtils.checkPostForm(post)) {
+            postService.savePost(post);
+            map.put("state", "success");
+            map.put("postId", post.getId());
+        } else {
+            map.put("state", "failed");
+            map.put("postId", post.getId());
+        }
         return map;
     }
 
