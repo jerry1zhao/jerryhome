@@ -1,6 +1,11 @@
-    <footer>
-        <div class="container">
-            <p>1</p>
-            <div class="icp">© Jerry Home 2017</div>
+
+<footer>
+    <div class="container">
+        <div class="icp">
+            © Jerry Home
+            <p>
+                <a href="https://github.com/jerry1zhao/quick">GitHub</a>
+            </p>
         </div>
-    </footer>
+    </div>
+</footer>

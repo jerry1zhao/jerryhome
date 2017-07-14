@@ -48,7 +48,7 @@ $(function() {
 });
 
 function gotoIndex(){
-    window.location.href = "index";
+    window.location.href = "posts";
 }
 
 function login(){

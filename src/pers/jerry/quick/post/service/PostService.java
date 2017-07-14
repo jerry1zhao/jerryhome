@@ -19,4 +19,6 @@ public interface PostService {
 
     List<Post> getPosts();
     void savePost(Post post);
+    Post getPost(Integer postId);
+    List<String> getPostTags(String tags);
 }

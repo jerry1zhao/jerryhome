@@ -25,6 +25,17 @@ footer {
     border-top:1px solid #CCCCCC;
 }
 
+.icp {
+    padding-top:2px;
+    padding-bottom:2px;
+    text-align: center;
+    color: #CCCCCC;
+}
+
+.icp p{
+    margin-bottom:0px;
+}
+
 a {
     color: black;
 }
@@ -116,10 +127,5 @@ a:hover {
     font-weight:bold;
     padding-bottom:5px;
     border-bottom:1px solid #CCCCCC;
-}
-
-.icp{
-    text-align: center;
-    color: #CCCCCC;
 }
 

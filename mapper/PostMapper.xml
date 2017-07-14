@@ -28,6 +28,12 @@
         ORDER BY P.CREATEDATE DESC
     </select>
 
+    <select id="getPost" parameterType="Integer" resultMap="postsResult">
+        SELECT * FROM JERRY_POST P
+        LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
+        WHERE P.ID = #{id}
+    </select>
+
     <insert id="savePost" parameterType="Post" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO JERRY_POST (CREATEDATE, CREATEUSER, TITLE, SUBJECT, DESCRIPTION, TAGS, POSTIMAGE, STATUS, HTMLCONTENT, MARKDOWNCONTENT)
         VALUES (#{createDate}, #{createUser.id}, #{title}, #{subject}, #{description}, #{tags}, #{postImage}, #{status}, #{htmlContent}, #{markdownContent})

@@ -21,11 +21,10 @@
                         <#list posts as post>
                         <article class="post">
                             <div class="post-media col-md-12">
-                                <a href="post/${post.id}"><img class="post-image" src="${post.postImage}"
-                                    alt="spacex"></a>
+                                <a href="post/${post.id?c}"><img class="post-image" src="${post.postImage}"></a>
                             </div>
                             <div class="post-head">
-                                <a  href="post/${post.id?c}"><h3>${post.title}</h3></a>
+                                <h3><a href="post/${post.id?c}">${post.title}</a></h3>
                             </div>
                             <div class="post-context">
                                 <h5>${post.description}</h5>

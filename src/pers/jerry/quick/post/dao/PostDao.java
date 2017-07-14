@@ -19,5 +19,6 @@ public interface PostDao {
 
     List<Post> getPosts();
     void savePost(Post post);
+    Post getPost(Integer postId);
 
 }

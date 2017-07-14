@@ -27,6 +27,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +50,7 @@ public class PostController extends BaseController {
     private final Map<String, Object> map = new HashMap<String, Object>();
 
     // go login page
-    @RequestMapping(value = INDEX, method = RequestMethod.GET)
+    @RequestMapping(value = "posts", method = RequestMethod.GET)
     public String goIndex(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
         modelMap.put("posts", posts);
@@ -71,7 +72,7 @@ public class PostController extends BaseController {
 
     @RequestMapping(value = "post/savePost", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> savePost(MultipartHttpServletRequest request) throws IllegalStateException, IOException {
+    public Map<String, Object> savePost(MultipartHttpServletRequest request) throws IOException {
         final Post post = new Post();
         post.setTitle(request.getParameter(PostConstants.TITLE));
         post.setSubject(request.getParameter(PostConstants.SUBJECT));
@@ -98,26 +99,34 @@ public class PostController extends BaseController {
         return map;
     }
 
-
     @RequestMapping(value = "post/uploadContentImage", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> uploadContentImage(HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(value = "editormd-image-file") MultipartFile attach) throws IllegalStateException,
-            IOException {
+            @RequestParam(value = "editormd-image-file") MultipartFile attach) throws IOException {
         final String newPostImagePath = System.getProperty("catalina.home") + "/postimage/temp/";
         return uploadImage(attach, newPostImagePath);
     }
 
-    private Map<String, Object> uploadImage(MultipartFile Image, String ImageSavePath) throws IllegalStateException,
-            IOException {
+    @RequestMapping(value = "post/{postId}", method = RequestMethod.GET)
+    public String postPage(@PathVariable("postId")Integer postId, ModelMap map) {
+        final Post post = postService.getPost(postId);
+        if (post != null) {
+            final List<String> postTags = postService.getPostTags(post.getTags());
+            map.put("post", post);
+            map.put("postTags", postTags);
+            return "post/post";
+        }
+        return "404";
+    }
 
-        final String originalPostImageName = Image.getOriginalFilename();
+    private Map<String, Object> uploadImage(MultipartFile image, String imageSavePath) throws IOException {
+        final String originalPostImageName = image.getOriginalFilename();
         final String postImageName = UUID.randomUUID()
                 + originalPostImageName.substring(originalPostImageName.lastIndexOf("."));
-        if (Image != null && StringUtils.isNotBlank(postImageName)) {
-            String newImagePath = ImageSavePath + postImageName.replace("-", "");
+        if (image != null && StringUtils.isNotBlank(postImageName)) {
+            String newImagePath = imageSavePath + postImageName.replace("-", "");
             newImagePath = newImagePath.replace("/", "\\");
-            Image.transferTo(new File(newImagePath));
+            image.transferTo(new File(newImagePath));
             map.put("success", "1");
             map.put("message ", "upload success");
             map.put("url", newImagePath);
