@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -40,29 +41,29 @@ import pers.jerry.quick.post.domain.Post;
 import pers.jerry.quick.post.domain.PostConstants;
 import pers.jerry.quick.post.service.PostService;
 import pers.jerry.quick.user.domain.User;
+import pers.jerry.quick.util.QiniuUtils;
 import pers.jerry.quick.util.ValidationUtils;
 
 @Controller
 public class PostController extends BaseController {
+    private static final Logger logger = Logger.getLogger(PostController.class);
+    private static final String UPLOAD_PATH = "post/";
 
     @Autowired
     private PostService postService;
     private final Map<String, Object> map = new HashMap<String, Object>();
 
     // go login page
-    @RequestMapping(value = "posts", method = RequestMethod.GET)
-    public String goIndex(ModelMap modelMap) {
+    @RequestMapping(value = { "/", "/posts" }, method = RequestMethod.GET)
+    public String getPosts(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
         modelMap.put("posts", posts);
         return INDEX;
     }
 
-    // go login page
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getPosts(ModelMap modelMap) {
-        final List<Post> posts = postService.getPosts();
-        modelMap.put("posts", posts);
-        return INDEX;
+    @RequestMapping(value = {"/*/posts", "/**/posts" }, method = RequestMethod.GET)
+    public String redirectToPosts() {
+       return "redirect:/posts";
     }
 
     @RequestMapping(value = "post/editor", method = RequestMethod.GET)
@@ -84,9 +85,12 @@ public class PostController extends BaseController {
         post.setHtmlContent(request.getParameter(PostConstants.POST_CONTENT_HTML));
         post.setMarkdownContent(request.getParameter(PostConstants.POST_CONTENT_MARKDOWN));
 
-        final String newPostImagePath = System.getProperty("catalina.home") + "/postimage/";
+        // final String newPostImagePath = System.getProperty("catalina.home") + "/postimage/";
         final MultipartFile postImage = request.getFile("postImage");
-        final String postImagePath = uploadImage(postImage, newPostImagePath).get("url").toString();
+        // final String postImagePath = uploadImage(postImage, newPostImagePath).get("url").toString();
+        final Map<String, String> uploadResult = QiniuUtils.upload(postImage.getBytes(), UPLOAD_PATH);
+        final String postImagePath = QiniuUtils.domain + uploadResult.get("path");
+
         post.setPostImage(postImagePath);
         if (ValidationUtils.checkPostForm(post)) {
             postService.savePost(post);
@@ -101,14 +105,19 @@ public class PostController extends BaseController {
 
     @RequestMapping(value = "post/uploadContentImage", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> uploadContentImage(HttpServletRequest request, HttpServletResponse response,
+    public Map<String, Object>  uploadContentImage(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value = "editormd-image-file") MultipartFile attach) throws IOException {
-        final String newPostImagePath = System.getProperty("catalina.home") + "/postimage/temp/";
-        return uploadImage(attach, newPostImagePath);
+        final Map<String, String> uploadResult = QiniuUtils.upload(attach.getBytes(), UPLOAD_PATH + "temp/");
+        final String postImagePath = QiniuUtils.domain + uploadResult.get("path");
+        final Map<String, Object> result = new HashMap<String, Object>();
+        result.put("url", postImagePath);
+        result.put("success", 1);
+        result.put("message", "upload success!");
+        return result;
     }
 
     @RequestMapping(value = "post/{postId}", method = RequestMethod.GET)
-    public String postPage(@PathVariable("postId")Integer postId, ModelMap map) {
+    public String postPage(@PathVariable("postId") Integer postId, ModelMap map) {
         final Post post = postService.getPost(postId);
         if (post != null) {
             final List<String> postTags = postService.getPostTags(post.getTags());
@@ -135,5 +144,4 @@ public class PostController extends BaseController {
         }
         return map;
     }
-
 }

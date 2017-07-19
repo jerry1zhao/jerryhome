@@ -9,13 +9,14 @@
     content="multipart/form-data; charset=utf-8" />
 <title>Jerry Home Edtior</title>
 <!-- Bootstrap -->
+<link rel="stylesheet" href="../remodal/css/remodal.css">
+<link rel="stylesheet" href="../remodal/css/remodal-default-theme.css">
 <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../amazeui/css/amazeui.min.css" rel="stylesheet" />
 <link href="../css/editor.css" rel="stylesheet" />
 <link href="../css/navbar.css" rel="stylesheet" />
-<link href="../editormd/css/style.css" rel="stylesheet" />
 <link href="../editormd/css/editormd.css" rel="stylesheet" />
 <link href="../bootstrap/fileinput/css/fileinput.min.css" rel="stylesheet" />
-<!-- <link href="../amazeui/css/amazeui.min.css" rel="stylesheet" /> -->
 </head>
 <body>
     <#include "../common/header.ftl">
@@ -88,6 +89,12 @@
             </div>
         </div>
     </div>
+    <div class="remodal" data-remodal-id="modal">
+        <h1>成功提交...</h1>
+        <p>正在打开...</p>
+        <br>
+        <button data-remodal-action="confirm" class="remodal-confirm">OPEN NOW</button>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <script src="../js/jquery.form.min.js"></script>
@@ -97,6 +104,7 @@
     <script src="../js/editor.js"></script>
     <script src="../bootstrap/fileinput/js/fileinput.min.js"></script>
     <script src="../bootstrap/fileinput/js/zh.js"></script>
-    <!--<script src="../amazeui/js/amazeui.min.js"></script>-->
+    <script src="../amazeui/js/amazeui.min.js"></script>
+    <script src="../remodal/js/remodal.min.js"></script>
 </body>
 </html>

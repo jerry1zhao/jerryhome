@@ -1,3 +1,4 @@
+<#assign base=request.contextPath>
 <header>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -7,7 +8,7 @@
                     <span class="sr-only"></span> <span class="icon-bar"></span> <span
                         class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
-                <a href="https://www.baidu.com" class="logo"></a>
+                <a href="posts" class="logo"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right pull-right">
@@ -17,11 +18,11 @@
                                 class="input-group-addon navbar-search-img"> <span
                                 class="glyphicon glyphicon-search"></span></span>
                         </div>
-                    </li>
-                    <#if user?exists>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle"
+                    </li> <#if user?exists>
+                    <!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
                         data-toggle="dropdown" role="button" aria-haspopup="true"
-                        aria-expanded="false">${user.name}</a>
+                        aria-expanded="false"><img src="${user.photo}"
+                            class="img-circle user-avatar"></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">个人主页</a></li>
                             <li><a href="#">账号设置</a></li>
@@ -29,8 +30,21 @@
                             <li><a href="#">反馈</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">退出</a></li>
+                        </ul></li> -->
+                    <li class="am-dropdown" data-am-dropdown><a
+                        class="am-dropdown-toggle" data-am-dropdown-toggle
+                        href="javascript:;"><img src="${user.photo}"
+                            class="img-circle user-avatar"> </a>
+                        <ul class="am-dropdown-content">
+                            <li class="am-dropdown-header">${user.name}</li>
+                            <li><a href="#">个人主页</a></li>
+                            <li><a href="#">账号设置</a></li>
+                            <li><a href="#">消息</a></li>
+                            <li><a href="#">反馈</a></li>
+                            <li class="am-divider"></li>
+                            <li><a href="logout">退出</a></li>
                         </ul></li> <#else>
-                    <li><a href="login">登录</a></li> </#if>
+                    <li><a href="logon" class="btn-login">登录</a></li> </#if>
                 </ul>
             </div>
         </div>

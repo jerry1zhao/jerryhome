@@ -16,6 +16,10 @@
     background-size: 100%;
 }
 
+.navbar .navbar-nav .btn-login{
+    margin-top: 5px;
+}
+
 .navbar .navbar-search {
     width:220px;
     margin-top:6px;
@@ -35,7 +39,22 @@
     background-color:#FFFFFF;
 }
 
-.navbar .navbar-nav .dropdown-menu{
-    min-width:100%;
+.navbar .navbar-nav .user-avatar{
+    width:30px;
+    height:30px;
 }
+
+.navbar .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 8px;
+}
+.am-dropdown>a:hover {
+    background-color: #eee !important;
+}
+
+.am-dropdown-content {
+    margin: 0;
+}
+
+
 /*navbar*/

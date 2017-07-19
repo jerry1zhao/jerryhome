@@ -47,15 +47,32 @@ public class UserController extends BaseController {
     private UserService userService;
 
     // go login page
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/logon", method = RequestMethod.GET)
     public String userLogin() {
         return "user/userLogin";
+    }
+
+    @RequestMapping(value = {"/*/logon", "/**/logon" }, method = RequestMethod.GET)
+    public String redirectToLogin() {
+        return "redirect:/logon";
     }
 
     // go signin page
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
     public String userSignin() {
         return "user/userSignUp";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String userLogout(HttpServletRequest request, HttpServletResponse response) {
+        CookieUtils.delCookie(request, response, User.JERRY_HOME_USER_COOKIE);
+        request.getSession().invalidate();
+        return "/logon";
+    }
+
+    @RequestMapping(value = {"/*/logout" }, method = RequestMethod.GET)
+    public String redirectToLogout() {
+        return "redirect:/logout";
     }
 
     @RequestMapping(value = "/handleUserLogin", method = RequestMethod.POST)

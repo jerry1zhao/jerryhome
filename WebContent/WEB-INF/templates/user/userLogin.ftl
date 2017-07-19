@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -7,10 +6,10 @@
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>登录到Jerry Home</title>
 <!-- Bootstrap -->
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/login.css" rel="stylesheet">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="remodal/css/remodal.css">
 <link rel="stylesheet" href="remodal/css/remodal-default-theme.css">
+<link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div class="main">

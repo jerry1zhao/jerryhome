@@ -54,7 +54,6 @@ $(function() {
     //	});
 });
 
-
 function initFileUpload() {
     $("#postImage").fileinput({
         language : 'zh',
@@ -130,7 +129,8 @@ function commitPost(markdownContent, HTMLContent) {
         $("#postForm").attr('action', 'savePost');
         $("#postForm").ajaxSubmit({
             success : function(data) {
-                $('#postImage').fileinput('upload');
+                //$('#postImage').fileinput('upload');
+                window.location.href = data.postId;
             }
         });
         return false;

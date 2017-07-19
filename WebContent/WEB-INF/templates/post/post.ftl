@@ -7,6 +7,7 @@
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>${post.title}</title>
 <!-- Bootstrap -->
+<link href="../amazeui/css/amazeui.min.css" rel="stylesheet">
 <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/post.css" rel="stylesheet">
 <link href="../css/navbar.css" rel="stylesheet">
@@ -19,7 +20,7 @@
                 <div class="col-md-12">
                     <div class="col-md-8 col-md-offset-2">
                         <article class="post">
-                            <img src="../${post.postImage}" class="post-head-image">
+                            <img src="${post.postImage}" class="post-head-image">
                             <h1 class="title">${post.title}</h1>
                             <div class="author">
                                 <a>${post.createUser.name}</a> <span>${post.createDate}</span>
@@ -36,7 +37,7 @@
                         </div>
                         <hr>
                         <div class="interact">
-                            <a><span class="like-img"></span><span>喜欢</span></a>
+                            <a href="#">喜欢</a>
                         </div>
                         <hr>
                     </div>
@@ -49,6 +50,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../amazeui/js/amazeui.min.js"></script>
     <script src="../js/index.js"></script>
 </body>
 </html>

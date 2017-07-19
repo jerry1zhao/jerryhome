@@ -8,6 +8,7 @@
 <title>Jerry Home</title>
 <!-- Bootstrap -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="amazeui/css/amazeui.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/navbar.css" rel="stylesheet">
 </head>
@@ -83,6 +84,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="amazeui/js/amazeui.min.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

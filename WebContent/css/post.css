@@ -38,10 +38,12 @@ footer {
 }
 
 a {
+    text-decoration:none;
     color: black;
 }
 
 a:hover {
+    text-decoration:none;
     color: #F55B57;
 }
 p {
@@ -49,7 +51,7 @@ p {
 }
 
 .post-head-image {
-    width:100%;
+    max-width:100%;
 }
 
 .post .title{
@@ -62,6 +64,9 @@ p {
     line-height: 1.7;
 }
 
+.post .content img{
+    max-width: 100%;
+}
 .post .author{
     padding-top:10px;
     padding-bottom:10px;
@@ -91,4 +96,20 @@ p {
 
 .tags > h4 > span > a:hover {
     color: #F55B57;
+}
+
+.interact .post-like{
+    width:20px;
+}
+
+.interact>a{
+    border: 1px solid #F37774;
+    color:#F55B57;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.interact>a:hover {
+    background-color:#FFE7E7;
 }

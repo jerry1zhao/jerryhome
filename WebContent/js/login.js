@@ -25,7 +25,7 @@ $(function() {
         waitSend();
     });
     $("body").keydown(function(){
-        if(document.location.pathname == '/Quick/login')
+        if(document.location.pathname == '/Quick/logon')
             if(event.keyCode == '13'){
                 login();
             }
@@ -33,7 +33,7 @@ $(function() {
 
     $(document).on('opened', '.remodal', function () {
         console.log('Modal is opened');
-        setTimeout(function(){gotoIndex()}, 2000);
+        setTimeout(function(){gotoIndex()}, 1000);
     });
 
     $(document).on('closed', '.remodal', function (e) {
@@ -148,7 +148,6 @@ function checkEmail() {
         return true;
     } else {
         document.getElementById('emaildAlert').style.display = "inline";
-        document.getElementById('emailExistedAlert').style.display = "none";
         return false;
     }
 }

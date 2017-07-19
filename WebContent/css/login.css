@@ -78,6 +78,7 @@ html,body,.main {
 .login-contarner .aux-fun {
     display: block;
     padding-top: 10px;
+    padding-bottom: 25px;
 }
 
 .login-contarner .alert-message {
