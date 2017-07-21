@@ -55,24 +55,24 @@ public final class UserUtils {
         return new String(Base64.getDecoder().decode(str), "utf-8");
     }
 
-//    public static String toMD5Code(String str) throws NoSuchAlgorithmException {
-//        final StringBuffer md5Code = new StringBuffer();
-//        final MessageDigest instance = MessageDigest.getInstance("MD5");
-//        instance.update(str.getBytes());
-//        final byte[] digest = instance.digest();
-//        int index;
-//        for (final byte b : digest) {
-//            index = b;
-//            if (index < 0) {
-//                index += 256;
-//            }
-//            if (index < 16) {
-//                md5Code.append(0);
-//            }
-//            md5Code.append(Integer.toHexString(index));
-//        }
-//        return md5Code.toString();
-//    }
+    //    public static String toMD5Code(String str) throws NoSuchAlgorithmException {
+    //        final StringBuffer md5Code = new StringBuffer();
+    //        final MessageDigest instance = MessageDigest.getInstance("MD5");
+    //        instance.update(str.getBytes());
+    //        final byte[] digest = instance.digest();
+    //        int index;
+    //        for (final byte b : digest) {
+    //            index = b;
+    //            if (index < 0) {
+    //                index += 256;
+    //            }
+    //            if (index < 16) {
+    //                md5Code.append(0);
+    //            }
+    //            md5Code.append(Integer.toHexString(index));
+    //        }
+    //        return md5Code.toString();
+    //    }
 
     public static String toMD5Code(String str) throws NoSuchAlgorithmException {
         String result = "";
@@ -89,6 +89,17 @@ public final class UserUtils {
             }
         }
         return result;
+    }
+
+    public static boolean userCompare(User user1, User user2) {
+        if (user1 != null && user2 != null) {
+            if (String.valueOf(user1.getId()).equals(String.valueOf(user2.getId()))) {
+                if (user1.getName().equals(user2.getName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

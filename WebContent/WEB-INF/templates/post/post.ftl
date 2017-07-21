@@ -20,10 +20,11 @@
                 <div class="col-md-12">
                     <div class="col-md-8 col-md-offset-2">
                         <article class="post">
+                            <input type="hidden" id="postId" value="${post.id?c}"/>
                             <img src="${post.postImage}" class="post-head-image">
                             <h1 class="title">${post.title}</h1>
                             <div class="author">
-                                <a>${post.createUser.name}</a> <span>${post.createDate}</span>
+                                <a class="username">${post.createUser.name}</a> <span>${post.createDate}</span>
                             </div>
                             <div class="content">${post.htmlContent}</div>
                         </article>
@@ -39,8 +40,38 @@
                         <div class="interact">
                             <a href="#">喜欢</a>
                         </div>
+                        <#if user?exists>
+                        <hr>
+                        <div class="comment">
+                            <form>
+                                <div class="col-md-1">
+                                    <img src="${user.photo}" class="img-circle user-avatar">
+                                </div>
+                                <div class="col-md-11">
+                                    <textarea class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="col-md-12 col-btn-comment">
+                                    <button
+                                        class="am-btn am-btn-primary am-btn-sm pull-right btn-comment">评论</button>
+                                </div>
+                            </form>
+                        </div>
+                        </#if>
                         <hr>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-float-edit">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11">
+                    <button type="button" name="closeBottomEditRow" class="close-bottom-edit-row pull-right">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                    <input type="button" id="editPost" name="editPost" value="编辑"
+                        class="btn-post-edit pull-right" />
                 </div>
             </div>
         </div>
@@ -51,6 +82,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../amazeui/js/amazeui.min.js"></script>
-    <script src="../js/index.js"></script>
+    <script src="../js/post.js"></script>
 </body>
 </html>

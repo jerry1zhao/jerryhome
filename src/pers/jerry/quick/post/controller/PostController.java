@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -42,6 +41,7 @@ import pers.jerry.quick.post.domain.PostConstants;
 import pers.jerry.quick.post.service.PostService;
 import pers.jerry.quick.user.domain.User;
 import pers.jerry.quick.util.QiniuUtils;
+import pers.jerry.quick.util.UserUtils;
 import pers.jerry.quick.util.ValidationUtils;
 
 @Controller
@@ -54,7 +54,7 @@ public class PostController extends BaseController {
     private final Map<String, Object> map = new HashMap<String, Object>();
 
     // go login page
-    @RequestMapping(value = { "/", "/posts" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/posts" }, method = RequestMethod.GET)
     public String getPosts(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
         modelMap.put("posts", posts);
@@ -63,7 +63,7 @@ public class PostController extends BaseController {
 
     @RequestMapping(value = {"/*/posts", "/**/posts" }, method = RequestMethod.GET)
     public String redirectToPosts() {
-       return "redirect:/posts";
+        return "redirect:/posts";
     }
 
     @RequestMapping(value = "post/editor", method = RequestMethod.GET)
@@ -105,8 +105,8 @@ public class PostController extends BaseController {
 
     @RequestMapping(value = "post/uploadContentImage", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object>  uploadContentImage(HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(value = "editormd-image-file") MultipartFile attach) throws IOException {
+    public Map<String, Object> uploadContentImage(@RequestParam(value = "editormd-image-file") MultipartFile attach)
+            throws IOException {
         final Map<String, String> uploadResult = QiniuUtils.upload(attach.getBytes(), UPLOAD_PATH + "temp/");
         final String postImagePath = QiniuUtils.domain + uploadResult.get("path");
         final Map<String, Object> result = new HashMap<String, Object>();
@@ -127,6 +127,37 @@ public class PostController extends BaseController {
         }
         return "404";
     }
+
+    @RequestMapping(value = "post/edit", method = RequestMethod.GET)
+    public String editPost(HttpServletRequest request, @RequestParam("id") Integer postId, ModelMap map) {
+        final Post post = postService.getPost(postId);
+        if (post != null) {
+            if (UserUtils.userCompare(post.getCreateUser(), (User) request.getSession().getAttribute(User.USER))) {
+                map.put("post", post);
+                map.put("state", "success");
+                return "post/postEdit";
+            }
+            return "unauthorized";
+        }
+        return "404";
+    }
+
+    @RequestMapping(value = "post/showEditBtn", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> showEditBtn(HttpServletRequest request, Integer postId) {
+        final Post post = postService.getPost(postId);
+        if (post != null) {
+            if (UserUtils.userCompare(post.getCreateUser(), (User) request.getSession().getAttribute(User.USER))) {
+                map.put("state", "same");
+                return map;
+            }
+            map.put("state", "different");
+            return map;
+        }
+        map.put("state", "404");
+        return map;
+    }
+
 
     private Map<String, Object> uploadImage(MultipartFile image, String imageSavePath) throws IOException {
         final String originalPostImageName = image.getOriginalFilename();

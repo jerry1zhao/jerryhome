@@ -10,6 +10,11 @@ amazeUI:
     }
 
 未完成:
+打开帖子时，判断登录用户和帖子创建者是否为同一人，如果同一人，显示底部的更新按钮
+404和未授权页面
+编辑帖子
 editor权限
 editor提交后的操作，model-提交到审核
-editormd图片需上传到服务器，markdown使用服务器网址获取(七牛云)
+每次添加图片时(添加成功就已经保存到云)，保存云路径到redis,当save帖子时，过滤temp文件,
+帖子内容与redis cloud path list对比，相同的则重命名(去掉/temp)
+定时清除cloud上的temp文件(不活跃的redis记录,redis设置过期时间,java定时任务)

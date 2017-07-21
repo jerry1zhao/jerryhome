@@ -113,3 +113,95 @@ p {
 .interact>a:hover {
     background-color:#FFE7E7;
 }
+.comment {
+    display: grid;
+}
+
+.comment .col-md-1 {
+    margin-bottom:10px;
+}
+
+.comment .user-avatar{
+    width: 35px;
+    height: 35px;
+}
+
+.comment textarea{
+    resize: vertical;
+    max-width: 100%;
+    min-width: 100%;
+    border-radius: 0px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+
+.comment .col-btn-comment{
+    margin-top:10px;
+}
+
+.comment .btn-comment{
+    border: 0px;
+    color: white;
+    background-color: #42C02E;
+    border-radius: 4px;
+    padding: .5em 1.5em;
+}
+
+.bottom-float-edit {
+    left: 0;
+    border: 1px solid #cccccc;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 100;
+    background-color: #cccccc;
+    filter: alpha(opacity = 50); /*IE*/
+    -moz-opacity: 0.50; /*FireFox*/
+    opacity: 0.50; /*Chrome, Opera, Safari*/
+}
+
+.bottom-float-edit{
+    display: none;
+}
+
+.btn-post-edit {
+    color: black;
+    background-color: #cccccc;
+    border: 0px;
+    height: 100%;
+    max-width: 150px;
+    border-radius: 2px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    padding: 12px 12px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+}
+
+.btn-post-edit:hover{
+    color:white;
+}
+
+.close-bottom-edit-row{
+    background-color: transparent;
+    border: 0px;
+    margin-top: 4px;
+}
+
+.close-bottom-edit-row:hover{
+    color:white;
+}

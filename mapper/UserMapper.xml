@@ -16,7 +16,7 @@
     </resultMap>
 
     <select id="getUser" parameterType="User" resultMap="userResult">
-        SELECT * FROM jerry_user
+        SELECT * FROM JERRY_USER
         WHERE 1=1
         <if test="id != null and 0 != id">
             AND id = #{id}
@@ -36,7 +36,7 @@
     </select>
 
     <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO jerry_user
+        INSERT INTO JERRY_USER
         (createdate, lastvisit, lastip, name, password, phone, email, photo, user_group, password_md5)
         VALUES (#{createdate}, #{lastvisit}, #{lastip}, #{name}, #{password}, #{phone}, #{email}, #{photo}, #{userGroup}, #{passwordMD5})
     </insert>

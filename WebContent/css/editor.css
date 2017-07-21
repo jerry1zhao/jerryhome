@@ -37,6 +37,7 @@ footer {
     margin-bottom: 15px;
 }
 
+.bottom-float-update,
 .bottom-float-commit {
     left: 0;
     border: 1px solid #cccccc;
@@ -51,6 +52,11 @@ footer {
     opacity: 0.50; /*Chrome, Opera, Safari*/
 }
 
+.bottom-float-update{
+    display: none;
+}
+
+.btn-post-update,
 .btn-post-commit {
     color: black;
     background-color: #cccccc;
@@ -77,6 +83,11 @@ footer {
     -ms-user-select: none;
     user-select: none;
     background-image: none;
+}
+
+.btn-post-update:hover,
+.btn-post-commit:hover{
+    color:white;
 }
 
 .post-info .input-group {
@@ -110,4 +121,7 @@ footer {
     background-color: #dd514c;
     border-color: #d83832;
     color: #fff;
+}
+.file-preview-thumbnails .file-thumbnail-footer .file-upload-indicator{
+    display: none;
 }

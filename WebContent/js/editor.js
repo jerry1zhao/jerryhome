@@ -1,5 +1,6 @@
 $(function() {
     inputBoxBlur();
+    initFileUpload();
 
     var postEditor = editormd("postEditor", {
         width : "100%",
@@ -22,8 +23,6 @@ $(function() {
                     "help"]
         }
     });
-
-    initFileUpload();
 
     $("#commitPost").click(function(){
         var markdownContent = postEditor.getMarkdown();
@@ -62,10 +61,16 @@ function initFileUpload() {
         allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
         maxFileSize : 2048,
         maxFileCount : 1,
+        uploadAsync : false,
         showCaption : false,
         dropZoneEnabled : false,
-        uploadAsync : false,
-        showUpload : false
+        showUpload : false,
+        fileActionSettings: {
+            showRemove: false,
+            showUpload: false,
+            showZoom: false,
+            showDrag: false
+        }
     });
 }
 

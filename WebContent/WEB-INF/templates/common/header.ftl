@@ -16,7 +16,8 @@
                         <div class="input-group navbar-search">
                             <input type="text" class="form-control navbar-search-text" /> <span
                                 class="input-group-addon navbar-search-img"> <span
-                                class="glyphicon glyphicon-search"></span></span>
+                                class="glyphicon glyphicon-search"></span>
+                            </span>
                         </div>
                     </li> <#if user?exists>
                     <!-- <li class="dropdown"><a href="#" class="dropdown-toggle"

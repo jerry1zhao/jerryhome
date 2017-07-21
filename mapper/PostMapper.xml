@@ -17,18 +17,47 @@
     </resultMap>
 
     <resultMap type="User" id="userResult">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
+        <id column="u_id" property="id"/>
+        <result column="u_name" property="name"/>
+        <result column="u_photo" property="photo"/>
     </resultMap>
 
     <select id="getPosts" resultMap="postsResult">
-        SELECT * FROM JERRY_POST P
+        SELECT P.ID AS "id",
+        P.CREATEUSER AS "createUser",
+        P.CREATEDATE AS "createDate",
+        P.SUBJECT AS "subject",
+        P.TITLE AS "title",
+        P.DESCRIPTION AS "description",
+        P.HTMLCONTENT AS "htmlContent",
+        P.MARKDOWNCONTENT AS "markdownCONTENT",
+        P.TAGS AS "tags",
+        P.POSTIMAGE AS "postImage",
+        P.STATUS AS "status",
+        U.ID AS "u_id",
+        U.NAME AS "u_name",
+        U.PHOTO AS "u_photo"
+        FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
         ORDER BY P.CREATEDATE DESC
     </select>
 
     <select id="getPost" parameterType="Integer" resultMap="postsResult">
-        SELECT * FROM JERRY_POST P
+        SELECT P.ID AS "id",
+        P.CREATEUSER AS "createUser",
+        P.CREATEDATE AS "createDate",
+        P.SUBJECT AS "subject",
+        P.TITLE AS "title",
+        P.DESCRIPTION AS "description",
+        P.HTMLCONTENT AS "htmlContent",
+        P.MARKDOWNCONTENT AS "markdownCONTENT",
+        P.TAGS AS "tags",
+        P.POSTIMAGE AS "postImage",
+        P.STATUS AS "status",
+        U.ID AS "u_id",
+        U.NAME AS "u_name",
+        U.PHOTO AS "u_photo"
+        FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
         WHERE P.ID = #{id}
     </select>
