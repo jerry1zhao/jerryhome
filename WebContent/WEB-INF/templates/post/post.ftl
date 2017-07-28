@@ -83,5 +83,6 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../amazeui/js/amazeui.min.js"></script>
     <script src="../js/post.js"></script>
+    <script src="../js/search.js"></script>
 </body>
 </html>

@@ -22,6 +22,14 @@ header {
     padding-top: 20px;
 }
 
+a {
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:none;
+}
+
 footer {
     flex: 0 0 auto;
     border-top: 1px solid #CCCCCC;
@@ -35,6 +43,15 @@ footer {
 .editor-label {
     text-align: left;
     margin-bottom: 15px;
+}
+
+.post-form .a-collapse {
+    color: #666;
+}
+
+.post-form .a-collapse i{
+    margin-right: 5px;
+    margin-bottom: 10px;
 }
 
 .bottom-float-update,

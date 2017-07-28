@@ -49,26 +49,21 @@
                     </div>
                     <aside class="aside col-md-4">
                         <div>
-                            <h5>精选</h5>
+                            <h5>热门文章</h5>
                             <div>
-                                <h5>聚合实用 Workflow 动作的中文分享站：Workflow Gallery by sspai</h5>
-                                <p>Jerry</p>
+                                <p><a href="">聚合实用 Workflow 动作的中文分享站：Workflow Gallery by sspai</a></p>
                             </div>
                             <div>
-                                <h5>利用金字塔原理写出好文章</h5>
-                                <p>Jerry</p>
+                                <p>利用金字塔原理写出好文章</p>
                             </div>
                             <div>
-                                <h5>为了解救各位灵魂画手，Google 推出了这款简单的 Web App</h5>
-                                <p>Jerry</p>
+                                <p>为了解救各位灵魂画手，Google 推出了这款简单的 Web App</p>
                             </div>
                             <div>
-                                <h5>PANOLS，更优雅地分享和管理全景照片丨App+1</h5>
-                                <p>Jerry</p>
+                                <p>PANOLS，更优雅地分享和管理全景照片丨App+1</p>
                             </div>
                             <div>
-                                <h5>「降低透明度」让旧设备更流畅 | 一日一技</h5>
-                                <p>Jerry</p>
+                                <p>「降低透明度」让旧设备更流畅 | 一日一技</p>
                             </div>
                         </div>
                         <div>
@@ -86,5 +81,6 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="amazeui/js/amazeui.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>

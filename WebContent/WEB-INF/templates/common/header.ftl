@@ -1,4 +1,3 @@
-<#assign base=request.contextPath>
 <header>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -14,12 +13,16 @@
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <li>
                         <div class="input-group navbar-search">
-                            <input type="text" class="form-control navbar-search-text" /> <span
-                                class="input-group-addon navbar-search-img"> <span
+                            <input id="inputSearch" type="text"
+                                class="form-control navbar-search-text" /> <a id="search"
+                                href="" class="input-group-addon navbar-search-img"> <span
                                 class="glyphicon glyphicon-search"></span>
-                            </span>
+                            </a>
                         </div>
-                    </li> <#if user?exists>
+                    </li>
+                    <li><a class="writing" href="post/editor"> <span
+                            class="glyphicon glyphicon-pencil"></span></a>
+                    </li><#if user?exists>
                     <!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
                         data-toggle="dropdown" role="button" aria-haspopup="true"
                         aria-expanded="false"><img src="${user.photo}"

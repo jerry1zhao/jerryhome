@@ -27,9 +27,9 @@
                         <h1>发布文章</h1>
                     </div>
                     <form id="postForm" accept-charset="UTF-8" method="post"
-                        enctype="multipart/form-data">
-                        <a href="#postInfo" data-toggle="collapse" data-parent="#postForm"> <i
-                            class="fa fa-angle-double-down fa-4" aria-hidden="true"></i>收起</a>
+                        enctype="multipart/form-data" class="post-form">
+                        <a href="#postInfo" data-toggle="collapse" data-parent="#postForm" class="a-collapse"> <i
+                            class="fa fa-angle-double-down i-toggle" aria-hidden="true"></i><span>收起</span></a>
                         <div id="postInfo" class="post-info collapse in">
                             <div class="input-group">
                                 <div>
@@ -102,5 +102,6 @@
     <script src="../bootstrap/fileinput/js/zh.js"></script>
     <script src="../amazeui/js/amazeui.min.js"></script>
     <script src="../js/editor.js"></script>
+    <script src="../js/search.js"></script>
 </body>
 </html>

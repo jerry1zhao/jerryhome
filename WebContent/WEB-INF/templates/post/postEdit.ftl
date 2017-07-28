@@ -27,8 +27,10 @@
                         <h1>发布文章</h1>
                     </div>
                     <form id="postForm" accept-charset="UTF-8" method="post"
-                        enctype="multipart/form-data">
-                        <div class="post-info">
+                        enctype="multipart/form-data" class="post-form">
+                        <a href="#postInfo" data-toggle="collapse" data-parent="#postForm" class="a-collapse"> <i
+                            class="fa fa-angle-double-down i-toggle" aria-hidden="true"></i><span>收起</span></a>
+                        <div id="postInfo" class="post-info collapse in">
                             <div class="input-group">
                                 <div>
                                     <h4>标题</h4>
@@ -107,5 +109,6 @@
     <script src="../amazeui/js/amazeui.min.js"></script>
     <script src="../js/editor.js"></script>
     <script src="../js/postedit.js"></script>
+    <script src="../js/search.js"></script>
 </body>
 </html>

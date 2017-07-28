@@ -61,9 +61,9 @@ public class PostController extends BaseController {
         return INDEX;
     }
 
-    @RequestMapping(value = {"/*/posts", "/**/posts" }, method = RequestMethod.GET)
-    public String redirectToPosts() {
-        return "redirect:/posts";
+    @RequestMapping(value = {"/fullTextSearch" }, method = RequestMethod.GET)
+    public String search(@RequestParam("text") String text, ModelMap modelMap) {
+        return "";
     }
 
     @RequestMapping(value = "post/editor", method = RequestMethod.GET)
@@ -137,7 +137,7 @@ public class PostController extends BaseController {
                 map.put("state", "success");
                 return "post/postEdit";
             }
-            return "unauthorized";
+            return "login";
         }
         return "404";
     }

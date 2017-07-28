@@ -114,20 +114,24 @@ a:hover {
 
 /*aside*/
 .main .aside{
-    margin-top:10px;
+    margin-top:20px;
 }
 
 .main .aside > div{
     margin-bottom:10px;
-}
-
-.main .aside h5{
-    font-weight:bold;
+    padding: 10px 15px;
+    background-color: #fff;
 }
 
 .main .aside > div > h5{
     font-weight:bold;
     padding-bottom:5px;
     border-bottom:1px solid #CCCCCC;
+    margin-top: 2px;
+}
+
+.main .aside > div div{
+    color: #777;
+    font-size: 13px;
 }
 

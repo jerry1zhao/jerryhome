@@ -1,6 +1,7 @@
 $(function() {
     inputBoxBlur();
     initFileUpload();
+    $("input[name='title']").focus();
 
     var postEditor = editormd("postEditor", {
         width : "100%",
@@ -9,6 +10,7 @@ $(function() {
         path : "../editormd/lib/",
         saveHTMLToTextarea : true,
         imageUpload : true,
+        autoFocus: false,
         imageFormats : ["jpg", "jpeg", "gif", "png"],
         imageUploadURL : "uploadContentImage",
         toolbarIcons : function() {
@@ -21,6 +23,14 @@ $(function() {
                     "link", "reference-link", "image", "code", "code-block", "table", "pagebreak", "|",
                     "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
                     "help"]
+        },
+        onfullscreen : function() {
+            $('#postInfo').removeClass('collapse in').addClass('collapse');
+            $('.navbar').hide();
+            togetherWithPageInfo();
+        },
+        onfullscreenExit : function () {
+            $('.navbar').show();
         }
     });
 
@@ -29,6 +39,16 @@ $(function() {
         var HTMLContent = postEditor.getHTML();
         commitPost(markdownContent, HTMLContent);
     });
+
+    $('#postInfo').on('shown.bs.collapse', function () {
+       $('.i-toggle').removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
+       $('.i-toggle + span').html('收起');
+     });
+
+     $('#postInfo').on('hidden.bs.collapse', function () {
+         togetherWithPageInfo();
+     });
+
 
     //	$("#postImage").on('fileuploaderror', function(event, data, previewId, index)
     //	{
@@ -52,6 +72,11 @@ $(function() {
     //	console.log('File uploaded triggered');
     //	});
 });
+
+function togetherWithPageInfo(){
+    $('.i-toggle').removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
+    $('.i-toggle + span').html('打开');
+}
 
 function initFileUpload() {
     $("#postImage").fileinput({
