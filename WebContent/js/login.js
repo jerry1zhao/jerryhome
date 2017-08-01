@@ -25,7 +25,7 @@ $(function() {
         waitSend();
     });
     $("body").keydown(function(){
-        if(document.location.pathname == '/Quick/logon')
+        if(document.location.pathname == '/jerryhome/logon')
             if(event.keyCode == '13'){
                 login();
             }

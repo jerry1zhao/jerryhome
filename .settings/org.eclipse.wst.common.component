@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Quick">
+    <wb-module deploy-name="jerryhome">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/conf"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/mapper"/>
-        <property name="context-root" value="Quick"/>
-        <property name="java-output-path" value="/Quick/build/classes"/>
+        <property name="java-output-path" value="/jerryhome/build/classes"/>
+        <property name="context-root" value="jerryhome"/>
     </wb-module>
 </project-modules>
