@@ -25,9 +25,9 @@ $(function() {
                     "help"]
         },
         onfullscreen : function() {
-            $('#postInfo').removeClass('collapse in').addClass('collapse');
+//            $('#postInfo').removeClass('collapse in').addClass('collapse');
             $('.navbar').hide();
-            togetherWithPageInfo();
+//            togetherWithPageInfo();
         },
         onfullscreenExit : function () {
             $('.navbar').show();
@@ -40,15 +40,16 @@ $(function() {
         commitPost(markdownContent, HTMLContent);
     });
 
-    $('#postInfo').on('shown.bs.collapse', function () {
-       $('.i-toggle').removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
-       $('.i-toggle + span').html('收起');
-     });
+    $('#postInfo').offCanvas('open')
 
-     $('#postInfo').on('hidden.bs.collapse', function () {
-         togetherWithPageInfo();
-     });
-
+//    $('#postInfo').on('shown.bs.collapse', function () {
+//       $('.i-toggle').removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
+//       $('.i-toggle + span').html('收起');
+//     });
+//
+//     $('#postInfo').on('hidden.bs.collapse', function () {
+//         togetherWithPageInfo();
+//     });
 
     //	$("#postImage").on('fileuploaderror', function(event, data, previewId, index)
     //	{

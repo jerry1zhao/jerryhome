@@ -57,7 +57,9 @@ public class PostController extends BaseController {
     @RequestMapping(value = {"/", "/posts" }, method = RequestMethod.GET)
     public String getPosts(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
+        final List<Map<Object, Object>> hotPosts = postService.hotPosts();
         modelMap.put("posts", posts);
+        modelMap.put("hotPosts", hotPosts);
         return INDEX;
     }
 

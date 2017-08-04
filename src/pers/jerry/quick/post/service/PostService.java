@@ -11,6 +11,7 @@
 package pers.jerry.quick.post.service;
 
 import java.util.List;
+import java.util.Map;
 
 import pers.jerry.quick.post.domain.Post;
 
@@ -21,4 +22,5 @@ public interface PostService {
     void savePost(Post post);
     Post getPost(Integer postId);
     List<String> getPostTags(String tags);
+    List<Map<Object, Object>> hotPosts();
 }

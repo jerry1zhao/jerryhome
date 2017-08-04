@@ -50,24 +50,17 @@
                     <aside class="aside col-md-4">
                         <div>
                             <h5>热门文章</h5>
+                            <#list hotPosts as hotPost>
                             <div>
-                                <p><a href="">聚合实用 Workflow 动作的中文分享站：Workflow Gallery by sspai</a></p>
+                                <p><a href="post/${hotPost.postId?c}">${hotPost.postTitle}</a></p>
                             </div>
-                            <div>
-                                <p>利用金字塔原理写出好文章</p>
-                            </div>
-                            <div>
-                                <p>为了解救各位灵魂画手，Google 推出了这款简单的 Web App</p>
-                            </div>
-                            <div>
-                                <p>PANOLS，更优雅地分享和管理全景照片丨App+1</p>
-                            </div>
-                            <div>
-                                <p>「降低透明度」让旧设备更流畅 | 一日一技</p>
-                            </div>
+                            </#list>
                         </div>
                         <div>
                             <h5>推荐专题</h5>
+                            <div class="div-writing">
+                                <p><a href="#"><img class="img-writing" src="http://orzrxu448.bkt.clouddn.com/3334f629049e88ce5be21e9b.jpeg"></a></p>
+                            </div>
                         </div>
                     </aside>
                 </div>

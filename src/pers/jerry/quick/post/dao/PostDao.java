@@ -7,6 +7,7 @@
 package pers.jerry.quick.post.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import pers.jerry.quick.post.domain.Post;
 
@@ -20,5 +21,6 @@ public interface PostDao {
     List<Post> getPosts();
     void savePost(Post post);
     Post getPost(Integer postId);
+    List<Map<Object, Object>> hotPosts();
 
 }

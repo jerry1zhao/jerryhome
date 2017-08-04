@@ -7,7 +7,9 @@
 package pers.jerry.quick.post.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,5 +66,22 @@ public class PostServiceImpl implements PostService {
             tagList.add(tag);
         }
         return tagList;
+    }
+
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.post.service.PostService#hotPost()
+     */
+    @Override
+    public List<Map<Object, Object>> hotPosts() {
+        final List<Map<Object, Object>> hotPosts = new ArrayList<Map<Object, Object>>();
+        final List<Map<Object, Object>> orderlyHotPosts = postDao.hotPosts();
+        for (final Map<Object, Object> orderlyHotPost : orderlyHotPosts) {
+            final Map<Object, Object> postMap = new HashMap<Object, Object>();
+            final Post post = postDao.getPost((Integer) orderlyHotPost.get("postId"));
+            postMap.put("postId", post.getId());
+            postMap.put("postTitle", post.getTitle());
+            hotPosts.add(postMap);
+        }
+        return hotPosts;
     }
 }

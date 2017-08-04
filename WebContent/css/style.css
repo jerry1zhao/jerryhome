@@ -134,4 +134,10 @@ a:hover {
     color: #777;
     font-size: 13px;
 }
+.main .aside .div-writing{
+    text-align: center;
+}
+.main .aside .img-writing {
+    width: 95%;
+}
 

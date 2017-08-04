@@ -111,11 +111,6 @@ footer {
     width: 100%;
 }
 
-.post-info .input-group h4, .content-label h4 {
-    text-align: left;
-    margin-bottom: 10px;
-}
-
 .post-info .input-group input {
     width: 100%;
     border-radius: 0px;
@@ -128,10 +123,6 @@ footer {
     margin-bottom: 10px;
 }
 
-.image-upload-button {
-
-}
-
 .post-alert-danger {
     text-align: center;
     padding-bottom: 10px;
@@ -141,4 +132,17 @@ footer {
 }
 .file-preview-thumbnails .file-thumbnail-footer .file-upload-indicator{
     display: none;
+}
+
+.am-offcanvas-bar {
+    width: 35%;
+    background: #FAFAFA;
+}
+
+.am-offcanvas-bar:after {
+     width: 0px;
+}
+
+.btn-edit-post-info {
+    margin-bottom: 15px;
 }
