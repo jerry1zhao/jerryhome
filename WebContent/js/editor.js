@@ -40,16 +40,9 @@ $(function() {
         commitPost(markdownContent, HTMLContent);
     });
 
-    $('#postInfo').offCanvas('open')
+    $('#postInfo').offCanvas('open');
 
-//    $('#postInfo').on('shown.bs.collapse', function () {
-//       $('.i-toggle').removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
-//       $('.i-toggle + span').html('收起');
-//     });
-//
-//     $('#postInfo').on('hidden.bs.collapse', function () {
-//         togetherWithPageInfo();
-//     });
+
 
     //	$("#postImage").on('fileuploaderror', function(event, data, previewId, index)
     //	{
@@ -74,10 +67,6 @@ $(function() {
     //	});
 });
 
-function togetherWithPageInfo(){
-    $('.i-toggle').removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
-    $('.i-toggle + span').html('打开');
-}
 
 function initFileUpload() {
     $("#postImage").fileinput({
@@ -132,6 +121,7 @@ function verify(inputbox){
             alterDiv = $('<div class="post-alert-danger">请在文本框中正确输入内容</div>').appendTo(inputGroup);
         }
         alterDiv.show();
+        $('#postInfo').offCanvas('open');
         return false;
     } else{
         alterDiv.hide();
@@ -141,11 +131,22 @@ function verify(inputbox){
 
 function checkPostImage(){
     if ($('#postImage').fileinput("getFilesCount") <= 0) {
-        alert("请上传一张帖子主图片!");
+        alert("请上传一张主图片!");
         return false;
     }
     return true;
 }
+
+//function checkPostImage(){
+//    if ($('#postImage').fileinput("getFilesCount") <= 0) {
+//       if(confirm("是否不上传主图片?!")){
+//           return true;
+//       } else {
+//           $('#postInfo').offCanvas('open');
+//           return false;
+//       }
+//    }
+//}
 
 function checkEditor(markdownContent, HTMLContent){
     if(markdownContent.length == 0 || HTMLContent.length == 0 || $.trim(markdownContent) == ''){
