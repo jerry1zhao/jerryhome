@@ -19,47 +19,57 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-8 posts">
-                        <#list posts as post>
-                        <article class="post">
-                            <div class="post-media col-md-12">
-                                <a href="post/${post.id?c}"><img class="post-image" src="${post.postImage}"></a>
-                            </div>
-                            <div class="post-head">
-                                <h3><a href="post/${post.id?c}">${post.title}</a></h3>
-                            </div>
-                            <div class="post-context">
-                                <h5>${post.description}</h5>
-                            </div>
-                            <footer class="post-footer">
-                                <div class="interacts">
-                                    <span> <img src="images/post/like-icon.png" alt="like">
-                                        <span>5</span>
-                                    </span> <span> <img src="images/post/comment-icon.png"
-                                        alt="comment"> <span>20</span>
-                                    </span>
+                        <div class="post-list">
+                            <#list posts as post>
+                            <article class="post">
+                                <div class="post-media col-md-12">
+                                    <a href="post/${post.id?c}"><img class="post-image"
+                                        src="${post.postImage}"></a>
                                 </div>
-                                <div class="sign">
-                                    <time datetime="2015-11-12">11月12日</time>
-                                    <p class="author">${post.createUser.name}</p>
+                                <div class="post-head">
+                                    <h3>
+                                        <a href="post/${post.id?c}">${post.title}</a>
+                                    </h3>
                                 </div>
-
-                            </footer>
-                        </article>
-                        </#list>
+                                <div class="post-context">
+                                    <h5>${post.description}</h5>
+                                </div>
+                                <footer class="post-footer">
+                                    <div class="interacts">
+                                        <span> <img src="images/post/like-icon.png" alt="like">
+                                            <span>5</span>
+                                        </span> <span> <img src="images/post/comment-icon.png"
+                                            alt="comment"> <span>20</span>
+                                        </span>
+                                    </div>
+                                    <div class="sign">
+                                        <time>${post.createDate?date}</time>
+                                        <p class="author">${post.createUser.name}</p>
+                                    </div>
+                                </footer>
+                            </article>
+                            </#list>
+                        </div>
+                        <button id="loadMoer" type="button" class="btn btn-default btn-lg btn-load-Moer col-md-12">加载更多</button>
                     </div>
                     <aside class="aside col-md-4">
                         <div>
                             <h5>热门文章</h5>
                             <#list hotPosts as hotPost>
                             <div>
-                                <p><a href="post/${hotPost.postId?c}">${hotPost.postTitle}</a></p>
+                                <p>
+                                    <a href="post/${hotPost.postId?c}">${hotPost.postTitle}</a>
+                                </p>
                             </div>
                             </#list>
                         </div>
                         <div>
                             <h5>推荐专题</h5>
                             <div class="div-writing">
-                                <p><a href="#"><img class="img-writing" src="http://orzrxu448.bkt.clouddn.com/3334f629049e88ce5be21e9b.jpeg"></a></p>
+                                <p>
+                                    <a href="post/editor"><img class="img-writing"
+                                        src="http://orzrxu448.bkt.clouddn.com/3334f629049e88ce5be21e9b.jpeg"></a>
+                                </p>
                             </div>
                         </div>
                     </aside>

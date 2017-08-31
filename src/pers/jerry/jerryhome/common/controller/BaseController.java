@@ -12,7 +12,7 @@ package pers.jerry.jerryhome.common.controller;
 
 import java.text.SimpleDateFormat;
 
-public class BaseController {
+public abstract class BaseController {
     protected static final String INDEX = "index";
     protected static final String SUCCESS = "success";
     protected static final String FAIL = "fail";

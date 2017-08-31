@@ -84,4 +84,13 @@ public class PostServiceImpl implements PostService {
         }
         return hotPosts;
     }
+
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.post.service.PostService#getPostsPage(java.lang.Integer)
+     */
+    @Override
+    public List<Post> getPostsPage(Integer beginNum) {
+        // TODO Auto-generated method stub
+        return postDao.getPostsPage(beginNum);
+    }
 }

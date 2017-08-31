@@ -1,9 +1,6 @@
 // Copyright (c) 2017 Jerry Home. All rights reserved.
-// ============================================================================
-// CURRENT VERSION CNT.5.0.1
-// ============================================================================
 // CHANGE LOG
-// CNT.5.0.1 : 2017-XX-XX, jerry.zhao, creation
+// 2017-XX-XX, jerry.zhao, creation
 // ============================================================================
 
 /**
@@ -158,6 +155,15 @@ public class PostController extends BaseController {
         }
         map.put("state", "404");
         return map;
+    }
+
+    @RequestMapping(value = "showNextPage", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> showNextPage(Integer nextPage) {
+        final Map<String, Object> posts = new HashMap<String, Object>();
+        final int lastPagePostsAmount = (nextPage - 1) * 2;
+        posts.put("posts", postService.getPostsPage(lastPagePostsAmount));
+        return posts;
     }
 
 
