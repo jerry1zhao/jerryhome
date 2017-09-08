@@ -18,6 +18,7 @@ function loadMoer(){
                 );
             })
             nextPage ++;
+            $('#loadMoer').blur();
         } else {
             $('#loadMoer').html('没有更多帖子啦');
             $('#loadMoer').attr('disabled','disabled');

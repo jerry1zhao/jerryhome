@@ -50,7 +50,7 @@
                             </article>
                             </#list>
                         </div>
-                        <button id="loadMoer" type="button" class="btn btn-default btn-lg btn-load-Moer col-md-12">加载更多</button>
+                        <a id="loadMoer" href="javascript:;" class="btn btn-default btn-lg btn-load-Moer col-md-12">加载更多</a>
                     </div>
                     <aside class="aside col-md-4">
                         <div>

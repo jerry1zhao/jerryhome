@@ -60,11 +60,6 @@ public class PostController extends BaseController {
         return INDEX;
     }
 
-    @RequestMapping(value = {"/fullTextSearch" }, method = RequestMethod.GET)
-    public String search(@RequestParam("text") String text, ModelMap modelMap) {
-        return "";
-    }
-
     @RequestMapping(value = "post/editor", method = RequestMethod.GET)
     public String goPostEditor() {
         return "post/postEditor";
@@ -161,7 +156,7 @@ public class PostController extends BaseController {
     @ResponseBody
     public Map<String, Object> showNextPage(Integer nextPage) {
         final Map<String, Object> posts = new HashMap<String, Object>();
-        final int lastPagePostsAmount = (nextPage - 1) * 2;
+        final int lastPagePostsAmount = (nextPage - 1) * 5;
         posts.put("posts", postService.getPostsPage(lastPagePostsAmount));
         return posts;
     }

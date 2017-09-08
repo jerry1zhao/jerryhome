@@ -7,10 +7,8 @@
 package pers.jerry.quick.post.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author jerry.zhao
@@ -32,11 +30,6 @@ public class RedirectToPostController {
     @RequestMapping(value = {"/*/post/editor", "/**/post/editor" }, method = RequestMethod.GET)
     public String redirectToEditor() {
         return "redirect:/post/editor";
-    }
-
-    @RequestMapping(value = {"/*/fullTextSearch", "/**/fullTextSearch" }, method = RequestMethod.GET)
-    public String redirectToSearch(@RequestParam("text") String text, ModelMap modelMap) {
-        return "redirect:/fullTextSearch?text=" + text;
     }
 
 }

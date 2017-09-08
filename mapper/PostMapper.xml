@@ -40,7 +40,7 @@
         FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
         ORDER BY P.CREATEDATE DESC
-        LIMIT 2 OFFSET 0
+        LIMIT 5 OFFSET 0
     </select>
 
 
@@ -62,7 +62,7 @@
         FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
         ORDER BY P.CREATEDATE DESC
-        LIMIT 2 OFFSET #{beginNum}
+        LIMIT 5 OFFSET #{beginNum}
     </select>
 
     <select id="getPost" parameterType="Integer" resultMap="postsResult">

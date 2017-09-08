@@ -47,9 +47,16 @@ a:hover {
 }
 
 .btn-load-Moer {
-    margin-botton: 20px;
+    margin-bottom: 20px;
     border-radius: 2px;
 }
+
+.btn-load-Moer:hover {
+    color: #F55B57;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
 /*post*/
 .main .post {
     background-color:#FFFFFF;
