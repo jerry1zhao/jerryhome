@@ -24,4 +24,5 @@ public interface PostService {
     Post getPost(Integer postId);
     List<String> getPostTags(String tags);
     List<Map<Object, Object>> hotPosts();
+    List<Post> searchPosts(Map<String, Object> searchCondition);
 }

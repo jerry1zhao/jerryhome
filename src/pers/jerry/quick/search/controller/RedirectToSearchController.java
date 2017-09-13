@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RedirectToSearchController {
 
     @RequestMapping(value = {"/*/searchs", "/**/searchs" }, method = RequestMethod.GET)
-    public String redirectToSearch(@RequestParam("post") String text, ModelMap modelMap) {
-        return "redirect:/searchs?post=" + text;
+    public String redirectToSearch(@RequestParam("article") String article, ModelMap modelMap) {
+        return "redirect:/searchs?article=" + article;
     }
 
 }

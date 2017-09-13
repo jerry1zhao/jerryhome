@@ -23,5 +23,6 @@ public interface PostDao {
     void savePost(Post post);
     Post getPost(Integer postId);
     List<Map<Object, Object>> hotPosts();
+    List<Post> searchPosts(Map<String, Object> searchCondition);
 
 }

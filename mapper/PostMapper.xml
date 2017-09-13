@@ -29,9 +29,6 @@
         P.SUBJECT AS "subject",
         P.TITLE AS "title",
         P.DESCRIPTION AS "description",
-        P.HTMLCONTENT AS "htmlContent",
-        P.MARKDOWNCONTENT AS "markdownCONTENT",
-        P.TAGS AS "tags",
         P.POSTIMAGE AS "postImage",
         P.STATUS AS "status",
         U.ID AS "u_id",
@@ -43,6 +40,25 @@
         LIMIT 5 OFFSET 0
     </select>
 
+    <select id="searchPosts" parameterType="map" resultMap="postsResult">
+        SELECT P.ID AS "id",
+        P.CREATEUSER AS "createUser",
+        P.CREATEDATE AS "createDate",
+        P.SUBJECT AS "subject",
+        P.TITLE AS "title",
+        P.DESCRIPTION AS "description",
+        P.POSTIMAGE AS "postImage",
+        P.STATUS AS "status",
+        U.ID AS "u_id",
+        U.NAME AS "u_name",
+        U.PHOTO AS "u_photo"
+        FROM JERRY_POST P
+        LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
+        WHERE P.TITLE LIKE #{postTitle}
+        ORDER BY P.CREATEDATE DESC
+        LIMIT 5 OFFSET #{beginNum}
+    </select>
+
 
     <select id="getPostsPage" parameterType="Integer" resultMap="postsResult">
         SELECT P.ID AS "id",
@@ -51,9 +67,6 @@
         P.SUBJECT AS "subject",
         P.TITLE AS "title",
         P.DESCRIPTION AS "description",
-        P.HTMLCONTENT AS "htmlContent",
-        P.MARKDOWNCONTENT AS "markdownCONTENT",
-        P.TAGS AS "tags",
         P.POSTIMAGE AS "postImage",
         P.STATUS AS "status",
         U.ID AS "u_id",

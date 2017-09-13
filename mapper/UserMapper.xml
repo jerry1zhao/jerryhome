@@ -15,6 +15,14 @@
         <result column="password_md5" property="passwordMD5"/>
     </resultMap>
 
+    <select id="searchUsersByName" parameterType="String" resultMap="userResult">
+        SELECT U.ID AS "id",
+        U.NAME AS "name",
+        U.PHOTO AS "photo"
+        FROM JERRY_USER U
+        WHERE U.NAME LIKE #{name}
+    </select>
+
     <select id="getUser" parameterType="User" resultMap="userResult">
         SELECT * FROM JERRY_USER
         WHERE 1=1

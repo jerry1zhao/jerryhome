@@ -10,6 +10,8 @@
  */
 package pers.jerry.quick.user.service;
 
+import java.util.List;
+
 import pers.jerry.quick.user.domain.User;
 
 public interface UserService {
@@ -19,4 +21,5 @@ public interface UserService {
     User getCookieUser(String[] cookie);
     User getUserByEmail(String email);
     User getUserByUserName(String userName);
+    List<User> searchUsersByName(String name);
 }

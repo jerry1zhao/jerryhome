@@ -156,8 +156,8 @@ public class PostController extends BaseController {
     @ResponseBody
     public Map<String, Object> showNextPage(Integer nextPage) {
         final Map<String, Object> posts = new HashMap<String, Object>();
-        final int lastPagePostsAmount = (nextPage - 1) * 5;
-        posts.put("posts", postService.getPostsPage(lastPagePostsAmount));
+        final int page = (nextPage - 1) * 5;
+        posts.put("posts", postService.getPostsPage(page));
         return posts;
     }
 

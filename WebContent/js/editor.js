@@ -132,6 +132,7 @@ function verify(inputbox){
 function checkPostImage(){
     if ($('#postImage').fileinput("getFilesCount") <= 0) {
         alert("请上传一张主图片!");
+        $('#postInfo').offCanvas('open');
         return false;
     }
     return true;

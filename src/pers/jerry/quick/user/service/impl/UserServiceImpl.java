@@ -8,6 +8,7 @@ package pers.jerry.quick.user.service.impl;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,15 @@ public class UserServiceImpl implements UserService {
         final User user = new User();
         user.setName(userName);
         return userDao.getUser(user);
+    }
+
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.user.service.UserService#searchUsersByName(java.lang.String)
+     */
+    @Override
+    public List<User> searchUsersByName(String name) {
+        // TODO Auto-generated method stub
+        return userDao.searchUsersByName(name);
     }
 
 }

@@ -93,4 +93,17 @@ public class PostServiceImpl implements PostService {
         // TODO Auto-generated method stub
         return postDao.getPostsPage(beginNum);
     }
+
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.post.service.PostService#searchPosts(java.util.Map)
+     */
+    @Override
+    public List<Post> searchPosts(Map<String, Object> searchCondition) {
+        // TODO Auto-generated method stub
+        return postDao.searchPosts(searchCondition);
+    }
+
+    /* (non-Javadoc)
+     * @see pers.jerry.quick.post.service.PostService#searchPosts(java.lang.Integer)
+     */
 }

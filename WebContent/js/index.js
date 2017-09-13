@@ -1,11 +1,11 @@
 $(function(){
-    $('#loadMoer').click(function(){
-        loadMoer();
+    $('#loadMoerByIndex').click(function(){
+        loadMoerByIndex();
     })
 })
 
 var nextPage = 2;
-function loadMoer(){
+function loadMoerByIndex(){
     $.get('showNextPage',{nextPage: nextPage},function(result){
         if(result.posts.length > 0){
             $.each(result.posts, function(index,obj){
@@ -18,10 +18,10 @@ function loadMoer(){
                 );
             })
             nextPage ++;
-            $('#loadMoer').blur();
+            $('#loadMoerByIndex').blur();
         } else {
-            $('#loadMoer').html('没有更多帖子啦');
-            $('#loadMoer').attr('disabled','disabled');
+            $('#loadMoerByIndex').html('没有更多帖子啦');
+            $('#loadMoerByIndex').attr('disabled','disabled');
         }
     })
 }
