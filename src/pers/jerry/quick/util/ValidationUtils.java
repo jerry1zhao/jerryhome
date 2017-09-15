@@ -80,7 +80,7 @@ public final class ValidationUtils {
         if (StringUtils.isNotBlank(post.getTitle()) && StringUtils.isNotBlank(post.getSubject())
                 && StringUtils.isNotBlank(post.getDescription()) && StringUtils.isNotBlank(post.getTags())
                 && StringUtils.isNotBlank(post.getHtmlContent()) && StringUtils.isNotBlank(post.getMarkdownContent())
-                && StringUtils.isNotBlank(post.getPostImage()) && post.getCreateUser() != null) {
+                && post.getCreateUser() != null) {
             return true;
         }
         return false;

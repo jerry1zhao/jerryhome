@@ -25,9 +25,9 @@ $(function() {
                     "help"]
         },
         onfullscreen : function() {
-//            $('#postInfo').removeClass('collapse in').addClass('collapse');
+//			$('#postInfo').removeClass('collapse in').addClass('collapse');
             $('.navbar').hide();
-//            togetherWithPageInfo();
+//			togetherWithPageInfo();
         },
         onfullscreenExit : function () {
             $('.navbar').show();
@@ -98,7 +98,7 @@ function inputBoxBlur(){
 }
 
 function checkPost(){
-    var checkResult;
+    var checkResult = true;
     var resultMap = new Array();
     $('.form-input').each(function(){
         var result = verify($(this));
@@ -110,55 +110,63 @@ function checkPost(){
             return checkResult;
         }
     }
+    return checkResult;
 }
 
 function verify(inputbox){
     var inputValue = inputbox.val();
     var inputGroup = inputbox.closest('.input-group');
-    var alterDiv = inputGroup.find('.post-alert-danger');
+    var alertDiv = inputGroup.find('.post-alert-danger');
     if(inputValue == ''||$.trim(inputValue) == ''){
-        if(alterDiv.length == 0 || alterDiv.html() == ""){
-            alterDiv = $('<div class="post-alert-danger">请在文本框中正确输入内容</div>').appendTo(inputGroup);
+        if(alertDiv.length == 0 || alertDiv.html() == ""){
+            alertDiv = $('<div class="post-alert-danger">请在文本框中正确输入内容</div>').appendTo(inputGroup);
         }
-        alterDiv.show();
+        alertDiv.show();
         $('#postInfo').offCanvas('open');
         return false;
     } else{
-        alterDiv.hide();
+        alertDiv.hide();
         return true;
     }
 }
 
 function checkPostImage(){
     if ($('#postImage').fileinput("getFilesCount") <= 0) {
-        alert("请上传一张主图片!");
-        $('#postInfo').offCanvas('open');
-        return false;
+        var isChecked = $('#noPostImage').is(':checked');
+        if(isChecked){
+            return true;
+        } else {
+            $('#postImageModal').modal('open');
+            $('#postInfo').offCanvas('open');
+            return false;
+        }
     }
     return true;
 }
 
 //function checkPostImage(){
-//    if ($('#postImage').fileinput("getFilesCount") <= 0) {
-//       if(confirm("是否不上传主图片?!")){
-//           return true;
-//       } else {
-//           $('#postInfo').offCanvas('open');
-//           return false;
-//       }
-//    }
+//if ($('#postImage').fileinput("getFilesCount") <= 0) {
+//if(confirm("是否不上传主图片?!")){
+//return true;
+//} else {
+//$('#postInfo').offCanvas('open');
+//return false;
+//}
+//}
 //}
 
 function checkEditor(markdownContent, HTMLContent){
     if(markdownContent.length == 0 || HTMLContent.length == 0 || $.trim(markdownContent) == ''){
-        alert("帖子内容不能为空!");
+        $('#postContentModal').modal('open');
+
         return false;
     }
     return true;
 }
 
 function commitPost(markdownContent, HTMLContent) {
-    if(checkPost() == undefined && checkPostImage() && checkEditor(markdownContent, HTMLContent)){
+    if (checkPost() && checkPostImage()
+            && checkEditor(markdownContent, HTMLContent)) {
         $("#postForm").attr('action', 'savePost');
         $("#postForm").ajaxSubmit({
             success : function(data) {

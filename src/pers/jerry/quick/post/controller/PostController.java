@@ -79,13 +79,13 @@ public class PostController extends BaseController {
         post.setHtmlContent(request.getParameter(PostConstants.POST_CONTENT_HTML));
         post.setMarkdownContent(request.getParameter(PostConstants.POST_CONTENT_MARKDOWN));
 
-        // final String newPostImagePath = System.getProperty("catalina.home") + "/postimage/";
         final MultipartFile postImage = request.getFile("postImage");
-        // final String postImagePath = uploadImage(postImage, newPostImagePath).get("url").toString();
-        final Map<String, String> uploadResult = QiniuUtils.upload(postImage.getBytes(), UPLOAD_PATH);
-        final String postImagePath = QiniuUtils.domain + uploadResult.get("path");
+        if (postImage != null) {
+            final Map<String, String> uploadResult = QiniuUtils.upload(postImage.getBytes(), UPLOAD_PATH);
+            final String postImagePath = QiniuUtils.domain + uploadResult.get("path");
+            post.setPostImage(postImagePath);
+        }
 
-        post.setPostImage(postImagePath);
         if (ValidationUtils.checkPostForm(post)) {
             postService.savePost(post);
             map.put("state", "success");

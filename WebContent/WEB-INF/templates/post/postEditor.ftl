@@ -69,6 +69,9 @@
                                     <div class="input-group post-image-group">
                                         <div>
                                             <h4>主图片</h4>
+                                            <label>
+                                                 <input id="noPostImage" type="checkbox"><span>不上传主图片</span>
+                                             </label>
                                         </div>
                                         <input id="postImage" name="postImage" type="file"
                                             class="file-loading image-upload-button">
@@ -85,6 +88,24 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="postImageModal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">
+                未上传主图片!! <a href="javascript: void(0)" class="am-close am-close-spin"
+                    data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">请上传一张主图片，或者勾选“不上传主图片”</div>
+        </div>
+    </div>
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="postContentModal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">
+                Oops~!!<a href="javascript: void(0)" class="am-close am-close-spin"
+                    data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">你还没有写文章呢!</div>
         </div>
     </div>
     <div class="bottom-float-commit">

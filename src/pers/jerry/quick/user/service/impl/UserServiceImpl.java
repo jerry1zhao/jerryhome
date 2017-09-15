@@ -9,6 +9,7 @@ package pers.jerry.quick.user.service.impl;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,12 +97,12 @@ public class UserServiceImpl implements UserService {
     }
 
     /* (non-Javadoc)
-     * @see pers.jerry.quick.user.service.UserService#searchUsersByName(java.lang.String)
+     * @see pers.jerry.quick.user.service.UserService#searchUsersByName(java.util.Map)
      */
     @Override
-    public List<User> searchUsersByName(String name) {
+    public List<User> searchUsersByName(Map<String, Object> searchCondition) {
         // TODO Auto-generated method stub
-        return userDao.searchUsersByName(name);
+        return userDao.searchUsersByName(searchCondition);
     }
 
 }

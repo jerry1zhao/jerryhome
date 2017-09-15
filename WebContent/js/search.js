@@ -1,4 +1,5 @@
 $(function(){
+
     $('#search').click(function(){
         window.location.href = 'searchs?article=' + $('#inputSearch').val();
     });
@@ -13,16 +14,32 @@ $(function(){
         loadMoerBySearch();
     });
 
+    $('#loadMoerSearchUsers').click(function(){
+        loadMoerAuthors();
+    })
+
     $('#searchAuthors').on('show.bs.tab',function(e){
         searchAuthors();
     })
+
+    //write
+    $('#writingBtn').click(function(){
+        userIsLoggedIn();
+    });
+
+    $('#writingWindow').click(function(){
+        userIsLoggedIn();
+    });
 })
 
 function searchAuthors(){
     var searchHeader = location.search;
     $.get('searchUsers',{searchHeader: searchHeader},function(result){
         $('.list-authors').empty();
+        nextAuthorsPage = 2;
         if(result.authors.length > 0){
+            $('#loadMoerSearchUsers').attr('disabled',false);
+            $('#loadMoerSearchUsers').html('加载更多');
             $.each(result.authors, function(index,obj){
                 $('.list-authors').append(
                         "<li class='list-group-item'>"+
@@ -37,11 +54,32 @@ function searchAuthors(){
     })
 }
 
+var nextAuthorsPage = 2;
+function loadMoerAuthors(){
+    var searchHeader = location.search;
+    $.get('loadMoerSearchResult',{nextPage: nextAuthorsPage,searchHeader: searchHeader,isSearchAuthors: true},function(result){
+        if(result.authors.length > 0){
+            $.each(result.authors, function(index,obj){
+                $('.list-authors').append(
+                        "<li class='list-group-item'>"+
+                        "<a href='#'><img class='list-group-user-img' src='"+obj.photo+"'></a>"+
+                        "<h5><a href='#'>"+obj.name+"</a></h5>"+
+                    "</li>");
+            })
+            nextAuthorsPage ++;
+            $('#loadMoerSearchUsers').blur();
+        } else {
+            $('#loadMoerSearchUsers').html('没有更多的用户啦');
+            $('#loadMoerSearchUsers').attr('disabled','disabled');
+        }
+    })
+}
 
-var nextPage = 2;
+
+var nextSearchPage = 2;
 function loadMoerBySearch(){
     var searchHeader = location.search;
-    $.get('loadMoerSearchResult',{nextPage: nextPage,searchHeader: searchHeader},function(result){
+    $.get('loadMoerSearchResult',{nextPage: nextSearchPage,searchHeader: searchHeader},function(result){
         if(result.nextPageResult.length > 0){
             $.each(result.nextPageResult, function(index,obj){
                 $('.posts').append(
@@ -51,10 +89,10 @@ function loadMoerBySearch(){
                         "<footer class='post-footer'><div class='interacts'><span> <img src='images/post/like-icon.png' alt='like'> <span>5</span></span> <span> <img src='images/post/comment-icon.png'alt='comment'> <span>20</span></span></div><div class='sign'><time>"+timeStamp2String(obj.createDate)+"</time><p class='author'>"+obj.createUser.name+"</p></div></footer></article>"
                 );
             })
-            nextPage ++;
+            nextSearchPage ++;
             $('#loadMoerBySearch').blur();
         } else {
-            $('#loadMoerBySearch').html('没有更多帖子啦');
+            $('#loadMoerBySearch').html('没有更多的帖子啦');
             $('#loadMoerBySearch').attr('disabled','disabled');
         }
     })
@@ -71,4 +109,14 @@ function timeStamp2String(time){
     //var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
     //return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
     return year + "-" +month + "-" + date;
+}
+
+function userIsLoggedIn(){
+    $.get('userIsLoggedIn',function(result){
+        if (result){
+            window.location.href='post/editor';
+        } else {
+            $('#editorModal').modal('open');
+        }
+    })
 }

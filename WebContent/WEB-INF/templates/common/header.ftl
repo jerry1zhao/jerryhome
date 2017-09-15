@@ -20,21 +20,9 @@
                             </a>
                         </div>
                     </li>
-                    <li><a class="writing" href="post/editor"> <span
-                            class="glyphicon glyphicon-pencil"></span></a>
-                    </li><#if user?exists>
-                    <!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
-                        data-toggle="dropdown" role="button" aria-haspopup="true"
-                        aria-expanded="false"><img src="${user.photo}"
-                            class="img-circle user-avatar"></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">个人主页</a></li>
-                            <li><a href="#">账号设置</a></li>
-                            <li><a href="#">消息</a></li>
-                            <li><a href="#">反馈</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">退出</a></li>
-                        </ul></li> -->
+                    <li><a class="writing" id="writingBtn" href="javascript:;">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                    </a></li><#if user?exists>
                     <li class="am-dropdown" data-am-dropdown><a
                         class="am-dropdown-toggle" data-am-dropdown-toggle
                         href="javascript:;"><img src="${user.photo}"
@@ -54,3 +42,19 @@
         </div>
     </nav>
 </header>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="editorModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            登录到 Jerry Home<a href="javascript: void(0)" class="am-close am-close-spin"
+                data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <h4>To Be Continued</h4>
+            <h4>To Be Continued</h4>
+            <h4>To Be Continued</h4>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm>登录</span>
+        </div>
+    </div>
+</div>

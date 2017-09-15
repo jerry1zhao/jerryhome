@@ -52,11 +52,6 @@ public class UserController extends BaseController {
         return "user/userLogin";
     }
 
-    @RequestMapping(value = {"/*/logon", "/**/logon" }, method = RequestMethod.GET)
-    public String redirectToLogin() {
-        return "redirect:/logon";
-    }
-
     // go signin page
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
     public String userSignin() {
@@ -68,11 +63,6 @@ public class UserController extends BaseController {
         CookieUtils.delCookie(request, response, User.JERRY_HOME_USER_COOKIE);
         request.getSession().invalidate();
         return "/logon";
-    }
-
-    @RequestMapping(value = {"/*/logout" }, method = RequestMethod.GET)
-    public String redirectToLogout() {
-        return "redirect:/logout";
     }
 
     @RequestMapping(value = "/handleUserLogin", method = RequestMethod.POST)
@@ -176,6 +166,16 @@ public class UserController extends BaseController {
             return "none";
         }
         return "existed";
+    }
+
+    @RequestMapping(value = "/userIsLoggedIn", method = RequestMethod.GET)
+    @ResponseBody
+    public Boolean userIsLoggedIn(HttpServletRequest request) {
+        final User user = (User) request.getSession().getAttribute(User.USER);
+        if (user == null) {
+            return false;
+        }
+        return true;
     }
 
 }

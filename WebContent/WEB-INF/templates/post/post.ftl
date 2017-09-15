@@ -21,7 +21,9 @@
                     <div class="col-md-8 col-md-offset-2">
                         <article class="post">
                             <input type="hidden" id="postId" value="${post.id?c}"/>
-                            <img src="${post.postImage}" class="post-head-image">
+                                <#if post.postImage??>
+                                   <img src="${post.postImage}" class="post-head-image">
+                                </#if>
                             <h1 class="title">${post.title}</h1>
                             <div class="author">
                                 <a class="username">${post.createUser.name}</a> <span>${post.createDate}</span>

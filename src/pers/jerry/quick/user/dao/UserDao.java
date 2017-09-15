@@ -7,6 +7,7 @@
 package pers.jerry.quick.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import pers.jerry.quick.user.domain.User;
 
@@ -18,6 +19,6 @@ public interface UserDao {
 
     void insertUser(User user);
     User getUser(User user);
-    List<User> searchUsersByName(String name);
+    List<User> searchUsersByName(Map<String, Object> searchCondition);
 
 }

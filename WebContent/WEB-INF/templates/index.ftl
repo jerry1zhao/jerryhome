@@ -23,8 +23,10 @@
                             <#list posts as post>
                             <article class="post">
                                 <div class="post-media col-md-12">
-                                    <a href="post/${post.id?c}"><img class="post-image"
-                                        src="${post.postImage}"></a>
+                                    <#if post.postImage??>
+                                        <a href="post/${post.id?c}"><img class="post-image"
+                                            src="${post.postImage}"></a>
+                                    </#if>
                                 </div>
                                 <div class="post-head">
                                     <h3>
@@ -50,7 +52,8 @@
                             </article>
                             </#list>
                         </div>
-                        <a id="loadMoerByIndex" href="javascript:;" class="btn btn-default btn-lg btn-load-Moer col-md-12">加载更多</a>
+                        <a id="loadMoerByIndex" href="javascript:;"
+                            class="btn btn-default btn-lg btn-load-Moer col-md-12">加载更多</a>
                     </div>
                     <aside class="aside col-md-4">
                         <div>
@@ -67,7 +70,7 @@
                             <h5>推荐专题</h5>
                             <div class="div-writing">
                                 <p>
-                                    <a href="post/editor"><img class="img-writing"
+                                    <a id = "writingWindow" href="javascript: void(0)"><img class="img-writing"
                                         src="http://orzrxu448.bkt.clouddn.com/3334f629049e88ce5be21e9b.jpeg"></a>
                                 </p>
                             </div>

@@ -15,12 +15,13 @@
         <result column="password_md5" property="passwordMD5"/>
     </resultMap>
 
-    <select id="searchUsersByName" parameterType="String" resultMap="userResult">
+    <select id="searchUsersByName" parameterType="map" resultMap="userResult">
         SELECT U.ID AS "id",
         U.NAME AS "name",
         U.PHOTO AS "photo"
         FROM JERRY_USER U
         WHERE U.NAME LIKE #{name}
+        LIMIT 5 OFFSET #{beginNum}
     </select>
 
     <select id="getUser" parameterType="User" resultMap="userResult">

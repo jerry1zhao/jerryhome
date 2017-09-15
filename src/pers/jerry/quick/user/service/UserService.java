@@ -11,6 +11,7 @@
 package pers.jerry.quick.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import pers.jerry.quick.user.domain.User;
 
@@ -21,5 +22,5 @@ public interface UserService {
     User getCookieUser(String[] cookie);
     User getUserByEmail(String email);
     User getUserByUserName(String userName);
-    List<User> searchUsersByName(String name);
+    List<User> searchUsersByName(Map<String, Object> searchCondition);
 }

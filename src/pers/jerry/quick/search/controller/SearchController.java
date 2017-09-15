@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,24 +55,35 @@ public class SearchController extends BaseController {
 
     @RequestMapping(value = "loadMoerSearchResult", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> loadMoerSearchResult(Integer nextPage, String searchHeader) {
-        final Map<String, Object> posts = new HashMap<String, Object>();
+    public Map<String, Object> loadMoerSearchResult(Integer nextPage, String searchHeader, Boolean isSearchAuthors) {
         final Map<String, Object> searchCondition = new HashMap<String, Object>();
         final int page = (nextPage - 1) * 5;
-        final String searchHeaderRequest = searchHeader.substring(1, searchHeader.indexOf("="));
-        searchCondition.put("postTitle", "%" + searchHeader.substring(searchHeader.indexOf("=") + 1) + "%");
+        final String searchKeyWord = "%" + searchHeader.substring(searchHeader.indexOf("=") + 1) + "%";
         searchCondition.put("beginNum", page);
-        final List<Post> searchResults = postService.searchPosts(searchCondition);
-        posts.put("nextPageResult", searchResults);
-        return posts;
+        if (BooleanUtils.isTrue(isSearchAuthors)) {
+            final Map<String, Object> users = new HashMap<String, Object>();
+            searchCondition.put("name", searchKeyWord);
+            final List<User> searchResult = userService.searchUsersByName(searchCondition);
+            users.put("authors", searchResult);
+            return users;
+        } else {
+            final Map<String, Object> posts = new HashMap<String, Object>();
+            searchCondition.put("postTitle", searchKeyWord);
+            final List<Post> searchResults = postService.searchPosts(searchCondition);
+            posts.put("nextPageResult", searchResults);
+            return posts;
+        }
     }
 
     @RequestMapping(value = "searchUsers", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> searchUsers(String searchHeader) {
         final Map<String, Object> users = new HashMap<String, Object>();
+        final Map<String, Object> searchCondition = new HashMap<String, Object>();
         final String userName = "%" + searchHeader.substring(searchHeader.indexOf("=") + 1) + "%";
-        final List<User> searchResult = userService.searchUsersByName(userName);
+        searchCondition.put("name", userName);
+        searchCondition.put("beginNum", 0);
+        final List<User> searchResult = userService.searchUsersByName(searchCondition);
         users.put("authors", searchResult);
         return users;
     }
