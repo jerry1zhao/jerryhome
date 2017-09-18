@@ -3,6 +3,7 @@
 <mapper namespace="pers.jerry.quick.user.dao.UserDao">
     <resultMap type="User" id="userResult">
         <id column="id" property="id"/>
+        <result column="status" property="status"/>
         <result column="createdate" property="createdate"/>
         <result column="lastvisit" property="lastvisit"/>
         <result column="lastip" property="lastip"/>
@@ -25,28 +26,36 @@
     </select>
 
     <select id="getUser" parameterType="User" resultMap="userResult">
-        SELECT * FROM JERRY_USER
+        SELECT U.ID AS "id",
+        U.STATUS AS "status",
+        U.NAME AS "name",
+        U.EMAIL AS "email",
+        U.PHONE AS "phone",
+        U.PHOTO AS "photo",
+        U.USER_GROUP AS "user_group",
+        U.PASSWORD_MD5 AS "password_md5"
+        FROM JERRY_USER U
         WHERE 1=1
         <if test="id != null and 0 != id">
-            AND id = #{id}
+            AND U.ID = #{id}
         </if>
         <if test="name != null">
-            AND name = #{name}
+            AND U.NAME = #{name}
         </if>
         <if test="email != null">
-            AND email = #{email}
+            AND U.EMAIL = #{email}
         </if>
         <if test="password != null">
-            AND password = #{password}
+            AND U.PASSWORD = #{password}
         </if>
         <if test="passwordMD5 != null">
-            AND password_md5 = #{passwordMD5}
+            AND U.PASSWORD_MD5 = #{passwordMD5}
         </if>
     </select>
 
     <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO JERRY_USER
-        (createdate, lastvisit, lastip, name, password, phone, email, photo, user_group, password_md5)
+        (CREATEDATE, LASTVISIT, LASTIP, NAME, PASSWORD, PHONE, EMAIL, PHOTO, USER_GROUP, PASSWORD_MD5)
         VALUES (#{createdate}, #{lastvisit}, #{lastip}, #{name}, #{password}, #{phone}, #{email}, #{photo}, #{userGroup}, #{passwordMD5})
     </insert>
 

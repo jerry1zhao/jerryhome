@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import pers.jerry.quick.user.dao.UserDao;
 import pers.jerry.quick.user.domain.User;
+import pers.jerry.quick.user.domain.UserConstants;
 import pers.jerry.quick.user.service.UserService;
 import pers.jerry.quick.util.UserUtils;
 
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
         user.setCreatedate(new Timestamp(System.currentTimeMillis()));
         user.setLastvisit(new Timestamp(System.currentTimeMillis()));
         user.setUserGroup(User.USER);
+        user.setPhoto(UserConstants.USER_DEFAULT_AVATAR);
         try {
             user.setPasswordMD5(UserUtils.toMD5Code(user.getPassword()));
         } catch (final NoSuchAlgorithmException e) {

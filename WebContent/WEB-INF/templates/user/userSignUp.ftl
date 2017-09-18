@@ -67,6 +67,9 @@
                                         <div id="wait1minAlert" class="alert-box">
                                             <div class="alert-message">你刷新了页面或进行了其他奇怪的操作，请等待1分钟再试</div>
                                         </div>
+                                        <div id="emailExceptionAlert" class="alert-box">
+                                            <div class="alert-message">请检查你的邮箱地址是否正确</div>
+                                        </div>
 
                                         <div class="input-group input-group-authcode">
                                             <span class="glyphicon glyphicon-send input-group-addon"></span>

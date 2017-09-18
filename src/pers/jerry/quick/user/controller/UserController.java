@@ -144,6 +144,7 @@ public class UserController extends BaseController {
             } catch (final MessagingException e) {
                 logger.error("MessagingException", e);
             }
+            return "emailException";
         }
         return "emailExisted";
     }

@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+html{height:100%;}
+body{display:flex;flex-direction:column;height:100%;margin:0;padding:0;}
+header{flex:0 0 auto;}
+.main{flex:1 0 auto;background-color:#FAFAFA;padding-top:40px;}
+footer{flex:0 0 auto;border-top:1px solid #CCCCCC;}
+.icp{padding-top:2px;padding-bottom:2px;text-align:center;color:#CCCCCC;}
+.icp p{margin-bottom:0px;}
+a{color:black;text-decoration:none;}
+a:hover{color:#F55B57;text-decoration:none;}
+
+/*navbar*/
+.navbar{
+    border-radius: 0px;
+    background-color:#FFFFFF;
+    margin-bottom:0px;
+}
+
+.navbar .logo {
+    background:url(../../images/logo/Jerry-white.png) center no-repeat;
+    margin-top:3px;
+    display: block;
+    width: 130px;
+    height: 45px;
+    background-size: 100%;
+}
+
+.navbar .navbar-nav .btn-login{
+    margin-top: 5px;
+}
+
+.navbar .navbar-search {
+    width:220px;
+    margin-top:6px;
+    margin-right:15px;
+    border:1px solid #CCCCCC;
+}
+
+.navbar .navbar-search .navbar-search-text{
+    border-radius: 0px;
+    border:0px solid #CCCCCC;
+    box-shadow: none;
+}
+
+.navbar .navbar-search .navbar-search-img{
+    border-radius: 0px;
+    border:0px solid #CCCCCC;
+    background-color:#FFFFFF;
+}
+
+.navbar .navbar-nav .user-avatar{
+    width:30px;
+    height:30px;
+}
+
+.navbar .writing {
+    padding-top: 15px !important;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.navbar .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 8px;
+}
+
+.am-dropdown>a:hover {
+    background-color: #eee !important;
+}
+
+.am-dropdown-content {
+    margin: 0;
+}
+
+/*navbar -end*/
+
+/*user settings page*/
+.nav-tabs li a {
+    border-radius: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+/*user settings -end*/

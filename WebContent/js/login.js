@@ -11,6 +11,7 @@ $(function() {
     $("#email").click(function() {
         $('#emaildAlert').hide();
         $('#emailExistedAlert').hide();
+        $('#emailExceptionAlert').hide();
     });
     $("#captcha").blur(function() {
         checkCpatcha();
@@ -229,6 +230,8 @@ function sendCaptcha() {
             document.getElementById('wait1minAlert').style.display = "inline";
         } else if (result == "emailExisted") {
             document.getElementById('emailExistedAlert').style.display = "inline";
+        } else if (result == "emailException") {
+            document.getElementById('emailExceptionAlert').style.display = "inline";
         } else if(result == "success"){
             document.getElementById('wait1minAlert').style.display = "none";
             document.getElementById('emailExistedAlert').style.display = "none";
