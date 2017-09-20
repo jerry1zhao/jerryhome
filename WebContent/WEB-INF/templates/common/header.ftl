@@ -29,7 +29,7 @@
                             class="img-circle user-avatar"> </a>
                         <ul class="am-dropdown-content">
                             <li class="am-dropdown-header">${user.name}</li>
-                            <li><a href="#">个人主页</a></li>
+                            <li><a href="user/homepage">个人主页</a></li>
                             <li><a href="user/settings">账号设置</a></li>
                             <li><a href="#">消息</a></li>
                             <li><a href="#">反馈</a></li>

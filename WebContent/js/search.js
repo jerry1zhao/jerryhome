@@ -2,11 +2,13 @@ $(function(){
 
     $('#search').click(function(){
         window.location.href = 'searchs?article=' + $('#inputSearch').val();
+        window.event.returnValue = false;
     });
 
     $("#inputSearch").keydown(function(event) {
         if (event.keyCode == 13) {
             window.location.href = 'searchs?article=' + $('#inputSearch').val();
+            window.event.returnValue = false;
         }
     });
 
@@ -33,7 +35,7 @@ $(function(){
 })
 
 function searchAuthors(){
-    var searchHeader = location.search;
+    var searchHeader = decodeURI(location.search);
     $.get('searchUsers',{searchHeader: searchHeader},function(result){
         $('.list-authors').empty();
         nextAuthorsPage = 2;
@@ -48,7 +50,7 @@ function searchAuthors(){
                     "</li>");
             })
         } else {
-            $('.list-authors').append("<p>噢~没有找到你想要的...</p>");
+            $('.list-authors').append("<h5>噢~没有找到你想要的...</h5>");
             $('#loadMoerSearchUsers').hide();
         }
     })
@@ -56,7 +58,7 @@ function searchAuthors(){
 
 var nextAuthorsPage = 2;
 function loadMoerAuthors(){
-    var searchHeader = location.search;
+    var searchHeader = decodeURI(location.search);
     $.get('loadMoerSearchResult',{nextPage: nextAuthorsPage,searchHeader: searchHeader,isSearchAuthors: true},function(result){
         if(result.authors.length > 0){
             $.each(result.authors, function(index,obj){
@@ -78,7 +80,7 @@ function loadMoerAuthors(){
 
 var nextSearchPage = 2;
 function loadMoerBySearch(){
-    var searchHeader = location.search;
+    var searchHeader = decodeURI(location.search);
     $.get('loadMoerSearchResult',{nextPage: nextSearchPage,searchHeader: searchHeader},function(result){
         if(result.nextPageResult.length > 0){
             $.each(result.nextPageResult, function(index,obj){
@@ -115,6 +117,7 @@ function userIsLoggedIn(){
     $.get('userIsLoggedIn',function(result){
         if (result){
             window.location.href='post/editor';
+            window.event.returnValue = false;
         } else {
             $('#editorModal').modal('open');
         }

@@ -12,6 +12,7 @@ $(function(){
 function editPost(){
     var postId = $('#postId').val();
     window.location.href = 'edit?id=' + postId;
+    window.event.returnValue = false;
 }
 
 function showEditBtn(){

@@ -17,7 +17,7 @@ header {
 
 .main {
     flex:1 0 auto;
-    background-color:#FAFAFA;
+    background-color:#FFFFFF;
     padding-top:40px;
 }
 
@@ -49,8 +49,13 @@ a:hover {
 
 .nav-tabs li a {
     border-radius: 0px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border: 0px !important;
+}
+
+.nav-tabs .active{
+    border-bottom: 3px solid #000000;
 }
 
 .btn-load-Moer {
@@ -63,6 +68,14 @@ a:hover {
     background-color: #fff;
     border-color: #ccc;
 }
+
+/*no result*/
+.tab-content .tab-pane > h5,
+.tab-content .tab-pane .authors .list-group h5{
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
 /*post*/
 .main .post {
     background-color:#FFFFFF;

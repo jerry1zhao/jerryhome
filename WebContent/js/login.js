@@ -50,6 +50,7 @@ $(function() {
 
 function gotoIndex(){
     window.location.href = "posts";
+    window.event.returnValue = false;
 }
 
 function login(){

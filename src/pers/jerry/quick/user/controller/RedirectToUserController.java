@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RedirectToUserController {
 
+    /**
+     * user
+     */
     @RequestMapping(value = {"/*/logout" }, method = RequestMethod.GET)
     public String redirectToLogout() {
         return "redirect:/logout";
@@ -31,5 +34,24 @@ public class RedirectToUserController {
     public String redirectToUserIsLoggedIn() {
         return "redirect:/userIsLoggedIn";
     }
+
+    /**
+     * user settings
+     */
+
+    @RequestMapping(value = {"/*/user/settings", "/**/user/settings" }, method = RequestMethod.GET)
+    public String redirectToUserSettings() {
+        return "redirect:/user/settings";
+    }
+
+    /**
+     * user homepage
+     */
+
+    @RequestMapping(value = {"/*/user/homepage", "/**/user/homepage" }, method = RequestMethod.GET)
+    public String redirectToUserHomepage() {
+        return "redirect:/user/homepage";
+    }
+
 
 }

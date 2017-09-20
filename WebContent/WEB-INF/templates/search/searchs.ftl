@@ -56,7 +56,7 @@
                                 <a id="loadMoerBySearch" href="javascript:;"
                                     class="btn btn-default btn-lg btn-load-Moer col-md-12">加载更多</a>
                                 <#else>
-                                <p>噢~没有找到你想要的...</p>
+                                <h5>噢~没有找到你想要的...</h5>
                                 </#if>
                             </div>
                             <div class="tab-pane fade" id="author">

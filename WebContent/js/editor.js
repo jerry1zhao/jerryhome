@@ -172,6 +172,7 @@ function commitPost(markdownContent, HTMLContent) {
             success : function(data) {
                 //$('#postImage').fileinput('upload');
                 window.location.href = data.postId;
+                window.event.returnValue = false;
             }
         });
         return false;
