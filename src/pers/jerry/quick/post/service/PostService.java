@@ -25,4 +25,5 @@ public interface PostService {
     List<String> getPostTags(String tags);
     List<Map<Object, Object>> hotPosts();
     List<Post> searchPosts(Map<String, Object> searchCondition);
+    List<Post> getUserPosts(Map<String, Object> searchCondition);
 }

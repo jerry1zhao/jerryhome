@@ -13,7 +13,7 @@
 </head>
 <body>
     <#include "../common/header.ftl">
-    <div class="main">
+    <div class="main user-homepage">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
@@ -36,8 +36,44 @@
                     </div>
                     <div id="userHomepageTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="personalArticles">
-                            <div class="col-md-8 col-md-offset-2">
-
+                            <div class="col-md-9">
+                            <#list posts as post>
+                                <article class="post">
+                                    <div class="col-md-8">
+                                        <div class="post-head">
+                                            <h3>
+                                                <a href="post/${post.id?c}">${post.title}</a>
+                                            </h3>
+                                        </div>
+                                        <div class="post-context">
+                                        <#if post.description?length lt 110>
+                                            <h5>${post.description}</h5>
+                                        <#else>
+                                            <h5>${post.description?substring(0,110)}...</h5>
+                                        </#if>
+                                        </div>
+                                    </div>
+                                    <#if post.postImage??>
+                                    <div class="post-media col-md-3">
+                                            <a href="post/${post.id?c}"><img class="post-image"
+                                                src="${post.postImage}"></a>
+                                    </div>
+                                    </#if>
+                                    <footer class="post-footer">
+                                        <div class="interacts">
+                                            <span> <img src="../images/post/like-icon.png" alt="like">
+                                                <span>5</span>
+                                            </span> <span> <img src="images/post/comment-icon.png"
+                                                alt="comment"> <span>20</span>
+                                            </span>
+                                        </div>
+                                        <div class="sign">
+                                            <time>${post.createDate?date}</time>
+                                            <p class="author">${post.createUser.name}</p>
+                                        </div>
+                                    </footer>
+                                </article>
+                            </#list>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="favoriteArticles">

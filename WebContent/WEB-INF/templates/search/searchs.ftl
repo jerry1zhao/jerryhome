@@ -35,7 +35,11 @@
                                             </h3>
                                         </div>
                                         <div class="post-context">
+                                        <#if post.description?length lt 120>
                                             <h5>${post.description}</h5>
+                                        <#else>
+                                            <h5>${post.description?substring(0,120)}...</h5>
+                                        </#if>
                                         </div>
                                         <footer class="post-footer">
                                             <div class="interacts">

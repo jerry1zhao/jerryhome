@@ -24,5 +24,6 @@ public interface PostDao {
     Post getPost(Integer postId);
     List<Map<Object, Object>> hotPosts();
     List<Post> searchPosts(Map<String, Object> searchCondition);
+    List<Post> getUserPosts(Map<String, Object> searchCondition);
 
 }

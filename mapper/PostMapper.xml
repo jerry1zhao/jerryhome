@@ -98,8 +98,26 @@
         WHERE P.ID = #{id}
     </select>
 
-    <!--sum(case is_like when true then 1 else 0 end ) as "likeCount" -->
+    <select id="getUserPosts" parameterType="map" resultMap="postsResult">
+        SELECT P.ID AS "id",
+        P.CREATEUSER AS "createUser",
+        P.CREATEDATE AS "createDate",
+        P.SUBJECT AS "subject",
+        P.TITLE AS "title",
+        P.DESCRIPTION AS "description",
+        P.POSTIMAGE AS "postImage",
+        P.STATUS AS "status",
+        U.ID AS "u_id",
+        U.NAME AS "u_name",
+        U.PHOTO AS "u_photo"
+        FROM JERRY_POST P
+        LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
+        WHERE U.ID = #{userId}
+        ORDER BY P.CREATEDATE DESC
+        LIMIT 5 OFFSET #{beginNum}
+    </select>
 
+    <!--sum(case is_like when true then 1 else 0 end ) as "likeCount" -->
     <select id="hotPosts" resultType="map">
         SELECT PL.POSTID AS "postId",
         COUNT(1) AS "likeCount"

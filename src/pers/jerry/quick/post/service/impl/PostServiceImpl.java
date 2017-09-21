@@ -104,6 +104,11 @@ public class PostServiceImpl implements PostService {
     }
 
     /* (non-Javadoc)
-     * @see pers.jerry.quick.post.service.PostService#searchPosts(java.lang.Integer)
+     * @see pers.jerry.quick.post.service.PostService#getUserPosts(java.util.Map)
      */
+    @Override
+    public List<Post> getUserPosts(Map<String, Object> searchCondition) {
+        return postDao.getUserPosts(searchCondition);
+    }
+
 }

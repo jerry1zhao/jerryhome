@@ -75,6 +75,72 @@ a:hover{color:#F55B57;text-decoration:none;}
 
 /*navbar -end*/
 
+/*article*/
+.main .post {
+    background-color:#FFFFFF;
+    padding:20px;
+    margin-top:20px;
+    margin-bottom:20px;
+    border-radius: 2px;
+    border: 1px solid #dbe2e8;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+.post .post-media {
+    padding:0px;
+    padding-bottom:15px;
+}
+
+.post .post-media .post-image{
+    width:100%;
+    height:100%;
+
+}
+
+.post .post-head h3{
+    margin-top:0px;
+    font-weight:bold;
+}
+
+.post .post-context h5{
+    color:#777;
+    font-size:15px;
+    line-height:1.5;
+}
+
+.post .post-footer img{
+    width: 18px;
+}
+
+.post .post-footer {
+    border-top:0px;
+    padding-bottom:35px;
+}
+
+.post .post-footer .interacts {
+    float:left;
+    padding-top:10px;
+}
+
+.post .post-footer .sign {
+    float:right;
+    text-align:right;
+    color:#777;
+}
+
+.post .post-footer .sign .author{
+    font-size:17px;
+    color:#777;
+}
+
+.post .post-footer .interacts > span{
+    margin-right:10px;
+    color:#777;
+}
+/*article -end*/
+
 /*user settings page*/
 .nav-tabs li a {
     border-radius: 0px;
@@ -118,6 +184,7 @@ a:hover{color:#F55B57;text-decoration:none;}
 /*user homepage */
 .page-header{
     margin:0px;
+    border-bottom:0px;
 }
 
 .page-header .user-avatar-img{
@@ -138,6 +205,10 @@ a:hover{color:#F55B57;text-decoration:none;}
     color:#8590a6;
     margin-right:20px;
 }
-
+.user-homepage .post{
+    display:table;
+}
 
 /*user homepage -end*/
+
+
