@@ -21,65 +21,71 @@
                         <img src="${currentUser.photo}" alt="头像"
                             class="user-avatar-img img-rounded">
                         <div class="user-info">
-                            <h3>
-                                ${currentUser.name}
-                            </h3>
-                            <h5><span>文章 </span><span>喜欢 </span></h5>
+                            <h3>${currentUser.name}</h3>
+                            <h5>
+                                <span>文章 </span><span>喜欢 </span>
+                            </h5>
                         </div>
                     </div>
                     <div>
                         <ul id="userHomepageTab" class="nav nav-tabs">
-                            <li class="active"><a href="#personalArticles" data-toggle="tab">发布的文章</a></li>
-                            <li><a id="" href="#favoriteArticles"
-                                data-toggle="tab">喜欢的文章</a></li>
+                            <li class="active"><a href="#personalArticles"
+                                data-toggle="tab">发布的文章</a></li>
+                            <li><a id="" href="#favoriteArticles" data-toggle="tab">喜欢的文章</a></li>
                         </ul>
                     </div>
                     <div id="userHomepageTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="personalArticles">
                             <div class="col-md-9">
-                            <#list posts as post>
+                                <#list posts as post>
                                 <article class="post">
-                                    <div class="col-md-8">
-                                        <div class="post-head">
-                                            <h3>
-                                                <a href="post/${post.id?c}">${post.title}</a>
-                                            </h3>
+                                    <div class="post-user-card">
+                                        <div class="sign">
+                                            <h5>
+                                                <a class="username"> <img src="${post.createUser.photo}"
+                                                    class="img-circle user-avatar"> ${post.createUser.name}
+                                                </a> 发布了文章 -
+                                                <time> <#if (post.createDate)?string("yyyy") ==
+                                                    .now?string("yyyy")> ${post.createDate?string("MM月dd日")}
+                                                    <#else> ${post.createDate?string("yyyy年MM月dd日")} </#if> </time>
+                                            </h5>
                                         </div>
+                                    </div>
+                                    <div class="post-head">
+                                        <h3>
+                                            <a href="../post/${post.id?c}">${post.title}</a>
+                                        </h3>
+                                    </div>
+                                    <div class="col-md-8">
                                         <div class="post-context">
-                                        <#if post.description?length lt 110>
+                                            <#if post.description?length lt 110>
                                             <h5>${post.description}</h5>
-                                        <#else>
+                                            <#else>
                                             <h5>${post.description?substring(0,110)}...</h5>
-                                        </#if>
+                                            </#if>
                                         </div>
                                     </div>
                                     <#if post.postImage??>
-                                    <div class="post-media col-md-3">
-                                            <a href="post/${post.id?c}"><img class="post-image"
-                                                src="${post.postImage}"></a>
+                                    <div class="post-media col-md-4">
+                                        <a href="../post/${post.id?c}"><img class="post-image"
+                                            src="${post.postImage}"></a>
                                     </div>
                                     </#if>
-                                    <footer class="post-footer">
+                                    <footer class="post-footer col-md-12">
                                         <div class="interacts">
-                                            <span> <img src="../images/post/like-icon.png" alt="like">
-                                                <span>5</span>
-                                            </span> <span> <img src="images/post/comment-icon.png"
+                                            <span> <img src="../images/post/like-icon.png"
+                                                alt="like"> <span>5</span>
+                                            </span> <span> <img src="../images/post/comment-icon.png"
                                                 alt="comment"> <span>20</span>
                                             </span>
                                         </div>
-                                        <div class="sign">
-                                            <time>${post.createDate?date}</time>
-                                            <p class="author">${post.createUser.name}</p>
-                                        </div>
                                     </footer>
                                 </article>
-                            </#list>
+                                </#list>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="favoriteArticles">
-                            <div class="col-md-8 col-md-offset-2">
-
-                            </div>
+                            <div class="col-md-8 col-md-offset-2"></div>
                         </div>
                     </div>
                 </div>

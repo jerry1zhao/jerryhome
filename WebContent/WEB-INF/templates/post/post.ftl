@@ -20,13 +20,16 @@
                 <div class="col-md-12">
                     <div class="col-md-8 col-md-offset-2">
                         <article class="post">
-                            <input type="hidden" id="postId" value="${post.id?c}"/>
-                                <#if post.postImage??>
-                                   <img src="${post.postImage}" class="post-head-image">
-                                </#if>
+                            <input type="hidden" id="postId" value="${post.id?c}" /> <#if
+                            post.postImage??> <img src="${post.postImage}"
+                                class="post-head-image"> </#if>
                             <h1 class="title">${post.title}</h1>
                             <div class="author">
-                                <a class="username">${post.createUser.name}</a> <span>${post.createDate}</span>
+                                <a class="username"><img src="${post.createUser.photo}"
+                                    class="img-circle user-avatar"> ${post.createUser.name} </a> <span>
+                                    <#if (post.createDate)?string("yyyy") == .now?string("yyyy")>
+                                    ${post.createDate?string("MM月dd日 HH:mm")} <#else>
+                                    ${post.createDate?string("yyyy年MM月dd日 HH:mm")} </#if> </span>
                             </div>
                             <div class="content">${post.htmlContent}</div>
                         </article>
@@ -69,7 +72,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-11">
-                    <button type="button" name="closeBottomEditRow" class="close-bottom-edit-row pull-right">
+                    <button type="button" name="closeBottomEditRow"
+                        class="close-bottom-edit-row pull-right">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                     <input type="button" id="editPost" name="editPost" value="编辑"

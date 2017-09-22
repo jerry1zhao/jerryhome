@@ -23,10 +23,8 @@
                             <#list posts as post>
                             <article class="post">
                                 <div class="post-media col-md-12">
-                                    <#if post.postImage??>
-                                        <a href="post/${post.id?c}"><img class="post-image"
-                                            src="${post.postImage}"></a>
-                                    </#if>
+                                    <#if post.postImage??> <a href="post/${post.id?c}"><img
+                                        class="post-image" src="${post.postImage}"></a> </#if>
                                 </div>
                                 <div class="post-head">
                                     <h3>
@@ -35,9 +33,9 @@
                                 </div>
                                 <div class="post-context">
                                     <#if post.description?length lt 120>
-                                        <h5>${post.description}</h5>
+                                    <h5>${post.description}</h5>
                                     <#else>
-                                        <h5>${post.description?substring(0,120)}...</h5>
+                                    <h5>${post.description?substring(0,120)}...</h5>
                                     </#if>
                                 </div>
                                 <footer class="post-footer">
@@ -49,8 +47,12 @@
                                         </span>
                                     </div>
                                     <div class="sign">
-                                        <time>${post.createDate?date}</time>
-                                        <p class="author">${post.createUser.name}</p>
+                                        <a class="author"><img src="${post.createUser.photo}"
+                                            class="img-circle user-avatar"> ${post.createUser.name}
+                                        </a><span> 发布于 </span>
+                                        <time> <#if (post.createDate)?string("yyyy") ==
+                                            .now?string("yyyy")> ${post.createDate?string("MM月dd日")}
+                                            <#else> ${post.createDate?string("yyyy年MM月dd日")} </#if> </time>
                                     </div>
                                 </footer>
                             </article>
@@ -74,7 +76,8 @@
                             <h5>推荐专题</h5>
                             <div class="div-writing">
                                 <p>
-                                    <a id = "writingWindow" href="javascript: void(0)"><img class="img-writing"
+                                    <a id="writingWindow" href="javascript: void(0)"><img
+                                        class="img-writing"
                                         src="http://orzrxu448.bkt.clouddn.com/3334f629049e88ce5be21e9b.jpeg"></a>
                                 </p>
                             </div>

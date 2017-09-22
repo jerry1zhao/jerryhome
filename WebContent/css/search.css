@@ -140,6 +140,35 @@ a:hover {
     color:#777;
 }
 /*end post*/
+/*search post*/
+.search .post{
+    display:table;
+}
+.search .post .col-md-8{
+    padding-left: 0px;
+}
+.search .post .post-media .post-image{
+    margin-top:12px;
+}
+.search .post .post-footer{
+    padding: 0px;
+}
+.search .post .post-user-card{
+    color:#969696;
+}
+.search .post .post-user-card .sign .username{
+    color:#000000;
+}
+.search .post .post-user-card .sign .user-avatar{
+    margin:5px;
+    width:35px;
+    height:35px;
+}
+.search .post .post-user-card .sign h5{
+    margin-top:0px;
+    margin-bottom:5px;
+}
+/*end search post*/
 
 /*user*/
 .authors .list-group .list-group-item{
@@ -160,3 +189,5 @@ a:hover {
     margin-right:12px;
 }
 /*end user*/
+
+

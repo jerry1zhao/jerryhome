@@ -79,7 +79,10 @@ p {
 .post .author span{
     color:#cccccc;
 }
-
+.post .author .user-avatar{
+    width: 35px;
+    height: 35px;
+}
 .tags h4{
     margin-right:10px;
     display:inline-block;

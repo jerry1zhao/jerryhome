@@ -98,12 +98,11 @@ a:hover {
 
 .post .post-footer {
     border-top:0px;
-    padding-bottom:35px;
+    padding-bottom:25px;
 }
 
 .post .post-footer .interacts {
     float:left;
-    padding-top:10px;
 }
 
 .post .post-footer .sign {
@@ -120,6 +119,9 @@ a:hover {
 .post .post-footer .interacts > span{
     margin-right:10px;
     color:#777;
+}
+.post .post-footer .sign .author img{
+    width: 30px;
 }
 /*end post*/
 

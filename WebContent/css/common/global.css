@@ -208,7 +208,30 @@ a:hover{color:#F55B57;text-decoration:none;}
 .user-homepage .post{
     display:table;
 }
-
+.user-homepage .post .col-md-8{
+    padding-left: 0px;
+}
+.user-homepage .post .post-media .post-image{
+    margin-top:12px;
+}
+.user-homepage .post .post-footer{
+    padding: 0px;
+}
+.user-homepage .post .post-user-card{
+    color:#969696;
+}
+.user-homepage .post .post-user-card .sign .username{
+    color:#000000;
+}
+.user-homepage .post .post-user-card .sign .user-avatar{
+    margin:5px;
+    width:35px;
+    height:35px;
+}
+.user-homepage .post .post-user-card .sign h5{
+    margin-top:0px;
+    margin-bottom:5px;
+}
 /*user homepage -end*/
 
 
