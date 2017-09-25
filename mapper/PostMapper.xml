@@ -13,15 +13,24 @@
         <result column="htmlcontent" property="htmlContent"/>
         <result column="markdowncontent" property="markdownContent"/>
 
-        <association property="createUser" column="createuser" javaType="User" jdbcType="INTEGER" resultMap="userResult" />
+        <association property="createUser" column="createUser" javaType="User" jdbcType="INTEGER" resultMap="userResult" />
     </resultMap>
 
+	<resultMap type="PostLike" id="postsLikeResult">
+        <id column="id" property="id"/>
+        <result column="postId" property="postId"/>
+        <result column="likeDate" property="likeDate"/>
+        <result column="isLike" property="isLike"/>
+
+        <association property="likeUser" column="likeUser" javaType="User" jdbcType="INTEGER" resultMap="userResult" />
+    </resultMap>
+    
     <resultMap type="User" id="userResult">
         <id column="u_id" property="id"/>
         <result column="u_name" property="name"/>
         <result column="u_photo" property="photo"/>
     </resultMap>
-
+    
     <select id="getPosts" resultMap="postsResult">
         SELECT P.ID AS "id",
         P.CREATEUSER AS "createUser",
@@ -126,9 +135,36 @@
         ORDER BY "likeCount" DESC
         LIMIT 5
     </select>
+    
+    <select id="getPostLike" parameterType="map" resultMap="postsLikeResult">
+        SELECT PL.ID AS "id",
+        PL.POSTID AS "postId",
+        PL.LIKE_DATE AS "likeDate",
+        PL.IS_LIKE AS "isLike",
+        U.ID AS "u_id",
+        U.NAME AS "u_name",
+        U.PHOTO AS "u_photo"
+        FROM JERRY_POST_LIKE PL
+        LEFT JOIN JERRY_USER U ON PL.LIKE_USER = U.ID
+        WHERE PL.LIKE_USER = #{userId}
+        AND PL.POSTID = #{postId}
+    </select>
+    
+    <update id="likeOrDisLikePost" parameterType="map">
+    	UPDATE JERRY_POST_LIKE
+		SET IS_LIKE = #{like}
+		WHERE POSTID = #{postId}
+		AND LIKE_USER = #{userId}
+    </update>
 
     <insert id="savePost" parameterType="Post" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO JERRY_POST (CREATEDATE, CREATEUSER, TITLE, SUBJECT, DESCRIPTION, TAGS, POSTIMAGE, STATUS, HTMLCONTENT, MARKDOWNCONTENT)
         VALUES (#{createDate}, #{createUser.id}, #{title}, #{subject}, #{description}, #{tags}, #{postImage}, #{status}, #{htmlContent}, #{markdownContent})
     </insert>
+    
+    <insert id="likePost" parameterType="PostLike" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO JERRY_POST_LIKE (POSTID, LIKE_DATE, LIKE_USER, IS_LIKE)
+        VALUES (#{postId}, #{likeDate}, #{likeUser.id}, #{isLike})
+    </insert>
+    
 </mapper>

@@ -7,6 +7,10 @@ $(function(){
     $('.close-bottom-edit-row').click(function(){
         $('.bottom-float-edit').hide();
     })
+    
+    $('#likePost').click(function(){
+    	likePost();
+    });
 })
 
 function editPost(){
@@ -21,5 +25,18 @@ function showEditBtn(){
         if(result.state == 'same'){
             $('.bottom-float-edit').show();
         }
-    })
+    });
+}
+
+function likePost(){
+	var postId = $('#postId').val();
+    $.get('likePost',{postId: postId},function(result){
+        if(result.like){
+        	$('#likePost').addClass('liked');
+        	$('#likePost').html('已喜欢');
+        }else{
+        	$('#likePost').removeClass('liked');
+        	$('#likePost').html('喜欢');
+        }
+    });
 }

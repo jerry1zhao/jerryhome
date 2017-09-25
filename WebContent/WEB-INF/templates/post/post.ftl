@@ -43,7 +43,13 @@
                         </div>
                         <hr>
                         <div class="interact">
-                            <a href="#">喜欢</a>
+                        	<#if isLikePost == "notLike">
+                        		<a id="likePost" href="javascript:;">喜欢</a>
+                        	<#elseif isLikePost == "like">
+		                        <a id="likePost" href="javascript:;" class="liked">已喜欢</a>
+		                    <#elseif isLikePost == "disLike">
+		                        <a id="likePost" href="javascript:;">喜欢</a>
+                            </#if>
                         </div>
                         <#if user?exists>
                         <hr>

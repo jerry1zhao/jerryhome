@@ -35,6 +35,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import pers.jerry.jerryhome.common.controller.BaseController;
 import pers.jerry.quick.post.domain.Post;
 import pers.jerry.quick.post.domain.PostConstants;
+import pers.jerry.quick.post.domain.PostLike;
 import pers.jerry.quick.post.service.PostService;
 import pers.jerry.quick.user.domain.User;
 import pers.jerry.quick.util.QiniuUtils;
@@ -111,10 +112,18 @@ public class PostController extends BaseController {
     }
 
     @RequestMapping(value = "post/{postId}", method = RequestMethod.GET)
-    public String postPage(@PathVariable("postId") Integer postId, ModelMap map) {
+    public String postPage(HttpServletRequest request, @PathVariable("postId") Integer postId, ModelMap map) {
         final Post post = postService.getPost(postId);
         if (post != null) {
             final List<String> postTags = postService.getPostTags(post.getTags());
+            Boolean isLikePost = postService.getPostLike(postId, (User) request.getSession().getAttribute(User.USER));
+            if(isLikePost == null){
+            	map.put("isLikePost", "notLike");
+            } else if(isLikePost){
+            	map.put("isLikePost", "like");
+            } else {
+            	map.put("isLikePost", "disLike");
+            }
             map.put("post", post);
             map.put("postTags", postTags);
             return "post/post";
@@ -149,6 +158,22 @@ public class PostController extends BaseController {
             return map;
         }
         map.put("state", "404");
+        return map;
+    }
+    
+    @RequestMapping(value = "post/likePost", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> likePost(HttpServletRequest request, Integer postId) {
+        final Map<String, Object> map = new HashMap<String, Object>();
+    	User currentUser = (User) request.getSession().getAttribute(User.USER);
+    	Boolean isLikePost = postService.getPostLike(postId, currentUser);
+    	if(isLikePost == null){
+    		postService.likePost(postId, currentUser);
+    		map.put("like", true);
+    	} else {
+    		postService.likeOrDisLikePost(postId, currentUser, !isLikePost);
+    		map.put("like", !isLikePost);
+    	}
         return map;
     }
 

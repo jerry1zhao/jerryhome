@@ -6,6 +6,7 @@
 
 package pers.jerry.quick.post.service.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,9 @@ import org.springframework.stereotype.Service;
 
 import pers.jerry.quick.post.dao.PostDao;
 import pers.jerry.quick.post.domain.Post;
+import pers.jerry.quick.post.domain.PostLike;
 import pers.jerry.quick.post.service.PostService;
+import pers.jerry.quick.user.domain.User;
 
 /**
  * @author jerry.zhao
@@ -110,5 +113,46 @@ public class PostServiceImpl implements PostService {
     public List<Post> getUserPosts(Map<String, Object> searchCondition) {
         return postDao.getUserPosts(searchCondition);
     }
+
+	/* (non-Javadoc)
+	 * @see pers.jerry.quick.post.service.PostService#likePost(java.lang.Integer, pers.jerry.quick.user.domain.User)
+	 */
+	@Override
+	public void likePost(Integer postId, User user) {
+		// TODO Auto-generated method stub
+		PostLike likePost = new PostLike();
+		likePost.setPostId(postId);
+		likePost.setIsLike(true);
+		likePost.setLikeUser(user);
+		likePost.setLikeDate(new Timestamp(System.currentTimeMillis()));
+		postDao.likePost(likePost);
+	}
+
+	/* (non-Javadoc)
+	 * @see pers.jerry.quick.post.service.PostService#getPostLike(java.lang.Integer, pers.jerry.quick.user.domain.User)
+	 */
+	@Override
+	public Boolean getPostLike(Integer postId, User user) {
+		Map<String,Integer> searchCondition = new HashMap<String, Integer>();
+		searchCondition.put("postId", postId);
+		searchCondition.put("userId", user.getId());
+		PostLike postLike = postDao.getPostLike(searchCondition);
+		if(postLike != null){
+			return postLike.getIsLike();
+		}
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see pers.jerry.quick.post.service.PostService#disLikePost(java.lang.Integer, pers.jerry.quick.user.domain.User)
+	 */
+	@Override
+	public void likeOrDisLikePost(Integer postId, User user, Boolean like) {
+		Map<String,Object> udpateCondition = new HashMap<String, Object>();
+		udpateCondition.put("postId", postId);
+		udpateCondition.put("userId", user.getId());
+		udpateCondition.put("like", like);
+		postDao.likeOrDisLikePost(udpateCondition);
+	}
 
 }

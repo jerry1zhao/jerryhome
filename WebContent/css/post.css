@@ -116,6 +116,16 @@ p {
 .interact>a:hover {
     background-color:#FFE7E7;
 }
+
+.interact .liked {
+	background-color:#D7191A;
+	color:#FFFFFF;
+}
+
+.interact .liked:hover{
+	background-color:#D7191A;
+}
+
 .comment {
     display: grid;
 }
