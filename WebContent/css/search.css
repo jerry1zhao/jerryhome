@@ -78,6 +78,7 @@ a:hover {
 
 /*post*/
 .main .post {
+	width: 100%;
     background-color:#FFFFFF;
     padding:20px;
     margin-top:20px;

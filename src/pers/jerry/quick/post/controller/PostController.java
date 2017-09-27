@@ -116,13 +116,16 @@ public class PostController extends BaseController {
         final Post post = postService.getPost(postId);
         if (post != null) {
             final List<String> postTags = postService.getPostTags(post.getTags());
-            Boolean isLikePost = postService.getPostLike(postId, (User) request.getSession().getAttribute(User.USER));
-            if(isLikePost == null){
-            	map.put("isLikePost", "notLike");
-            } else if(isLikePost){
-            	map.put("isLikePost", "like");
-            } else {
-            	map.put("isLikePost", "disLike");
+            User currentUser = (User) request.getSession().getAttribute(User.USER);
+            if(currentUser != null){
+            	Boolean isLikePost = postService.getPostLike(postId, currentUser);
+            	if(isLikePost == null){
+            		map.put("isLikePost", "notLike");
+            	} else if(isLikePost){
+            		map.put("isLikePost", "like");
+            	} else {
+            		map.put("isLikePost", "disLike");
+            	}
             }
             map.put("post", post);
             map.put("postTags", postTags);

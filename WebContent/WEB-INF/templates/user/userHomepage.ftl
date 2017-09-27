@@ -65,12 +65,12 @@
                                             </#if>
                                         </div>
                                     </div>
-                                    <#if post.postImage??>
                                     <div class="post-media col-md-4">
+                                    <#if post.postImage??>
                                         <a href="../post/${post.id?c}"><img class="post-image"
                                             src="${post.postImage}"></a>
-                                    </div>
                                     </#if>
+                                    </div>
                                     <footer class="post-footer col-md-12">
                                         <div class="interacts">
                                             <span> <img src="../images/post/like-icon.png"

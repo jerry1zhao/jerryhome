@@ -41,15 +41,15 @@
                                 <footer class="post-footer">
                                     <div class="interacts">
                                         <span> <img src="images/post/like-icon.png" alt="like">
-                                            <span>5</span>
+                                            <span>${post.postLikeCount}</span>
                                         </span> <span> <img src="images/post/comment-icon.png"
-                                            alt="comment"> <span>20</span>
+                                            alt="comment"> <span>0</span>
                                         </span>
                                     </div>
                                     <div class="sign">
                                         <a class="author"><img src="${post.createUser.photo}"
                                             class="img-circle user-avatar"> ${post.createUser.name}
-                                        </a><span> 发布于 </span>
+                                        </a><span> 发布了文章 </span>
                                         <time> <#if (post.createDate)?string("yyyy") ==
                                             .now?string("yyyy")> ${post.createDate?string("MM月dd日")}
                                             <#else> ${post.createDate?string("yyyy年MM月dd日")} </#if> </time>

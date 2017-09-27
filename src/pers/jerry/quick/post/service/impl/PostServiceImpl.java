@@ -64,7 +64,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<String> getPostTags(String tags) {
         final List<String> tagList = new ArrayList<String>();
-        final String[] postTags = tags.split(" ");
+        final String[] postTags = tags.split("[+]");
         for (final String tag : postTags) {
             tagList.add(tag);
         }
@@ -133,6 +133,9 @@ public class PostServiceImpl implements PostService {
 	 */
 	@Override
 	public Boolean getPostLike(Integer postId, User user) {
+		if(user == null){
+			return false;
+		}
 		Map<String,Integer> searchCondition = new HashMap<String, Integer>();
 		searchCondition.put("postId", postId);
 		searchCondition.put("userId", user.getId());

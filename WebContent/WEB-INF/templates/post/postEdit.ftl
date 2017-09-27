@@ -70,12 +70,14 @@
                                             name="tags" placeholder="文章标签，例如美食，科技，编程.."
                                             value="${post.tags}" required>
                                     </div>
+                                    <#if post.postImage??>
                                     <div class="input-group post-image-orginal-group">
                                         <div>
                                             <h4>原图片</h4>
                                         </div>
                                         <img src="${post.postImage}" class="post-head-image">
                                     </div>
+                                    </#if>
                                     <div class="input-group post-image-group">
                                         <div>
                                             <h4>更改图片</h4>

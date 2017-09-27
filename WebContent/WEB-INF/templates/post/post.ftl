@@ -41,6 +41,7 @@
                             </h4>
                             </#list>
                         </div>
+                        <#if user?exists>
                         <hr>
                         <div class="interact">
                         	<#if isLikePost == "notLike">
@@ -51,7 +52,6 @@
 		                        <a id="likePost" href="javascript:;">喜欢</a>
                             </#if>
                         </div>
-                        <#if user?exists>
                         <hr>
                         <div class="comment">
                             <form>

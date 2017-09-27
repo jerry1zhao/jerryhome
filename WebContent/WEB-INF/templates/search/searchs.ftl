@@ -57,18 +57,18 @@
                                                 </#if>
                                             </div>
                                         </div>
-                                        <#if post.postImage??>
                                         <div class="post-media col-md-4">
+                                        <#if post.postImage??>
                                             <a href="post/${post.id?c}"><img class="post-image"
                                                 src="${post.postImage}"></a>
-                                        </div>
                                         </#if>
+                                        </div>
                                         <footer class="post-footer col-md-12">
                                             <div class="interacts">
                                                 <span> <img src="images/post/like-icon.png"
-                                                    alt="like"> <span>5</span>
+                                                    alt="like"> <span>${post.postLikeCount}</span>
                                                 </span> <span> <img src="images/post/comment-icon.png"
-                                                    alt="comment"> <span>20</span>
+                                                    alt="comment"> <span>0</span>
                                                 </span>
                                             </div>
                                         </footer>

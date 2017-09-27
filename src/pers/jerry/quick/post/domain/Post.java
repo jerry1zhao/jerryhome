@@ -27,8 +27,21 @@ public class Post {
     private String status;
     private String htmlContent;
     private String markdownContent;
+    private String postLikeCount;
 
     /**
+	 * @return the postLikeCount
+	 */
+	public String getPostLikeCount() {
+		return postLikeCount;
+	}
+	/**
+	 * @param postLikeCount the postLikeCount to set
+	 */
+	public void setPostLikeCount(String postLikeCount) {
+		this.postLikeCount = postLikeCount;
+	}
+	/**
      * @return the status
      */
     public String getStatus() {

@@ -84,11 +84,13 @@ function loadMoerBySearch(){
     $.get('loadMoerSearchResult',{nextPage: nextSearchPage,searchHeader: searchHeader},function(result){
         if(result.nextPageResult.length > 0){
             $.each(result.nextPageResult, function(index,obj){
-                $('.posts').append(
-                        "<article class='post'>"+
-                        "<div class='post-head'><h3><a href='post/"+obj.id+"'>"+obj.title+"</a></h3></div>"+
-                        "<div class='post-context'><h5>"+obj.description+"</h5></div>"+
-                        "<footer class='post-footer'><div class='interacts'><span> <img src='images/post/like-icon.png' alt='like'> <span>5</span></span> <span> <img src='images/post/comment-icon.png'alt='comment'> <span>20</span></span></div><div class='sign'><time>"+timeStamp2String(obj.createDate)+"</time><p class='author'>"+obj.createUser.name+"</p></div></footer></article>"
+                $('.posts').append(spliceSearchArticle(obj)
+//                        "<article class='post'>"+
+//                        "<div class='post-user-card'><div class='sign'><h5><a class='username'> <img src='"+obj.createUser.photo+"' class='img-circle user-avatar'> "+obj.createUser.name+" </a> 发布了文章 - <time>"+timeStamp2String(obj.createDate)+"</time></h5></div></div>"+
+//                        "<div class='post-head'><h3><a href='post/"+obj.id+"'>"+obj.title+"</a></h3></div>"+
+//                        "<div class='col-md-8'><div class='post-context'><h5>"+obj.description+"</h5></div></div>"+
+//                        "<div class='post-media col-md-4'><a href='post/"+obj.id+"'><img class='post-image' src='"+obj.postImage+"'></a></div>"+
+//                        "<footer class='post-footer col-md-12'><div class='interacts'><span> <img src='images/post/like-icon.png' alt='like'><span>"+obj.postLikeCount+"</span></span> <span> <img src='images/post/comment-icon.png' alt='comment'> <span>0</span></span></div></footer></article>"
                 );
             })
             nextSearchPage ++;
@@ -100,19 +102,6 @@ function loadMoerBySearch(){
     })
 }
 
-function timeStamp2String(time){
-    var datetime = new Date();
-    datetime.setTime(time);
-    var year = datetime.getFullYear();
-    var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-    var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-    //var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
-    //var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-    //var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-    //return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
-    return year + "-" +month + "-" + date;
-}
-
 function userIsLoggedIn(){
     $.get('userIsLoggedIn',function(result){
         if (result){
@@ -122,4 +111,31 @@ function userIsLoggedIn(){
             $('#editorModal').modal('open');
         }
     })
+}
+
+function timeStamp2String(time){
+    var datetime = new Date();
+    var currentYear = datetime.getFullYear();
+    datetime.setTime(time);
+    var year = datetime.getFullYear();
+    var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+    var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+    //var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
+    //var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+    //var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+    //return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
+    if(currentYear == year){
+    	return month + "月" + date + "日";
+    }
+    return year + "年" +month + "月" + date + "日";
+}
+
+function spliceSearchArticle(obj){
+	var articleBlock = "<article class='post'><div class='post-user-card'><div class='sign'><h5><a class='username'> <img src='"+obj.createUser.photo+"' class='img-circle user-avatar'> "+obj.createUser.name+" </a> 发布了文章 - <time>"+timeStamp2String(obj.createDate)+"</time></h5></div></div><div class='post-head'><h3><a href='post/"+obj.id+"'>"+obj.title+"</a></h3></div><div class='col-md-8'><div class='post-context'><h5>"+obj.description.substring(0,110)+"</h5></div></div><div class='post-media col-md-4'>";
+	if(obj.postImage.length != 0 || obj.postImage != ''){
+		articleBlock += "<a href='post/"+obj.id+"'><img class='post-image' src='"+obj.postImage+"'></a></div><footer class='post-footer col-md-12'><div class='interacts'><span> <img src='images/post/like-icon.png' alt='like'><span>"+obj.postLikeCount+"</span></span> <span> <img src='images/post/comment-icon.png' alt='comment'> <span>0</span></span></div></footer></article>";
+	}else{
+		articleBlock += "</div><footer class='post-footer col-md-12'><div class='interacts'><span> <img src='images/post/like-icon.png' alt='like'><span>"+obj.postLikeCount+"</span></span> <span> <img src='images/post/comment-icon.png' alt='comment'> <span>0</span></span></div></footer></article>";
+	}
+	return articleBlock;
 }

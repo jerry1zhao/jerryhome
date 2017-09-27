@@ -12,6 +12,7 @@
         <result column="status" property="status"/>
         <result column="htmlcontent" property="htmlContent"/>
         <result column="markdowncontent" property="markdownContent"/>
+        <result column="postLikeCount" property="postLikeCount"/>
 
         <association property="createUser" column="createUser" javaType="User" jdbcType="INTEGER" resultMap="userResult" />
     </resultMap>
@@ -42,7 +43,8 @@
         P.STATUS AS "status",
         U.ID AS "u_id",
         U.NAME AS "u_name",
-        U.PHOTO AS "u_photo"
+        U.PHOTO AS "u_photo",
+        (SELECT COUNT(1) FROM JERRY_POST_LIKE PL WHERE PL.POSTID=P.ID AND PL.IS_LIKE='t') AS "postLikeCount"
         FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
         ORDER BY P.CREATEDATE DESC
@@ -60,7 +62,8 @@
         P.STATUS AS "status",
         U.ID AS "u_id",
         U.NAME AS "u_name",
-        U.PHOTO AS "u_photo"
+        U.PHOTO AS "u_photo",
+        (SELECT COUNT(1) FROM JERRY_POST_LIKE PL WHERE PL.POSTID=P.ID AND PL.IS_LIKE='t') AS "postLikeCount"
         FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
         WHERE P.TITLE LIKE #{postTitle}
@@ -80,7 +83,8 @@
         P.STATUS AS "status",
         U.ID AS "u_id",
         U.NAME AS "u_name",
-        U.PHOTO AS "u_photo"
+        U.PHOTO AS "u_photo",
+        (SELECT COUNT(1) FROM JERRY_POST_LIKE PL WHERE PL.POSTID=P.ID AND PL.IS_LIKE='t') AS "postLikeCount"
         FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
         ORDER BY P.CREATEDATE DESC
