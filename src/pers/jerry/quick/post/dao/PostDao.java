@@ -23,6 +23,7 @@ public interface PostDao {
     List<Post> getPosts();
     List<Post> getPostsPage(Integer beginNum);
     void savePost(Post post);
+    void updatePost(Post post);
     Post getPost(Integer postId);
     List<Map<Object, Object>> hotPosts();
     List<Post> searchPosts(Map<String, Object> searchCondition);

@@ -23,6 +23,7 @@ public interface PostService {
     List<Post> getPosts();
     List<Post> getPostsPage(Integer beginNum);
     void savePost(Post post);
+    void updatePost(Post post);
     Post getPost(Integer postId);
     List<String> getPostTags(String tags);
     List<Map<Object, Object>> hotPosts();

@@ -158,4 +158,12 @@ public class PostServiceImpl implements PostService {
 		postDao.likeOrDisLikePost(udpateCondition);
 	}
 
+	/* (non-Javadoc)
+	 * @see pers.jerry.quick.post.service.PostService#updatePost(pers.jerry.quick.post.domain.Post)
+	 */
+	@Override
+	public void updatePost(Post post) {
+		postDao.updatePost(post);
+	}
+
 }

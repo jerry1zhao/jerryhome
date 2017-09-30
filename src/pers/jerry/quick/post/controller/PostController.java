@@ -51,7 +51,6 @@ public class PostController extends BaseController {
     private PostService postService;
     private final Map<String, Object> map = new HashMap<String, Object>();
 
-    // go login page
     @RequestMapping(value = {"/", "/posts" }, method = RequestMethod.GET)
     public String getPosts(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
@@ -89,6 +88,37 @@ public class PostController extends BaseController {
 
         if (ValidationUtils.checkPostForm(post)) {
             postService.savePost(post);
+            map.put("state", "success");
+            map.put("postId", post.getId());
+        } else {
+            map.put("state", "failed");
+            map.put("postId", post.getId());
+        }
+        return map;
+    }
+    
+    @RequestMapping(value = "post/updatePost", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> updatePost(MultipartHttpServletRequest request) throws IOException {
+        final Post post = new Post();
+        post.setId(Integer.valueOf(request.getParameter(PostConstants.POST_ID)));
+        post.setTitle(request.getParameter(PostConstants.TITLE));
+        post.setSubject(request.getParameter(PostConstants.SUBJECT));
+        post.setDescription(request.getParameter(PostConstants.DESCRIPTION));
+        post.setTags(request.getParameter(PostConstants.TAGS));
+        post.setStatus(PostConstants.DRAFT);
+        post.setHtmlContent(request.getParameter(PostConstants.POST_CONTENT_HTML));
+        post.setMarkdownContent(request.getParameter(PostConstants.POST_CONTENT_MARKDOWN));
+
+        final MultipartFile postImage = request.getFile("postImage");
+        if (postImage != null) {
+            final Map<String, String> uploadResult = QiniuUtils.upload(postImage.getBytes(), UPLOAD_PATH);
+            final String postImagePath = QiniuUtils.domain + uploadResult.get("path");
+            post.setPostImage(postImagePath);
+        }
+
+        if (ValidationUtils.checkPostFormByUpdate(post)) {
+            postService.updatePost(post);
             map.put("state", "success");
             map.put("postId", post.getId());
         } else {
@@ -143,7 +173,6 @@ public class PostController extends BaseController {
                 map.put("state", "success");
                 return "post/postEdit";
             }
-            return "login";
         }
         return "404";
     }

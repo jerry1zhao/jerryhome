@@ -10,6 +10,8 @@
  */
 package pers.jerry.quick.interceptors;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,7 +27,11 @@ import pers.jerry.quick.util.UserUtils;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-    private static String[] exceptionPaths = {"singin", "login", "sendcaptcha"};
+    private List<String> excludedUrls;
+    
+    public void setExcludedUrls(List<String> excludedUrls) {
+        this.excludedUrls = excludedUrls;
+    }
 
     @Autowired
     private UserService userService;
@@ -34,7 +40,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         final String requestURI = request.getRequestURI().toLowerCase();
-        for (final String exceptionPath : exceptionPaths) {
+        for (final String exceptionPath : excludedUrls) {
             if (requestURI.contains(exceptionPath)) {
                 return true;
             }

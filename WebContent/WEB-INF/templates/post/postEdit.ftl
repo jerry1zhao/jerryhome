@@ -30,6 +30,7 @@
                         enctype="multipart/form-data" class="post-form">
                         <!-- <a href="#postInfo" data-toggle="collapse" data-parent="#postForm" class="a-collapse"> <i
                             class="fa fa-angle-double-down i-toggle" aria-hidden="true"></i><span>收起</span></a>  -->
+                        <input type="hidden" name="postId" value="${post.id?c}" />
                         <button type="button"
                             class="am-btn am-btn-default btn-edit-post-info"
                             data-am-offcanvas="{target: '#postInfo'}">
@@ -81,6 +82,9 @@
                                     <div class="input-group post-image-group">
                                         <div>
                                             <h4>更改图片</h4>
+                                            <label>
+                                                 <input id="noPostImage" type="checkbox"><span>不更新主图片</span>
+                                             </label>
                                         </div>
                                         <input id="postImage" name="postImage" type="file"
                                             class="file-loading image-upload-button">
@@ -105,7 +109,7 @@
                 未上传主图片!! <a href="javascript: void(0)" class="am-close am-close-spin"
                     data-am-modal-close>&times;</a>
             </div>
-            <div class="am-modal-bd">请上传一张主图片，或者勾选“不上传主图片”</div>
+            <div class="am-modal-bd">请更新主图片，或者勾选“不更新图片”</div>
         </div>
     </div>
     <div class="am-modal am-modal-no-btn" tabindex="-1"

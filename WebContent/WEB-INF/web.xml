@@ -16,6 +16,16 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+<servlet-mapping>
+<servlet-name>default</servlet-name>
+	<url-pattern>/amazeui/*</url-pattern>
+	<url-pattern>/bootstrap/*</url-pattern>
+	<url-pattern>/css/*</url-pattern>
+	<url-pattern>/editormd/*</url-pattern>
+	<url-pattern>/images/*</url-pattern>
+	<url-pattern>/js/*</url-pattern>
+	<url-pattern>/remodal/*</url-pattern>
+</servlet-mapping>
   <servlet-mapping>
     <servlet-name>springDispatcherServlet</servlet-name>
     <url-pattern>/*</url-pattern>

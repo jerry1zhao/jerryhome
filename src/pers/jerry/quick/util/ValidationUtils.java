@@ -85,5 +85,14 @@ public final class ValidationUtils {
         }
         return false;
     }
+    
+    public static boolean checkPostFormByUpdate(Post post) {
+        if (StringUtils.isNotBlank(post.getTitle()) && StringUtils.isNotBlank(post.getSubject())
+                && StringUtils.isNotBlank(post.getDescription()) && StringUtils.isNotBlank(post.getTags())
+                && StringUtils.isNotBlank(post.getHtmlContent()) && StringUtils.isNotBlank(post.getMarkdownContent())) {
+            return true;
+        }
+        return false;
+    }
 
 }

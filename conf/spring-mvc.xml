@@ -30,9 +30,36 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**" />
-            <bean class="pers.jerry.quick.interceptors.LoginInterceptor" />
+            <bean class="pers.jerry.quick.interceptors.LoginInterceptor" >
+            	<property name="excludedUrls">
+            		<list>
+            			<value>/signin</value>
+            			<value>/logon</value>
+            			<value>/sendcaptcha</value>
+            		</list>
+            	</property>
+            </bean>
         </mvc:interceptor>
     </mvc:interceptors>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/post/editor" />
+            <mvc:mapping path="/post/edit"/>
+            <mvc:mapping path="/user/setting"/>
+            <mvc:mapping path="/user/homepage"/>
+            <bean class="pers.jerry.quick.interceptors.IsLoginInterceptor" >
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
+    <bean id="handlerExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    	<property name="exceptionMappings">
+    		<props>
+    			<prop key="pers.jerry.quick.exceptions.AuthorizationException">redirect:/logon</prop>
+    		</props>
+    	</property>
+    </bean>
 
     <!--通用视图解析 -->
     <bean id="viewResolverCommon"

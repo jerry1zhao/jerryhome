@@ -39,6 +39,13 @@ $(function() {
         var HTMLContent = postEditor.getHTML();
         commitPost(markdownContent, HTMLContent);
     });
+    
+    $("#updatePost").click(function(){
+        var markdownContent = postEditor.getMarkdown();
+        var HTMLContent = postEditor.getHTML();
+        commitPost(markdownContent, HTMLContent, true);
+    });
+    
 
     $('#postInfo').offCanvas('open');
 
@@ -164,10 +171,14 @@ function checkEditor(markdownContent, HTMLContent){
     return true;
 }
 
-function commitPost(markdownContent, HTMLContent) {
+function commitPost(markdownContent, HTMLContent,isUpdate) {
     if (checkPost() && checkPostImage()
             && checkEditor(markdownContent, HTMLContent)) {
-        $("#postForm").attr('action', 'savePost');
+    	if(isUpdate){
+    		$("#postForm").attr('action', 'updatePost');
+    	} else{
+    		$("#postForm").attr('action', 'savePost');
+    	}
         $("#postForm").ajaxSubmit({
             success : function(data) {
                 //$('#postImage').fileinput('upload');

@@ -154,6 +154,21 @@
         AND PL.POSTID = #{postId}
     </select>
     
+    <update id="updatePost" parameterType="Post">
+    	UPDATE JERRY_POST
+    	SET TITLE = #{title},
+    	SUBJECT = #{subject},
+    	DESCRIPTION = #{description},
+    	TAGS = #{tags},
+    	STATUS = #{status},
+    	<if test="postImage != null">
+    		POSTIMAGE = #{postImage},
+    	</if>
+    	MARKDOWNCONTENT = #{markdownContent},
+    	HTMLCONTENT = #{htmlContent}
+		WHERE ID = #{id}
+    </update>
+    
     <update id="likeOrDisLikePost" parameterType="map">
     	UPDATE JERRY_POST_LIKE
 		SET IS_LIKE = #{like}

@@ -11,6 +11,7 @@ package pers.jerry.quick.post.domain;
  */
 public interface PostConstants {
     String ID = "id";
+    String POST_ID = "postId";
     String CREATEUSER = "createUser";
     String CREATEDATE = "createDate";
     String TITLE = "title";

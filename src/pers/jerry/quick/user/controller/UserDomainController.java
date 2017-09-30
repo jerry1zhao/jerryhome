@@ -39,9 +39,6 @@ public class UserDomainController {
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String settings(HttpServletRequest request, ModelMap modelMap) {
         final User currentUser = (User) request.getSession().getAttribute(User.USER);
-        if (currentUser == null) {
-            return "redirect:/logon";
-        }
         modelMap.put("currentUser", currentUser);
         return "user/userSettings";
     }
@@ -50,9 +47,6 @@ public class UserDomainController {
     public String homepage(HttpServletRequest request, ModelMap modelMap) {
         final Map<String, Object> searchCondition = new HashMap<String, Object>();
         final User currentUser = (User) request.getSession().getAttribute(User.USER);
-        if (currentUser == null) {
-            return "redirect:/logon";
-        }
         searchCondition.put("userId", currentUser.getId());
         searchCondition.put("beginNum", 0);
         final List<Post> posts = postService.getUserPosts(searchCondition);
