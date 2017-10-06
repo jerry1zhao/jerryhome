@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import pers.jerry.jerryhome.common.controller.BaseController;
+import pers.jerry.quick.jedis.JedisUtil;
 import pers.jerry.quick.post.domain.Post;
 import pers.jerry.quick.post.domain.PostConstants;
 import pers.jerry.quick.post.domain.PostLike;
@@ -134,6 +135,7 @@ public class PostController extends BaseController {
             throws IOException {
         final Map<String, String> uploadResult = QiniuUtils.upload(attach.getBytes(), UPLOAD_PATH + "temp/");
         final String postImagePath = QiniuUtils.domain + uploadResult.get("path");
+        JedisUtil.set(postImagePath, postImagePath);
         final Map<String, Object> result = new HashMap<String, Object>();
         result.put("url", postImagePath);
         result.put("success", 1);
