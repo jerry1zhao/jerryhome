@@ -22,6 +22,19 @@
                         <div class="post-list">
                             <#list posts as post>
                             <article class="post">
+                               	<div class="post-user-card">
+                                     <div class="sign">
+                                        <h5>
+                                            <a class="username"> <img
+                                                src="${post.createUser.photo}"
+                                                class="img-circle user-avatar">
+                                                ${post.createUser.name}
+                                             </a> 发布了文章 -
+                                             <time> <#if (post.createDate)?string("yyyy") == .now?string("yyyy")> ${post.createDate?string("MM月dd日")}
+                                                    <#else> ${post.createDate?string("yyyy年MM月dd日")} </#if> </time>
+                                        </h5>
+                                     </div>
+                                </div>
                                 <div class="post-media col-md-12">
                                     <#if post.postImage??> <a href="post/${post.id?c}"><img
                                         class="post-image" src="${post.postImage}"></a> </#if>
@@ -45,14 +58,6 @@
                                         </span> <span> <img src="images/post/comment-icon.png"
                                             alt="comment"> <span>0</span>
                                         </span>
-                                    </div>
-                                    <div class="sign">
-                                        <a class="author"><img src="${post.createUser.photo}"
-                                            class="img-circle user-avatar"> ${post.createUser.name}
-                                        </a><span> 发布了文章 </span>
-                                        <time> <#if (post.createDate)?string("yyyy") ==
-                                            .now?string("yyyy")> ${post.createDate?string("MM月dd日")}
-                                            <#else> ${post.createDate?string("yyyy年MM月dd日")} </#if> </time>
                                     </div>
                                 </footer>
                             </article>

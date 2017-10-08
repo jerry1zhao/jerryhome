@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
+import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
@@ -39,7 +40,9 @@ public final class QiniuUtils {
     private static String secretKey;
     private static String bucketName;
     private static String upToken;
+    private static Auth auth;
     private static UploadManager uploadManager;
+    private static BucketManager bucketManager;
 
     static {
         final ResourceBundle resource = ResourceBundle.getBundle("QiniuSetting");
@@ -47,9 +50,11 @@ public final class QiniuUtils {
         secretKey = resource.getString(CONSTANT_QINIU_SECRET_KEY);
         bucketName = resource.getString(CONSTANT_QINIU_BUCKET_NAME);
         domain = resource.getString(CONSTANT_QINIU_DOMAIN);
+        auth = Auth.create(accessKey, secretKey);
 
-        upToken = Auth.create(accessKey, secretKey).uploadToken(bucketName);
+        upToken = auth.uploadToken(bucketName);
         uploadManager = new UploadManager(new Configuration(Zone.zone2()));
+        bucketManager = new BucketManager(auth, new Configuration(Zone.zone2()));
     }
 
     private QiniuUtils() {
@@ -66,6 +71,14 @@ public final class QiniuUtils {
             logger.error("QiniuException", e);
         }
         return map;
+    }
+    
+    public static void rename(String formKey, String toKey) {
+        try {
+        	bucketManager.move(bucketName, formKey, bucketName, toKey);
+        } catch (final QiniuException e) {
+            logger.error("QiniuException", e);
+        }
     }
 
 }

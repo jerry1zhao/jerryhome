@@ -98,16 +98,13 @@ a:hover {
 
 .post .post-footer {
     border-top:0px;
-    padding-bottom:10px;
-    padding-bottom:25px;
+    height: 30px;
 }
 
 .post .post-footer .interacts {
-    float:left;
 }
 
 .post .post-footer .sign {
-    float:right;
     text-align:right;
     color:#777;
 }
@@ -123,6 +120,22 @@ a:hover {
 }
 .post .post-footer .sign .author img{
     width: 30px;
+}
+
+.post .post-user-card{
+    color:#969696;
+}
+.post .post-user-card .sign .username{
+    color:#000000;
+}
+.post .post-user-card .sign .user-avatar{
+    margin:5px;
+    width:35px;
+    height:35px;
+}
+.post .post-user-card .sign h5{
+    margin-top:0px;
+    margin-bottom:5px;
 }
 /*end post*/
 

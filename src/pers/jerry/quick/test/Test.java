@@ -11,18 +11,19 @@ package pers.jerry.quick.test;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import pers.jerry.quick.util.ActionHelper;
 
 public class Test {
     static Logger log = Logger.getLogger(Test.class);
 
     public static void main(String[] args) throws Exception {
 
-        String str="c://abc";
-        str=str.replaceAll("//","\\\\");
-        System.out.println(str);
-
+    	List<String> s = ActionHelper.getUploadImg("![](http://orzrxu448.bkt.clouddn.com/post/temp/09c87d81845b422c9c484126234fa0cf)asda![](http://orzrxu448.bkt.clouddn.com/post/temp/09c87d81845b422c9c484126234fa0cf)dasz+-![](http://orzrxu448.bkt.clouddn.com/post/temp/09c87d81845b422c9c484126234fa0cf)*/*");
+    	s.get(0);
     }
 
     public static String a() {

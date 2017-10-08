@@ -39,6 +39,7 @@ import pers.jerry.quick.post.domain.PostConstants;
 import pers.jerry.quick.post.domain.PostLike;
 import pers.jerry.quick.post.service.PostService;
 import pers.jerry.quick.user.domain.User;
+import pers.jerry.quick.util.ActionHelper;
 import pers.jerry.quick.util.QiniuUtils;
 import pers.jerry.quick.util.UserUtils;
 import pers.jerry.quick.util.ValidationUtils;
@@ -69,6 +70,9 @@ public class PostController extends BaseController {
     @RequestMapping(value = "post/savePost", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> savePost(MultipartHttpServletRequest request) throws IOException {
+    	String postMarkDown = request.getParameter(PostConstants.POST_CONTENT_MARKDOWN);
+    	String postHtml = request.getParameter(PostConstants.POST_CONTENT_HTML);
+    	Map<String, String> result = ActionHelper.postContentImgHandle(postMarkDown, postHtml);
         final Post post = new Post();
         post.setTitle(request.getParameter(PostConstants.TITLE));
         post.setSubject(request.getParameter(PostConstants.SUBJECT));
@@ -77,8 +81,8 @@ public class PostController extends BaseController {
         post.setCreateUser((User) request.getSession().getAttribute(User.USER));
         post.setCreateDate(new Timestamp(System.currentTimeMillis()));
         post.setStatus(PostConstants.DRAFT);
-        post.setHtmlContent(request.getParameter(PostConstants.POST_CONTENT_HTML));
-        post.setMarkdownContent(request.getParameter(PostConstants.POST_CONTENT_MARKDOWN));
+        post.setMarkdownContent(result.get(PostConstants.POST_CONTENT_MARKDOWN));
+        post.setHtmlContent(result.get(PostConstants.POST_CONTENT_HTML));
 
         final MultipartFile postImage = request.getFile("postImage");
         if (postImage != null) {
@@ -135,7 +139,6 @@ public class PostController extends BaseController {
             throws IOException {
         final Map<String, String> uploadResult = QiniuUtils.upload(attach.getBytes(), UPLOAD_PATH + "temp/");
         final String postImagePath = QiniuUtils.domain + uploadResult.get("path");
-        JedisUtil.set(postImagePath, postImagePath);
         final Map<String, Object> result = new HashMap<String, Object>();
         result.put("url", postImagePath);
         result.put("success", 1);

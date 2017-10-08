@@ -7,6 +7,7 @@
 package pers.jerry.quick.jedis;
 
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -81,5 +82,44 @@ public class JedisUtil {
 			close(jedis);
 		}
 		return ans;
+	}
+	
+	public static Long sadd(String key,String value){
+		Long ans = null;
+		Jedis jedis = getJedis();
+		try {
+			ans = jedis.sadd(key,value);
+		} catch (Exception e){
+			logger.error("Jedis pool exception", e);
+		} finally {
+			close(jedis);
+		}
+		return ans;
+	}
+	
+	public static Set<String> sinter(String set1,String set2){
+		Set<String> result = null;
+		Jedis jedis = getJedis();
+		try {
+			result = jedis.sinter(set1,set2);
+		} catch (Exception e){
+			logger.error("Jedis pool exception", e);
+		} finally {
+			close(jedis);
+		}
+		return result;
+	}
+	
+	public static Set<String> sdiff(String set1,String set2){
+		Set<String> result = null;
+		Jedis jedis = getJedis();
+		try {
+			result = jedis.sdiff(set1,set2);
+		} catch (Exception e){
+			logger.error("Jedis pool exception", e);
+		} finally {
+			close(jedis);
+		}
+		return result;
 	}
 }
