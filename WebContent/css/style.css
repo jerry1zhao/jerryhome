@@ -8,6 +8,7 @@ body{
     height: 100%;
     margin:0;
     padding:0;
+    font-family:-apple-system,BlinkMacSystemFont,PingFang-SC-Regular,'Hiragino Sans GB','Microsoft Yahei',Arial,sans-serif;
 }
 
 header {
@@ -49,6 +50,7 @@ a:hover {
 .btn-load-Moer {
     margin-bottom: 20px;
     border-radius: 2px;
+    width: 100%;
 }
 
 .btn-load-Moer:hover {
@@ -72,7 +74,7 @@ a:hover {
 
 .post .post-media {
     padding:0px;
-    padding-bottom:15px;
+    padding-bottom:20px;
 }
 
 .post .post-media .post-image{
@@ -84,6 +86,11 @@ a:hover {
 .post .post-head h3{
     margin-top:0px;
     font-weight:bold;
+}
+
+.post .post-context{
+	padding-top: 1px;
+	padding-bottom: 3px;
 }
 
 .post .post-context h5{

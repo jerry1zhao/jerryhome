@@ -122,6 +122,14 @@
             <div class="am-modal-bd">你还没有写文章呢!</div>
         </div>
     </div>
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="postCommitLoading">
+	  	<div class="am-modal-dialog">
+		    <div class="am-modal-hd">正在提交...</div>
+		    <div class="am-modal-bd">
+		      <span class="am-icon-spinner am-icon-spin"></span>
+		    </div>
+	  	</div>
+	</div>
     <div class="bottom-float-update">
         <div class="container">
             <div class="row">
@@ -142,7 +150,6 @@
     <script src="../bootstrap/fileinput/js/zh.js"></script>
     <script src="../amazeui/js/amazeui.min.js"></script>
     <script src="../js/editor.js"></script>
-    <script src="../js/postedit.js"></script>
     <script src="../js/search.js"></script>
 </body>
 </html>

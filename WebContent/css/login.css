@@ -2,6 +2,7 @@
 /*login*/
 html,body,.main {
     height: 100%;
+    font-family:-apple-system,BlinkMacSystemFont,PingFang-SC-Regular,'Hiragino Sans GB','Microsoft Yahei',Arial,sans-serif;
 }
 
 .main {

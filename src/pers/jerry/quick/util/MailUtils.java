@@ -70,6 +70,10 @@ public final class MailUtils {
         props.setProperty("mail.transport.protocol", "smtp");
         props.setProperty("mail.smtp.host", mailSMTPHost);
         props.setProperty("mail.smtp.auth", "true");
+        props.setProperty("mail.smtp.port", "465"); 
+        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");  
+        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+        props.setProperty("mail.smtp.socketFactory.port","465");
 
         final Session session = Session.getDefaultInstance(props);
         session.setDebug(true);

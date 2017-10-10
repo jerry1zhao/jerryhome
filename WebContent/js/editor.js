@@ -174,6 +174,7 @@ function checkEditor(markdownContent, HTMLContent){
 function commitPost(markdownContent, HTMLContent,isUpdate) {
     if (checkPost() && checkPostImage()
             && checkEditor(markdownContent, HTMLContent)) {
+    	$("#postCommitLoading").modal('open');
     	if(isUpdate){
     		$("#postForm").attr('action', 'updatePost');
     	} else{
@@ -181,7 +182,7 @@ function commitPost(markdownContent, HTMLContent,isUpdate) {
     	}
         $("#postForm").ajaxSubmit({
             success : function(data) {
-                //$('#postImage').fileinput('upload');
+            	$("#postCommitLoading").modal('close');
                 window.location.href = data.postId;
                 window.event.returnValue = false;
             }

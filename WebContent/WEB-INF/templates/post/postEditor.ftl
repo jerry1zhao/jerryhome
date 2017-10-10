@@ -108,6 +108,14 @@
             <div class="am-modal-bd">你还没有写文章呢!</div>
         </div>
     </div>
+   	<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="postCommitLoading">
+	  	<div class="am-modal-dialog">
+		    <div class="am-modal-hd">正在提交...</div>
+		    <div class="am-modal-bd">
+		      <span class="am-icon-spinner am-icon-spin"></span>
+		    </div>
+	  	</div>
+	</div>
     <div class="bottom-float-commit">
         <div class="container">
             <div class="row">

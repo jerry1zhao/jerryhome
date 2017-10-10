@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 html{height:100%;}
-body{display:flex;flex-direction:column;height:100%;margin:0;padding:0;}
+body{display:flex;flex-direction:column;height:100%;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,PingFang-SC-Regular,'Hiragino Sans GB','Microsoft Yahei',Arial,sans-serif;}
 header{flex:0 0 auto;}
 .main{flex:1 0 auto;background-color:#FFFFFF;padding-top:40px;}
 .background-color-FAFAFA{background-color:#FAFAFA !important;}
@@ -98,6 +98,10 @@ a:hover{color:#F55B57;text-decoration:none;}
     width:100%;
     height:100%;
 
+}
+
+.post .post-head{
+	padding-top: 5px;
 }
 
 .post .post-head h3{
