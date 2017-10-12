@@ -1,5 +1,6 @@
 /build/
 /logs/
 /target/
-
+/conf/DBSetting.properties
+/conf/MailSetting.properties
 .idea
