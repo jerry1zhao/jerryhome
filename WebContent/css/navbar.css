@@ -63,5 +63,16 @@
     margin: 0;
 }
 
+@media screen and (max-width: 768px) {
+.navbar-collapse .navbar-nav li:nth-child(2) {
+	float: right;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+.navbar-collapse .navbar-nav li:nth-child(3) {
+	float: right;
+	padding-top: 5px;
+}
+}
 
 /*navbar*/
