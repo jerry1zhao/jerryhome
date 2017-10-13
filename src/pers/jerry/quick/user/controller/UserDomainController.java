@@ -50,7 +50,9 @@ public class UserDomainController {
         searchCondition.put("userId", currentUser.getId());
         searchCondition.put("beginNum", 0);
         final List<Post> posts = postService.getUserPosts(searchCondition);
+        final List<Post> likePosts = postService.getUserLikePosts(searchCondition);
         modelMap.put("posts", posts);
+        modelMap.put("likePosts", likePosts);
         modelMap.put("currentUser", currentUser);
         return "user/userHomepage";
     }

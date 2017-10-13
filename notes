@@ -12,7 +12,7 @@ amazeUI:
         z-index: 1;
     }
 
-Tomcat:
+如果在传值过程中出现乱码，请在Tomcat中设置:
 server.xml:
 <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" useBodyEncodingForURI="true"/>
 
@@ -21,6 +21,4 @@ server.xml:
 编辑帖子
 editor权限
 editor提交后的操作，model-提交到审核
-每次添加图片时(添加成功就已经保存到云)，保存云路径到redis,当save帖子时，过滤temp文件,
-帖子内容与redis cloud path list对比，相同的则重命名(去掉/temp)
-定时清除cloud上的temp文件(不活跃的redis记录,redis设置过期时间,java定时任务)
+发布/编辑提帖子时，每次添加图片时图片会带有temp/路径(添加成功就已经保存到云)，在保存帖子时，去除要保存的图片的temp/目录，最后在空闲时清理带有temp/目录的图片

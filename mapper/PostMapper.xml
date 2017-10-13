@@ -122,7 +122,8 @@
         P.STATUS AS "status",
         U.ID AS "u_id",
         U.NAME AS "u_name",
-        U.PHOTO AS "u_photo"
+        U.PHOTO AS "u_photo",
+        (SELECT COUNT(1) FROM JERRY_POST_LIKE PL WHERE PL.POSTID=P.ID AND PL.IS_LIKE='t') AS "postLikeCount"
         FROM JERRY_POST P
         LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
         WHERE U.ID = #{userId}
@@ -135,6 +136,7 @@
         SELECT PL.POSTID AS "postId",
         COUNT(1) AS "likeCount"
         FROM JERRY_POST_LIKE PL
+        WHERE PL.IS_LIKE = 't'
         GROUP BY PL.POSTID
         ORDER BY "likeCount" DESC
         LIMIT 5
@@ -152,6 +154,27 @@
         LEFT JOIN JERRY_USER U ON PL.LIKE_USER = U.ID
         WHERE PL.LIKE_USER = #{userId}
         AND PL.POSTID = #{postId}
+    </select>
+    
+    <select id="getUserLikePosts" parameterType="map" resultMap="postsResult">
+        SELECT P.ID AS "id",
+        P.CREATEUSER AS "createUser",
+        P.CREATEDATE AS "createDate",
+        P.SUBJECT AS "subject",
+        P.TITLE AS "title",
+        P.DESCRIPTION AS "description",
+        P.POSTIMAGE AS "postImage",
+        P.STATUS AS "status",
+        U.ID AS "u_id",
+        U.NAME AS "u_name",
+        U.PHOTO AS "u_photo",
+		(SELECT COUNT(1) FROM JERRY_POST_LIKE PL WHERE PL.POSTID=P.ID AND PL.IS_LIKE='t') AS "postLikeCount"
+        FROM JERRY_POST P
+        LEFT JOIN JERRY_USER U ON P.CREATEUSER = U.ID
+		LEFT JOIN JERRY_POST_LIKE PL ON PL.POSTID = P.ID
+		WHERE PL.IS_LIKE = 't' AND PL.LIKE_USER = #{userId}
+		ORDER BY PL.LIKE_DATE DESC
+		LIMIT 100 OFFSET #{beginNum}
     </select>
     
     <update id="updatePost" parameterType="Post">

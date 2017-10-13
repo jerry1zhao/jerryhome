@@ -23,7 +23,7 @@
                         <div class="user-info">
                             <h3>${currentUser.name}</h3>
                             <h5>
-                                <span>文章 </span><span>喜欢 </span>
+                                <span>文章 ${posts?size}</span><span>喜欢 ${likePosts?size}</span>
                             </h5>
                         </div>
                     </div>
@@ -74,9 +74,9 @@
                                     <footer class="post-footer col-md-12">
                                         <div class="interacts">
                                             <span> <img src="../images/post/like-icon.png"
-                                                alt="like"> <span>5</span>
+                                                alt="like"> <span>${post.postLikeCount}</span>
                                             </span> <span> <img src="../images/post/comment-icon.png"
-                                                alt="comment"> <span>20</span>
+                                                alt="comment"> <span>0</span>
                                             </span>
                                         </div>
                                     </footer>
@@ -85,7 +85,53 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="favoriteArticles">
-                            <div class="col-md-8 col-md-offset-2"></div>
+                            <div class="col-md-9">
+                            <#list likePosts as post>
+                                <article class="post">
+                                    <div class="post-user-card">
+                                        <div class="sign">
+                                            <h5>
+                                                <a class="username"> <img src="${post.createUser.photo}"
+                                                    class="img-circle user-avatar"> ${post.createUser.name}
+                                                </a> 发布了文章 -
+                                                <time> <#if (post.createDate)?string("yyyy") ==
+                                                    .now?string("yyyy")> ${post.createDate?string("MM月dd日")}
+                                                    <#else> ${post.createDate?string("yyyy年MM月dd日")} </#if> </time>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="post-head">
+                                        <h3>
+                                            <a href="../post/${post.id?c}">${post.title}</a>
+                                        </h3>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="post-context">
+                                            <#if post.description?length lt 110>
+                                            <h5>${post.description}</h5>
+                                            <#else>
+                                            <h5>${post.description?substring(0,110)}...</h5>
+                                            </#if>
+                                        </div>
+                                    </div>
+                                    <div class="post-media col-md-4">
+                                    <#if post.postImage??>
+                                        <a href="../post/${post.id?c}"><img class="post-image"
+                                            src="${post.postImage}"></a>
+                                    </#if>
+                                    </div>
+                                    <footer class="post-footer col-md-12">
+                                        <div class="interacts">
+                                            <span> <img src="../images/post/like-icon.png"
+                                                alt="like"> <span>${post.postLikeCount}</span>
+                                            </span> <span> <img src="../images/post/comment-icon.png"
+                                                alt="comment"> <span>0</span>
+                                            </span>
+                                        </div>
+                                    </footer>
+                                </article>
+                            </#list>
+                            </div>
                         </div>
                     </div>
                 </div>

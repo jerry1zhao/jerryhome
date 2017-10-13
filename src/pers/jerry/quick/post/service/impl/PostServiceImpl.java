@@ -166,4 +166,13 @@ public class PostServiceImpl implements PostService {
 		postDao.updatePost(post);
 	}
 
+	/* (non-Javadoc)
+	 * @see pers.jerry.quick.post.service.PostService#getUserLikePosts(java.util.Map)
+	 */
+	@Override
+	public List<Post> getUserLikePosts(Map<String, Object> searchCondition) {
+		// TODO Auto-generated method stub
+		return postDao.getUserLikePosts(searchCondition);
+	}
+
 }

@@ -29,6 +29,7 @@ public interface PostService {
     List<Map<Object, Object>> hotPosts();
     List<Post> searchPosts(Map<String, Object> searchCondition);
     List<Post> getUserPosts(Map<String, Object> searchCondition);
+    List<Post> getUserLikePosts(Map<String, Object> searchCondition);
     void likePost(Integer postId,User user);
     void likeOrDisLikePost(Integer postId, User user, Boolean like);
     Boolean getPostLike(Integer postId, User user);
