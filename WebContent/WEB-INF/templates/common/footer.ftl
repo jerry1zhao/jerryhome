@@ -4,7 +4,7 @@
         <div class="icp">
             © Jerry Home
             <p>
-                <a href="https://github.com/jerry1zhao/quick">GitHub</a>
+                <a href="https://github.com/jerry1zhao/jerryhome">GitHub</a>
             </p>
         </div>
     </div>

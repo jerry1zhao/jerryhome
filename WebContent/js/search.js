@@ -108,7 +108,9 @@ function userIsLoggedIn(){
             window.location.href='post/editor';
             window.event.returnValue = false;
         } else {
-            $('#editorModal').modal('open');
+            //$('#editorModal').modal('open');
+            window.location.href='logon';
+            window.event.returnValue = false;
         }
     })
 }

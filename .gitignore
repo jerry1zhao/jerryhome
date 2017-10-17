@@ -3,4 +3,5 @@
 /target/
 /conf/DBSetting.properties
 /conf/MailSetting.properties
+/conf/QiniuSetting.properties
 .idea

@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -49,9 +49,14 @@
                 data-am-modal-close>&times;</a>
         </div>
         <div class="am-modal-bd">
-            <h4>To Be Continued</h4>
-            <h4>To Be Continued</h4>
-            <h4>To Be Continued</h4>
+        <div class="am-form-group">
+	      	<label for="doc-ipt-email-1">邮件</label>
+	      	<input type="email" class="" id="doc-ipt-email-1" placeholder="输入电子邮件">
+	    </div>
+	    <div class="am-form-group">
+	      <label for="doc-ipt-pwd-1">密码</label>
+	      <input type="password" class="" id="doc-ipt-pwd-1" placeholder="输入你的密码">
+	    </div>
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-confirm>登录</span>
