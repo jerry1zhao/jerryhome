@@ -6,6 +6,7 @@
 <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Jerry Home</title>
+<link rel="shortcut icon" href="http://orzrxu448.bkt.clouddn.com/favicon.ico" type="image/x-icon" />
 <!-- Bootstrap -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="amazeui/css/amazeui.min.css" rel="stylesheet">
