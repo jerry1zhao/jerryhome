@@ -7,3 +7,4 @@ encoding//WebContent/WEB-INF/templates/post/postEdit.ftl=UTF-8
 encoding//WebContent/WEB-INF/templates/post/postEditor.ftl=UTF-8
 encoding//WebContent/WEB-INF/templates/search/searchs.ftl=UTF-8
 encoding//WebContent/WEB-INF/templates/user/userSettings.ftl=UTF-8
+encoding//conf/MailSetting.properties=UTF-8

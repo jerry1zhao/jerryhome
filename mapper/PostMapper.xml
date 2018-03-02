@@ -26,6 +26,13 @@
         <association property="likeUser" column="likeUser" javaType="User" jdbcType="INTEGER" resultMap="userResult" />
     </resultMap>
     
+    <resultMap type="PostCarousel" id="postCarouselResult">
+        <id column="id" property="id"/>
+        <result column="postId" property="postId"/>
+        <result column="description" property="description"/>
+        <result column="carouselImage" property="carouselImage"/>
+    </resultMap>
+    
     <resultMap type="User" id="userResult">
         <id column="u_id" property="id"/>
         <result column="u_name" property="name"/>
@@ -175,6 +182,15 @@
 		WHERE PL.IS_LIKE = 't' AND PL.LIKE_USER = #{userId}
 		ORDER BY PL.LIKE_DATE DESC
 		LIMIT 100 OFFSET #{beginNum}
+    </select>
+    
+    <select id="getPostCarousel" resultMap="postCarouselResult">
+        SELECT C.ID AS "id",
+        C.POSTID AS "postId",
+        C.DESCRIPTION AS "description",
+        C.CAROUSEL_IMAGE AS "carouselImage"
+        FROM JERRY_CAROUSEL C
+        ORDER BY C.ID ASC
     </select>
     
     <update id="updatePost" parameterType="Post">

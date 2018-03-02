@@ -35,6 +35,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import pers.jerry.jerryhome.common.controller.BaseController;
 import pers.jerry.quick.jedis.JedisUtil;
 import pers.jerry.quick.post.domain.Post;
+import pers.jerry.quick.post.domain.PostCarousel;
 import pers.jerry.quick.post.domain.PostConstants;
 import pers.jerry.quick.post.domain.PostLike;
 import pers.jerry.quick.post.service.PostService;
@@ -57,8 +58,10 @@ public class PostController extends BaseController {
     public String getPosts(ModelMap modelMap) {
         final List<Post> posts = postService.getPosts();
         final List<Map<Object, Object>> hotPosts = postService.hotPosts();
+        final List<PostCarousel> postCaruosel = postService.getPostCarousel();
         modelMap.put("posts", posts);
         modelMap.put("hotPosts", hotPosts);
+        modelMap.put("postCaruosels", postCaruosel);
         return INDEX;
     }
 

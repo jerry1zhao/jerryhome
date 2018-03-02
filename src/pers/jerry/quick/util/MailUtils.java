@@ -35,6 +35,7 @@ public final class MailUtils {
     private static final String CONSTANT_MAIL_PASSWORD = "mail.password";
     private static final String CONSTANT_MAIL_SMTP_HOST = "mail.SMTP.host";
     private static final String CONSTANT_MAIL_FROM_NAME = "mail.from.name";
+    private static final String CONSTANT_MAIL_CONTENT = "mail.content";
     private static final String UTF8 = "UTF-8";
 
     private static String mailAccount;
@@ -58,7 +59,14 @@ public final class MailUtils {
         mailPassword =  resource.getString(CONSTANT_MAIL_PASSWORD);
         mailSMTPHost =  resource.getString(CONSTANT_MAIL_SMTP_HOST);
         mailFromName =  resource.getString(CONSTANT_MAIL_FROM_NAME);
-        htmlContent = getHTMLContent();
+        //linux
+        try {
+			htmlContent =  new String(resource.getString(CONSTANT_MAIL_CONTENT).getBytes("ISO-8859-1"), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			logger.error("UnsupportedEncodingException", e);
+		}
+        //windows
+        //htmlContent = getHTMLContent();
     }
 
     public static String sendMail(String receiveMailAccount, String userName)

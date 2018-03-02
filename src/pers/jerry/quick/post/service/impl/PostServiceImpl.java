@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import pers.jerry.quick.post.dao.PostDao;
 import pers.jerry.quick.post.domain.Post;
+import pers.jerry.quick.post.domain.PostCarousel;
 import pers.jerry.quick.post.domain.PostLike;
 import pers.jerry.quick.post.service.PostService;
 import pers.jerry.quick.user.domain.User;
@@ -173,6 +174,14 @@ public class PostServiceImpl implements PostService {
 	public List<Post> getUserLikePosts(Map<String, Object> searchCondition) {
 		// TODO Auto-generated method stub
 		return postDao.getUserLikePosts(searchCondition);
+	}
+
+	/* (non-Javadoc)
+	 * @see pers.jerry.quick.post.service.PostService#getPostCarousel()
+	 */
+	@Override
+	public List<PostCarousel> getPostCarousel() {
+		return postDao.getPostCarousel();
 	}
 
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import pers.jerry.quick.post.domain.Post;
+import pers.jerry.quick.post.domain.PostCarousel;
 import pers.jerry.quick.post.domain.PostLike;
 import pers.jerry.quick.user.domain.User;
 
@@ -32,4 +33,5 @@ public interface PostDao {
     void likePost(PostLike postLike);
     void likeOrDisLikePost(Map<String, Object> udpateCondition);
     PostLike getPostLike(Map<String, Integer> searchCondition);
+    List<PostCarousel> getPostCarousel();
 }
